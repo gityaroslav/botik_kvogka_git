@@ -34,4 +34,6 @@ def handle_text(message):
         elif message.text == "test":
             bot.send_message(message.chat.id, 'синхронизация работает')
 
-bot.polling(none_stop=True, interval=0)
+if __name__ == '__main__':
+    bot.skip_pending = True
+    bot.polling(none_stop=True, interval=0)
