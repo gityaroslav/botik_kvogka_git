@@ -33,5 +33,3 @@ def handle_text(message):
         bot.send_message(message.chat.id, 'Квожка работает!')
 
 bot.polling(none_stop=True, interval=0)
-
-# любые изменения
