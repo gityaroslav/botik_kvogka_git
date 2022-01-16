@@ -36,4 +36,5 @@ def handle_text(message):
 
 if __name__ == '__main__':
     bot.skip_pending = True
-    bot.polling(none_stop=True, interval=0)
+    bot.infinity_polling()
+    # bot.polling(none_stop=True, interval=0)
