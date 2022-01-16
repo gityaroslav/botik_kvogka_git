@@ -34,4 +34,4 @@ def handle_text(message):
     elif message.text == "test":
         bot.send_message(message.chat.id, 'синхронизация работает')
 
-bot.polling(none_stop=True, interval=0, skip_updates = True) # , skip_updates = True - тогда он на прошлые не ответит, ооо, спасибочки вроде бы, ахах :) можно проверить, давай
+bot.polling(none_stop=True, interval=0) # , skip_updates = True - тогда он на прошлые не ответит, ооо, спасибочки вроде бы, ахах :) можно проверить, давай
