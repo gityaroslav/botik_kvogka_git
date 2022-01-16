@@ -12,24 +12,12 @@ nikl = '@lizk1a1'
 nikr = '@r4419'
 rty=0
 
-last_user = 0
-last_message = ''
-
-def check_new_message(user, message):
-    if (last_user == user and message == last_message):
-        return False
-    else: return True
-    
-
-
 @bot.message_handler(commands=["start"])
 def start(message, res=False):
-    if(check_new_message(message.chat.id, message.text)):
         bot.send_message(message.chat.id, 'Заскучали?')
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    if(check_new_message(message.chat.id, message.text)):
         if message.text[0:2] == 'оп':
             if message.text[2] == 'л':
                 bot.send_message(message.chat.id, nikl)
@@ -46,4 +34,4 @@ def handle_text(message):
         elif message.text == "test":
             bot.send_message(message.chat.id, 'синхронизация работает')
 
-bot.polling(none_stop=True, interval=0) # , skip_updates = True - тогда он на прошлые не ответит, ооо, спасибочки вроде бы, ахах :) можно проверить, давай
+bot.notifyOnMessage(none_stop=True, interval=0)
