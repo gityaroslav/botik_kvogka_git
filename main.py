@@ -31,5 +31,7 @@ def handle_text(message):
         bot.send_message(message.chat.id, 'Квожка здесь, чё пристали?')
     elif message.text == "*+":
         bot.send_message(message.chat.id, 'Квожка работает!')
+    elif message.text == "test":
+        bot.send_message(message.chat.id, 'синхронизация работает')
 
 bot.polling(none_stop=True, interval=0)
