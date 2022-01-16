@@ -14,7 +14,8 @@ rty=0
 
 @bot.message_handler(content_types=["text"])
 def repeat_all_messages(message):
-    bot.send_message(message.chat.id, message.text)
+    mess = message.text
+    bot.send_message(message.chat.id, mess)
 
 @bot.message_handler(commands=["start"])
 def start(message, res=False):
