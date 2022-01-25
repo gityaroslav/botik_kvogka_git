@@ -10,16 +10,6 @@ nikg = '@freak_sqd03'
 nikd = '@artmv_d'
 nikl = '@lizk1a1'
 nikr = '@r4419'
-rty=0
-
-@bot.message_handler(content_types=["text"])
-def repeat_all_messages(message):
-    mess = message
-    bot.send_message(message.chat.id, mess)
-
-@bot.message_handler(commands=["start"])
-def start(message, res=False):
-        bot.send_message(message.chat.id, 'Заскучали?')
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
