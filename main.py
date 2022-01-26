@@ -17,15 +17,17 @@ def start(m, res=False):
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    if message.text[0:2].lower == 'оп':
-        if message.text[2] == 'л':
+    if message.text[0:2].lower() == 'оп':
+        if message.text[2].lower() == 'л':
             bot.send_message(message.chat.id, nikl)
-        elif message.text[2] == 'д':
+        elif message.text[2].lower() == 'д':
             bot.send_message(message.chat.id, nikd)
         elif message.text[2] == 'ж':
             bot.send_message(message.chat.id, nikg)
         elif message.text[2] == 'р':
             bot.send_message(message.chat.id, nikr)
+        elif message.text[2:5] == 'все':
+            bot.send_message(message.chat.id, f'{nikr} {nikd} {nikl} {nikg}')
     elif (message.text).lower() == 'квожка':
         bot.send_message(message.chat.id, 'Квожка здесь, чё пристали?')
     elif message.text == "*+":
