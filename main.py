@@ -22,11 +22,11 @@ def handle_text(message):
             bot.send_message(message.chat.id, nikl)
         elif message.text[2].lower() == 'д':
             bot.send_message(message.chat.id, nikd)
-        elif message.text[2] == 'ж':
+        elif message.text[2].lower() == 'ж':
             bot.send_message(message.chat.id, nikg)
-        elif message.text[2] == 'р':
+        elif message.text[2].lower() == 'р':
             bot.send_message(message.chat.id, nikr)
-        elif message.text[2:5] == 'все':
+        elif message.text[2:5].lower() == 'все':
             bot.send_message(message.chat.id, f'{nikr} {nikd} {nikl} {nikg}')
     elif (message.text).lower() == 'квожка':
         bot.send_message(message.chat.id, 'Квожка здесь, чё пристали?')
