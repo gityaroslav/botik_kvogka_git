@@ -17,22 +17,25 @@ def start(m, res=False):
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    if message.text[0:2].lower() == 'оп':
-        if message.text[2].lower() == 'л':
+    new_sms_l=message.text.lower()
+    new_sms=message.text
+    if new_sms_l[0:2] == 'оп':
+        if new_sms_l[2] == 'л':
             bot.send_message(message.chat.id, nikl)
-        elif message.text[2].lower() == 'д':
+        elif new_sms_l[2] == 'д':
             bot.send_message(message.chat.id, nikd)
-        elif message.text[2].lower() == 'ж':
+        elif new_sms_l[2] == 'ж':
             bot.send_message(message.chat.id, nikg)
-        elif message.text[2].lower() == 'р':
+        elif new_sms_l[2] == 'р':
             bot.send_message(message.chat.id, nikr)
-        elif message.text[2:5].lower() == 'все':
+        elif new_sms_l[2:5] == 'все':
             bot.send_message(message.chat.id, f'{nikr} {nikd} {nikl} {nikg}')
-    elif (message.text).lower() == 'квожка':
+    elif new_sms_l == 'квожка':
         bot.send_message(message.chat.id, 'Квожка здесь, чё пристали?')
-    elif message.text == "*+":
+    elif new_sms == "*+":
         bot.send_message(message.chat.id, 'Квожка работает!')
-
+    elif new_sms_l[0:7]=='отпвчат':
+        bot.send_message(-1001139329557, new_sms[8:])
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
