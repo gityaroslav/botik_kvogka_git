@@ -36,6 +36,7 @@ def handle_text(message):
         bot.send_message(message.chat.id, 'Квожка работает!')
     elif new_sms_l[0:7]=='отпвчат':
         bot.send_message(-1001139329557, new_sms[8:])
+        bot.send_message(message.chat.id, 'Отправил!')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
