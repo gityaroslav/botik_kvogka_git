@@ -37,7 +37,7 @@ def handle_text(message):
     elif new_sms_l[0:7]=='отпвчат':
         bot.send_message(-1001139329557, new_sms[8:])
         bot.send_message(message.chat.id, 'Отправил!')
-    elif new_sms_l[0:11]=='квожка ночь':
+    elif new_sms_l[0:11]=='ночь квожка':
         bot.send_message(message.chat.id, f'{nikr} {nikd} {nikl} {nikg}\nВсем спокойной ночи!')
 if __name__ == '__main__':
     bot.skip_pending = True
