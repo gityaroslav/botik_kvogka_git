@@ -24,7 +24,7 @@ nikl = '@lizk1a1'
 nikr = '@r4419'
 spisok_good_slovechek=['Делай так почаще!', 'Вот, ну можешь же быть молодцом!', 'Всегда бы так!']
 spisok_bad_slovechek=['Не шути так больше!', 'Человеку может быть обидно!', 'Зачем ты это сделало, недостойное создание?']
-spisok_ludei=['анонимуса', 'абобуса', 'глобуса']
+spisok_ludei=[' анонимуса', ' абобуса', ' глобуса']
 
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
