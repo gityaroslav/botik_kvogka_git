@@ -39,6 +39,7 @@ def handle_text(message):
         bot.send_message(message.chat.id, 'Отправил!')
     elif new_sms_l[0:11]=='ночь квожка':
         bot.send_message(-1001139329557, f'{nikr} {nikd} {nikl} {nikg}\nВсем спокойной ночи!')
+        bot.send_message(message.chat.id, 'Отправил!')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
