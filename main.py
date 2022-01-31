@@ -1,19 +1,7 @@
 import telebot
-import random
+
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 
-g='Женя'
-d='Даша'
-l='Лиза'
-r='Рося'
-vz_pnut_m='пнул '
-vz_pnut_g='пнула'
-vz_posl_m='послал'
-vz_posl_g='послала'
-vz_obn_m='обнял'
-vz_obn_g='обняла'
-vz_poc_m='поцеловал'
-vz_poc_g='поцеловала'
 idg = 789996181
 idd = 719289365
 idl = 1359601863
@@ -22,8 +10,6 @@ nikg = '@freak_sqd03'
 nikd = '@artmv_d'
 nikl = '@lizk1a1'
 nikr = '@r4419'
-spisok_good_slovechek=['Делай так почаще!', 'Вот, ну можешь же быть молодцом!', 'Всегда бы так!']
-spisok_bad_slovechek=['Не шути так больше!', 'Человеку может быть обидно!', 'Зачем ты это сделало, недостойное создание?']
 
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
@@ -33,7 +19,6 @@ def start(m, res=False):
 def handle_text(message):
     new_sms_l=message.text.lower()
     new_sms=message.text
-    id_user=message.from_user.id
     if new_sms_l[0:2] == 'оп':
         if new_sms_l[2] == 'л':
             bot.send_message(message.chat.id, nikl)
@@ -48,50 +33,12 @@ def handle_text(message):
     elif new_sms_l == 'квожка':
         bot.send_message(message.chat.id, 'Квожка здесь, чё пристали?')
     elif new_sms == "*+":
-        bot.send_message(message.chat.id, 'Квожка работает!') 
+        bot.send_message(message.chat.id, 'Квожка работает!')
     elif new_sms_l[0:7]=='отпвчат':
         bot.send_message(-1001139329557, new_sms[8:])
         bot.send_message(message.chat.id, 'Отправил!')
-    elif new_sms_l=='пнуть':
-        random_chtoto2=random.randint(0, 2)
-        if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_pnut_m} лысый глобус. {spisok_bad_slovechek[random_chtoto2]}')
-        elif id_user==idd:
-            bot.send_message(message.chat.id, f'{d} {vz_pnut_g} лысый глобус. {spisok_bad_slovechek[random_chtoto2]}')
-        elif id_user==idg:
-            bot.send_message(message.chat.id, f'{g} {vz_pnut_m} лысый глобус. {spisok_bad_slovechek[random_chtoto2]}')
-        elif id_user==idl:
-            bot.send_message(message.chat.id, f'{l} {vz_pnut_g} лысый глобус. {spisok_bad_slovechek[random_chtoto2]}')
-    elif new_sms_l=='послать':
-        random_chtoto2=random.randint(0, 2)
-        if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_posl_m} лысого глобуса. {spisok_bad_slovechek[random_chtoto2]}')
-        elif id_user==idd:
-            bot.send_message(message.chat.id, f'{d} {vz_posl_g} лысого глобуса. {spisok_bad_slovechek[random_chtoto2]}')
-        elif id_user==idg:
-            bot.send_message(message.chat.id, f'{g} {vz_posl_m} лысого глобуса. {spisok_bad_slovechek[random_chtoto2]}')
-        elif id_user==idl:
-            bot.send_message(message.chat.id, f'{l} {vz_posl_g} лысого глобуса. {spisok_bad_slovechek[random_chtoto2]}')
-    elif new_sms_l=='обнять':
-        random_chtoto2=random.randint(0, 2)
-        if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_obn_m} лысого глобуса. {spisok_good_slovechek[random_chtoto2]}')
-        elif id_user==idd:
-            bot.send_message(message.chat.id, f'{d} {vz_obn_g} лысого глобуса. {spisok_good_slovechek[random_chtoto2]}')
-        elif id_user==idg:
-            bot.send_message(message.chat.id, f'{g} {vz_obn_m} лысого глобуса. {spisok_good_slovechek[random_chtoto2]}')
-        elif id_user==idl:
-            bot.send_message(message.chat.id, f'{l} {vz_obn_g} лысого глобуса. {spisok_good_slovechek[random_chtoto2]}')
-    elif new_sms_l=='поцеловать':
-        random_chtoto2=random.randint(0, 2)
-        if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_poc_m} лысого глобуса. {spisok_good_slovechek[random_chtoto2]}')
-        elif id_user==idd:
-            bot.send_message(message.chat.id, f'{d} {vz_poc_g} лысого глобуса. {spisok_good_slovechek[random_chtoto2]}')
-        elif id_user==idg:
-            bot.send_message(message.chat.id, f'{g} {vz_poc_m} лысого глобуса. {spisok_good_slovechek[random_chtoto2]}')
-        elif id_user==idl:
-            bot.send_message(message.chat.id, f'{l} {vz_poc_g} лысого глобуса. {spisok_good_slovechek[random_chtoto2]}')
+    elif new_sms_l[0:11]=='квожка ночь':
+        bot.send_message(message.chat.id, f'{nikr} {nikd} {nikl} {nikg}\nВсем спокойной ночи!')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
