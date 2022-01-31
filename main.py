@@ -79,7 +79,7 @@ def handle_text(message):
         random_chtoto1=random.randint(0, 2)
         random_chtoto2=random.randint(0, 2)
         if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_obn_m}{spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
+            bot.send_message(message.chat.id, f'{r} {vz_obn_m}{spisok_ludei[random_chtoto1]}. {spisok_good_slovechek[random_chtoto2]}')
         elif id_user==idd:
             bot.send_message(message.chat.id, f'{d} {vz_obn_g}{spisok_ludei[random_chtoto1]}. {spisok_good_slovechek[random_chtoto2]}')
         elif id_user==idg:
