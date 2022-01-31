@@ -56,7 +56,7 @@ def handle_text(message):
         bot.send_message(message.chat.id, 'Отправил!')
     elif new_sms_l=='пнуть':
         if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_pnut_m} {spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{r} {vz_pnut_m}{spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
         elif id_user==idd:
             bot.send_message(message.chat.id, f'{d} {vz_pnut_g} {spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
         elif id_user==idg:
