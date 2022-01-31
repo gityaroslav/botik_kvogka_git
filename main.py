@@ -54,45 +54,49 @@ def handle_text(message):
         bot.send_message(-1001139329557, new_sms[8:])
         bot.send_message(message.chat.id, 'Отправил!')
     elif new_sms_l=='пнуть':
-        random_chtoto=random.randint(0, 2)
+        random_chtoto1=random.randint(0, 2)
+        random_chtoto2=random.randint(0, 2)
         if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_pnut_m}{spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{r} {vz_pnut_m} {spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
         elif id_user==idd:
-            bot.send_message(message.chat.id, f'{d} {vz_pnut_g} {spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{d} {vz_pnut_g} {spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
         elif id_user==idg:
-            bot.send_message(message.chat.id, f'{g} {vz_pnut_m} {spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{g} {vz_pnut_m} {spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
         elif id_user==idl:
-            bot.send_message(message.chat.id, f'{l} {vz_pnut_g} {spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{l} {vz_pnut_g} {spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
     elif new_sms_l=='послать':
-        random_chtoto=random.randint(0, 2)
+        random_chtoto1=random.randint(0, 2)
+        random_chtoto2=random.randint(0, 2)
         if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_posl_m} {spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{r} {vz_posl_m} {spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
         elif id_user==idd:
-            bot.send_message(message.chat.id, f'{d} {vz_posl_g} {spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{d} {vz_posl_g} {spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
         elif id_user==idg:
-            bot.send_message(message.chat.id, f'{g} {vz_posl_m} {spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{g} {vz_posl_m} {spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
         elif id_user==idl:
-            bot.send_message(message.chat.id, f'{l} {vz_posl_g} {spisok_ludei[random_chtoto]}. {spisok_bad_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{l} {vz_posl_g} {spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
     elif new_sms_l=='обнять':
-        random_chtoto=random.randint(0, 2)
+        random_chtoto1=random.randint(0, 2)
+        random_chtoto2=random.randint(0, 2)
         if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_obn_m} {spisok_ludei[random_chtoto]}. {spisok_good_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{r} {vz_posl_m} {spisok_ludei[random_chtoto1]}. {spisok_bad_slovechek[random_chtoto2]}')
         elif id_user==idd:
-            bot.send_message(message.chat.id, f'{d} {vz_obn_g} {spisok_ludei[random_chtoto]}. {spisok_good_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{d} {vz_obn_g} {spisok_ludei[random_chtoto1]}. {spisok_good_slovechek[random_chtoto2]}')
         elif id_user==idg:
-            bot.send_message(message.chat.id, f'{g} {vz_obn_m} {spisok_ludei[random_chtoto]}. {spisok_good_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{g} {vz_obn_m} {spisok_ludei[random_chtoto1]}. {spisok_good_slovechek[random_chtoto2]}')
         elif id_user==idl:
-            bot.send_message(message.chat.id, f'{l} {vz_obn_g} {spisok_ludei[random_chtoto]}. {spisok_good_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{l} {vz_obn_g} {spisok_ludei[random_chtoto1]}. {spisok_good_slovechek[random_chtoto2]}')
     elif new_sms_l=='поцеловать':
-        random_chtoto=random.randint(0, 2)
+        random_chtoto1=random.randint(0, 2)
+        random_chtoto2=random.randint(0, 2)
         if id_user==idr:
-            bot.send_message(message.chat.id, f'{r} {vz_poc_m} {spisok_ludei[random_chtoto]}. {spisok_good_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{r} {vz_poc_m} {spisok_ludei[random_chtoto1]}. {spisok_good_slovechek[random_chtoto2]}')
         elif id_user==idd:
-            bot.send_message(message.chat.id, f'{d} {vz_poc_g} {spisok_ludei[random_chtoto]}. {spisok_good_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{d} {vz_poc_g} {spisok_ludei[random_chtoto1]}. {spisok_good_slovechek[random_chtoto2]}')
         elif id_user==idg:
-            bot.send_message(message.chat.id, f'{g} {vz_poc_m} {spisok_ludei[random_chtoto]}. {spisok_good_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{g} {vz_poc_m} {spisok_ludei[random_chtoto1]}. {spisok_good_slovechek[random_chtoto2]}')
         elif id_user==idl:
-            bot.send_message(message.chat.id, f'{l} {vz_poc_g} {spisok_ludei[random_chtoto]}. {spisok_good_slovechek[random_chtoto]}')
+            bot.send_message(message.chat.id, f'{l} {vz_poc_g} {spisok_ludei[random_chtoto1]}. {spisok_good_slovechek[random_chtoto2]}')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
