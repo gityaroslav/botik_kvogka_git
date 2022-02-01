@@ -25,8 +25,8 @@ def handle_text(message):
     new_sms_l=message.text.lower()
     new_sms=message.text
     id_chel=message.from_user.id
-    chel_shpion=game_shp_chel
-    location_shp=game_shp_locat
+    chel_shpion=0
+    location_shp=0
 ######################################################
     if new_sms_l[0:2] == 'оп':
         if new_sms_l[2] == 'л':
