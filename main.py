@@ -57,18 +57,22 @@ def handle_text(message):
     if new_sms_l == "шпион старт":
         game_shp = True
         if game_shp_chel=='даша':
+            bot.send_message(idd, 'Вы шпион!')
             bot.send_message(idr, game_shp_locat)
             bot.send_message(idl, game_shp_locat)
             bot.send_message(idg, game_shp_locat)
         if game_shp_chel=='лиза':
+            bot.send_message(idl, 'Вы шпион!')
             bot.send_message(idr, game_shp_locat)
             bot.send_message(idd, game_shp_locat)
             bot.send_message(idg, game_shp_locat)
         if game_shp_chel=='рося':
+            bot.send_message(idr, 'Вы шпион!')
             bot.send_message(idd, game_shp_locat)
             bot.send_message(idl, game_shp_locat)
             bot.send_message(idg, game_shp_locat)
         if game_shp_chel=='женя':
+            bot.send_message(idg, 'Вы шпион!')
             bot.send_message(idr, game_shp_locat)
             bot.send_message(idl, game_shp_locat)
             bot.send_message(idd, game_shp_locat)
