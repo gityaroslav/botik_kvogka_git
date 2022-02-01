@@ -25,6 +25,8 @@ def handle_text(message):
     new_sms_l=message.text.lower()
     new_sms=message.text
     id_chel=message.from_user.id
+    chel_shpion=game_shp_chel
+    location_shp=game_shp_locat
 ######################################################
     if new_sms_l[0:2] == 'оп':
         if new_sms_l[2] == 'л':
@@ -59,28 +61,28 @@ def handle_text(message):
         location_shp=game_shp_locat
         if game_shp_chel=='Даша':
             bot.send_message(idd, 'Вы шпион!')
-            bot.send_message(idr, f'{Локация на игру: {game_shp_locat}')
-            bot.send_message(idl, f'{Локация на игру: {game_shp_locat}')
-            bot.send_message(idg, f'{Локация на игру: {game_shp_locat}')
+            bot.send_message(idr, f'Локация на игру: {game_shp_locat}')
+            bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
+            bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
         if game_shp_chel=='Лиза':
             bot.send_message(idl, 'Вы шпион!')
-            bot.send_message(idr, f'{Локация на игру: {game_shp_locat}')
-            bot.send_message(idd, f'{Локация на игру: {game_shp_locat}')
-            bot.send_message(idg, f'{Локация на игру: {game_shp_locat}')
+            bot.send_message(idr, f'Локация на игру: {game_shp_locat}')
+            bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
+            bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
         if game_shp_chel=='Рося':
             bot.send_message(idr, 'Вы шпион!')
-            bot.send_message(idd, f'{Локация на игру: {game_shp_locat}')
-            bot.send_message(idl, f'{Локация на игру: {game_shp_locat}')
-            bot.send_message(idg, f'{Локация на игру: {game_shp_locat}')
+            bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
+            bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
+            bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
         if game_shp_chel=='Женя':
             bot.send_message(idg, 'Вы шпион!')
-            bot.send_message(idr, f'{Локация на игру: {game_shp_locat}')
-            bot.send_message(idl, f'{Локация на игру: {game_shp_locat}')
-            bot.send_message(idd, f'{Локация на игру: {game_shp_locat}')
+            bot.send_message(idr, f'Локация на игру: {game_shp_locat}')
+            bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
+            bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
         bot.send_message(message.chat.id, 'Игра Шпион начинается. Зайдите в лс бота узнать вашу роль/локацию!')
     elif new_sms_l == "шпион стоп":
         bot.send_message(message.chat.id, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
-    
+
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
