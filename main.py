@@ -28,20 +28,20 @@ def handle_text(message):
     game_shp_chel=random.choice(ludi)
     game_shp_locat=random.choice(game_shp_locations)
 ######################################################
-    if new_sms_l[0:2] == 'оп' and game_shp==False:
-        if new_sms_l[2] == 'л' and game_shp==False:
+    if new_sms_l[0:2] == 'оп':
+        if new_sms_l[2] == 'л':
             bot.send_message(message.chat.id, nikl)
-        elif new_sms_l[2] == 'д' and game_shp==False:
+        elif new_sms_l[2] == 'д':
             bot.send_message(message.chat.id, nikd)
-        elif new_sms_l[2] == 'ж' and game_shp==False:
+        elif new_sms_l[2] == 'ж':
             bot.send_message(message.chat.id, nikg)
-        elif new_sms_l[2] == 'р' and game_shp==False:
+        elif new_sms_l[2] == 'р':
             bot.send_message(message.chat.id, nikr)
-        elif new_sms_l[2:5] == 'все' and game_shp==False:
+        elif new_sms_l[2:5] == 'все':
             bot.send_message(message.chat.id, f'{nikr} {nikd} {nikl} {nikg}')
-    elif new_sms_l == 'квожка' and game_shp==False:
+    elif new_sms_l == 'квожка':
         bot.send_message(message.chat.id, 'Квожка здесь, чё пристали?')
-    elif new_sms_l[0:7]=='отпвчат' and game_shp==False:
+    elif new_sms_l[0:7]=='отпвчат':
         bot.send_message(ourchatid, new_sms[8:])
         bot.send_message(message.chat.id, 'Отправил!')
 ######################################################
@@ -54,7 +54,7 @@ def handle_text(message):
         bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
         bot.send_message(message.chat.id, 'Отправил!')
 #########################################################
-    if new_sms_l == "шпион старт":
+    elif new_sms_l == "шпион старт":
         game_shp = True
         if game_shp_chel=='даша':
             bot.send_message(idd, 'Вы шпион!')
@@ -78,7 +78,7 @@ def handle_text(message):
             bot.send_message(idd, game_shp_locat)
         bot.send_message(message.chat.id, 'Игра Шпион начинается. Зайдите в лс бота узнать вашу роль/локацию!')
     elif new_sms_l == "шпион стоп":
-        game_shp = False
+        game_shp=False
         bot.send_message(message.chat.id, f'Игра Шпион окончена.\nПредателем был(а) {game_shp_chel}.\nЛокация называлась {game_shp_locat}')
     
 if __name__ == '__main__':
