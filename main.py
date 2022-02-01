@@ -79,7 +79,7 @@ def handle_text(message):
         bot.send_message(message.chat.id, 'Игра Шпион начинается. Зайдите в лс бота узнать вашу роль/локацию!')
     elif new_sms_l == "шпион стоп":
         game_shp = False
-        bot.send_message(message.chat.id, 'Игра началась')
+        bot.send_message(message.chat.id, f'Игра Шпион окончена.\nПредателем был(а) {game_shp_chel}.\nЛокация называлась {game_shp_locat}')
     
 if __name__ == '__main__':
     bot.skip_pending = True
