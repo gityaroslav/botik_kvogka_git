@@ -72,7 +72,7 @@ def handle_text(message):
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
         if game_shp_chel=='Рося':
-            bot.send_message(idr, f'Вы шпион!, локация==============================================================={game_shp_locat}')
+            bot.send_message(idr, f'Вы шпион!, локация================================================================={game_shp_locat}')
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
