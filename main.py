@@ -57,7 +57,9 @@ def handle_text(message):
     elif new_sms_l == "шпион старт":
         game_shp_chel=random.choice(ludi)
         game_shp_locat=random.choice(game_shp_locations)
+        global chel_shpion
         chel_shpion=game_shp_chel
+        global location_shp
         location_shp=game_shp_locat
         if game_shp_chel=='Даша':
             bot.send_message(idd, 'Вы шпион!')
