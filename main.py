@@ -73,9 +73,9 @@ def handle_text(message):
             bot.send_message(ourchatid, nikd)
             time.sleep(1)
             bot.send_message(ourchatid, nikd)
-            time.sleep(1)sleep(1)
+            time.sleep(1)
             bot.send_message(ourchatid, nikd)
-            time.sleep(1)sleep(1)
+            time.sleep(1)
 #########################################################
     elif new_sms_l == "шпион старт":
         game_shp_chel=random.choice(ludi)
