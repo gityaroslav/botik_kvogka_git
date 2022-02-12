@@ -55,21 +55,21 @@ def handle_text(message):
         bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
         bot.send_message(message.chat.id, 'Отправил!')
     elif new_sms_l[0:4]=="спам":
-        if new_sms_l[6:10]=='лиза':
+        if new_sms_l[5:10]=='лиза':
             bot.send_message(ourchatid, nikl)
             time.sleep(1)
             bot.send_message(ourchatid, nikl)
             time.sleep(1)
             bot.send_message(ourchatid, nikl)
             time.sleep(1)
-        if new_sms_l[6:10]=='женя':
+        if new_sms_l[5:10]=='женя':
             bot.send_message(ourchatid, nikg)
             time.sleep(1)
             bot.send_message(ourchatid, nikg)
             time.sleep(1)
             bot.send_message(ourchatid, nikg)
             time.sleep(1)
-        if new_sms_l[6:10]=='даша':
+        if new_sms_l[5:10]=='даша':
             bot.send_message(ourchatid, nikd)
             time.sleep(1)
             bot.send_message(ourchatid, nikd)
@@ -111,3 +111,5 @@ def handle_text(message):
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
+    спам женя
+    012345678
