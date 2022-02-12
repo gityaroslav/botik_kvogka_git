@@ -1,7 +1,6 @@
 import telebot
 import random
-from replit import db
-dp['enter']='1'
+
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 
 ourchatid=-1001139329557
@@ -73,7 +72,7 @@ def handle_text(message):
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
         if game_shp_chel=='Рося':
-            bot.send_message(idr, f'Вы шпион!, ======================================================================================================================={game_shp_locat}')
+            bot.send_message(idr, f'Вы шпион!, ====================================================================================================================================={game_shp_locat}')
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
