@@ -49,12 +49,15 @@ def handle_text(message):
     elif new_sms == "*+":
         bot.send_message(message.chat.id, 'Квожка работает!')
     elif new_sms_l[0:11]=='ночь квожка':
+        bot.delete_message(message.chat.id, message.message_id)
         bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем спокойной ночи!')
         bot.send_message(message.chat.id, 'Отправил!')
     elif new_sms_l[0:11]=='утро квожка':
+        bot.delete_message(message.chat.id, message.message_id)
         bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
         bot.send_message(message.chat.id, 'Отправил!')
     elif new_sms_l[0:4]=="спам":
+        bot.delete_message(message.chat.id, message.message_id)
         if new_sms_l[5:9]=='лиза':
             bot.send_message(ourchatid, nikl)
             time.sleep(1)
