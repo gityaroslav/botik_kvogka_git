@@ -57,25 +57,25 @@ def handle_text(message):
     elif new_sms_l[0:4]=="спам":
         if new_sms_l[6:10]=='лиза':
             bot.send_message(ourchatid, nikl)
-            sleep(1)
+            time.sleep(1)
             bot.send_message(ourchatid, nikl)
-            sleep(1)
+            time.sleep(1)
             bot.send_message(ourchatid, nikl)
-            sleep(1)
+            time.sleep(1)
         if new_sms_l[6:10]=='женя':
             bot.send_message(ourchatid, nikg)
-            sleep(1)
+            time.sleep(1)
             bot.send_message(ourchatid, nikg)
-            sleep(1)
+            time.sleep(1)
             bot.send_message(ourchatid, nikg)
-            sleep(1)
+            time.sleep(1)
         if new_sms_l[6:10]=='даша':
             bot.send_message(ourchatid, nikd)
-            sleep(1)
+            time.sleep(1)
             bot.send_message(ourchatid, nikd)
-            sleep(1)
+            time.sleep(1)sleep(1)
             bot.send_message(ourchatid, nikd)
-            sleep(1)
+            time.sleep(1)sleep(1)
 #########################################################
     elif new_sms_l == "шпион старт":
         game_shp_chel=random.choice(ludi)
