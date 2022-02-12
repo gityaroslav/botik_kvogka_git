@@ -18,6 +18,10 @@ game_shp_locations=['Футбольное поле', 'Школа', 'Рынок',
 ludi=['Даша', 'Лиза', 'Женя', 'Рося']
 chel_shpion=0
 location_shp=0
+my_zastavka="""
+============================================================================
+============================================================================
+"""
 
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
@@ -98,7 +102,7 @@ def handle_text(message):
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
         if game_shp_chel=='Рося':
-            bot.send_message(idr, f'Вы шпион!, ====================================================================================================================================={game_shp_locat}')
+            bot.send_message(idr, f'Вы шпион!, {my_zastavka}={game_shp_locat}')
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
