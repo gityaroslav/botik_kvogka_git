@@ -1,5 +1,6 @@
 import telebot
 import random
+import time
 
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 
@@ -53,6 +54,28 @@ def handle_text(message):
     elif new_sms_l[0:11]=='утро квожка':
         bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
         bot.send_message(message.chat.id, 'Отправил!')
+    elif new_sms_l[0:4]=="спам":
+        if new_sms_l[6:10]=='лиза':
+            bot.send_message(ourchatid, nikl)
+            sleep(1)
+            bot.send_message(ourchatid, nikl)
+            sleep(1)
+            bot.send_message(ourchatid, nikl)
+            sleep(1)
+        if new_sms_l[6:10]=='женя':
+            bot.send_message(ourchatid, nikg)
+            sleep(1)
+            bot.send_message(ourchatid, nikg)
+            sleep(1)
+            bot.send_message(ourchatid, nikg)
+            sleep(1)
+        if new_sms_l[6:10]=='даша':
+            bot.send_message(ourchatid, nikd)
+            sleep(1)
+            bot.send_message(ourchatid, nikd)
+            sleep(1)
+            bot.send_message(ourchatid, nikd)
+            sleep(1)
 #########################################################
     elif new_sms_l == "шпион старт":
         game_shp_chel=random.choice(ludi)
