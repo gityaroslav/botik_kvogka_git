@@ -35,31 +35,31 @@ def handle_text(message):
 ######################################################
     if new_sms_l[0:2] == 'оп':
         if new_sms_l[2] == 'л':
-            bot.send_message(message.chat.id, nikl)
+            bot.send_message(ourchatid, nikl)
         elif new_sms_l[2] == 'д':
-            bot.send_message(message.chat.id, nikd)
+            bot.send_message(ourchatid, nikd)
         elif new_sms_l[2] == 'ж':
-            bot.send_message(message.chat.id, nikg)
+            bot.send_message(ourchatid, nikg)
         elif new_sms_l[2] == 'р':
-            bot.send_message(message.chat.id, nikr)
+            bot.send_message(ourchatid, nikr)
         elif new_sms_l[2:5] == 'все':
-            bot.send_message(message.chat.id, f'{nikr} {nikd} {nikl} {nikg}')
+            bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}')
     elif new_sms_l == 'квожка':
         bot.send_message(message.chat.id, 'Квожка здесь, чё пристали?')
     elif new_sms_l[0:7]=='отпвчат':
         bot.send_message(ourchatid, new_sms[8:])
-        bot.send_message(message.chat.id, 'Отправил!')
+        bot.send_message(message.chat.id, 'Отправил ваше сообщение!')
 ######################################################
     elif new_sms == "*+":
         bot.send_message(message.chat.id, 'Квожка работает!')
     elif new_sms_l[0:11]=='ночь квожка':
         bot.delete_message(message.chat.id, message.message_id)
         bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем спокойной ночи!')
-        bot.send_message(message.chat.id, 'Отправил!')
+        bot.send_message(idr, 'Пожелал спокойной ночи!')
     elif new_sms_l[0:11]=='утро квожка':
         bot.delete_message(message.chat.id, message.message_id)
         bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
-        bot.send_message(message.chat.id, 'Отправил!')
+        bot.send_message(idr, 'Пожелал доброго утра!')
     elif new_sms_l[0:4]=="спам":
         bot.delete_message(message.chat.id, message.message_id)
         if new_sms_l[5:9]=='лиза':
@@ -102,7 +102,7 @@ def handle_text(message):
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
         if game_shp_chel=='Рося':
-            bot.send_message(idr, f'Вы шпион!, {my_zastavka}={game_shp_locat}')
+            bot.send_message(idr, f'Вы шпион!, {my_zastavka}=={game_shp_locat}')
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idg, f'Локация на игру: {game_shp_locat}')
@@ -111,9 +111,9 @@ def handle_text(message):
             bot.send_message(idr, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
-        bot.send_message(message.chat.id, 'Игра Шпион начинается. Зайдите в лс бота узнать вашу роль/локацию!')
+        bot.send_message(ourchatid, 'Игра Шпион начинается. Зайдите в лс бота узнать вашу роль/локацию!')
     elif new_sms_l == "шпион стоп":
-        bot.send_message(message.chat.id, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
+        bot.send_message(ourchatid, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
 
 if __name__ == '__main__':
     bot.skip_pending = True
