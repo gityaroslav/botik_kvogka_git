@@ -94,6 +94,13 @@ def handle_text(message):
             time.sleep(1)
             bot.send_message(ourchatid, nikd)
             time.sleep(1)
+        if new_sms_l[5:8]=='все':
+            bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}')
+            time.sleep(1)
+            bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}')
+            time.sleep(1)
+            bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}')
+            time.sleep(1)
 #########################################################
     elif new_sms_l == "шпион старт":
         game_shp_chel=random.choice(ludi)
