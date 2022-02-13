@@ -13,7 +13,6 @@ nikg = '@freak_sqd03'
 nikd = '@artmv_d'
 nikl = '@lizk1a1'
 nikr = '@r4419'
-game_shp=False
 game_shp_locations=['Футбольное поле', 'Школа', 'Рынок', 'Магазин', 'Площадка', 'Квартира', 'Ферма', 'Лес', 'Парк', 'Озеро', 'Сад', 'Пляж', 'Заброшка', 'Стройка', 'Поляна', 'Аквапарк', 'Лагерь', 'Зоопарк', 'Цум', 'Отель']
 ludi=['Даша', 'Лиза', 'Женя', 'Рося']
 chel_shpion=0
@@ -32,6 +31,7 @@ def handle_text(message):
     new_sms_l=message.text.lower()
     new_sms=message.text
     id_chel=message.from_user.id
+    id_peresl_chel=message.forward_from.user
 ######################################################
     if new_sms_l[0:2] == 'оп':
         if new_sms_l[2] == 'л':
@@ -49,6 +49,10 @@ def handle_text(message):
     elif new_sms_l[0:7]=='отпвчат':
         bot.send_message(ourchatid, new_sms[8:])
         bot.send_message(message.chat.id, 'Отправил ваше сообщение!')
+    elif new_sms_l == 'уебать':
+        name_poluch=message.reply_to_message.from_user.first_name
+        name_otprav=message.from_user.first_name
+        bot.send_message(ourchatid, f"{name_otprav} уебал(а) {name_poluch}")
 ######################################################
     elif new_sms == "*+":
         bot.send_message(message.chat.id, 'Квожка работает!')
