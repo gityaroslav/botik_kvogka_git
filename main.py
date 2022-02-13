@@ -60,6 +60,10 @@ def handle_text(message):
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(ourchatid, f"{name_otprav} послал(а) {name_poluch}")
+    elif message.text == 'обидеться':
+        name_poluch=message.reply_to_message.from_user.first_name
+        name_otprav=message.from_user.first_name
+        bot.send_message(ourchatid, f"{name_otprav} обиделся(ась) на {name_poluch}")
 ######################################################
     elif new_sms == "*+":
         bot.send_message(message.chat.id, 'Квожка работает!')
