@@ -49,7 +49,7 @@ def handle_text(message):
     elif new_sms_l[0:7]=='отпвчат':
         bot.send_message(ourchatid, new_sms[8:])
         bot.send_message(message.chat.id, 'Отправил ваше сообщение!')
-    elif new_sms_l == 'уебать':
+    elif message.text == 'уебать':
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(ourchatid, f"{name_otprav} уебал(а) {name_poluch}")
