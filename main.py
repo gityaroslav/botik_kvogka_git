@@ -49,7 +49,7 @@ commands_rosya="""
 ——————————————
 *+ - проверка, работает ли бот
 (НОЧЬ///УТРО) КВОЖКА - пожелать спокойной ночи/доброго утра
-СПАМ - (и имя через пробел) отметит человека 3 раза
+СПАС - (и имя через пробел) отметит человека 3 раза
 """
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
@@ -114,7 +114,7 @@ def handle_text(message):
         bot.delete_message(message.chat.id, message.message_id)
         bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
         bot.send_message(idr, 'Пожелал доброго утра!')
-    elif new_sms_l[0:4]=="спам":
+    elif new_sms_l[0:4]=="спас":
         bot.delete_message(message.chat.id, message.message_id)
         if new_sms_l[5:9]=='лиза':
             bot.send_message(ourchatid, nikl)
