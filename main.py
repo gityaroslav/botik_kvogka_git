@@ -1,6 +1,7 @@
 import telebot
 import random
 import time
+from datetime import datetime
 
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 
@@ -116,6 +117,13 @@ def handle_text(message):
         name_otprav=message.from_user.first_name
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "обидеться"')
         bot.send_message(ourchatid, f"{name_otprav} обиделся(ась) на {name_poluch}")
+    elif message.text == 'пинг':
+        start_time = datetime.now()
+        bot.send_message(ourchatid, "Беру ракетку!")
+        end_time = datetime.now()
+        finish_time = end_time - start_time
+        bot.send_message(ourchatid, finish_time)
+        bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "пинг"')
 ######################################################
     elif new_sms == "*+":
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "*+"')
