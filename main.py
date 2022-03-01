@@ -5,7 +5,7 @@ import time
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 
 ourchatid=-1001139329557
-id_otchet_chat=-537475743
+id_otchet_chat=-1001750309280
 idg = 789996181
 idd = 719289365
 idl = 1359601863
