@@ -122,7 +122,7 @@ def handle_text(message):
         bot.send_message(ourchatid, "Беру ракетку!")
         end_time = datetime.now()
         finish_time = end_time - start_time
-        bot.send_message(ourchatid, f'Понг {finish_time.total_seconds()}')
+        bot.send_message(ourchatid, f'Понг (за {finish_time.total_seconds() секунд}')
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "пинг"')
 ######################################################
     elif new_sms == "*+":
