@@ -5,6 +5,7 @@ import time
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 
 ourchatid=-1001139329557
+id_otchet_chat=-537475743
 idg = 789996181
 idd = 719289365
 idl = 1359601863
@@ -105,6 +106,7 @@ def handle_text(message):
         bot.send_message(ourchatid, f"{name_otprav} обиделся(ась) на {name_poluch}")
 ######################################################
     elif new_sms == "*+":
+        bot.send_message(id_otchet_chat, f'{message.from_user.first_name} @{message.from_user.username} команда - ')
         bot.send_message(message.chat.id, 'Квожка работает!')
     elif new_sms_l[0:11]=='ночь квожка':
         bot.delete_message(message.chat.id, message.message_id)
