@@ -227,25 +227,21 @@ def handle_text(message):
         id_otprav=message.from_user.id
         try:
             perevod_summa = int(new_sms[9:])
-            bot.send_message(841463984, perevod_summa) #####
-            command_for_balans_otprav = f"select balance from kvg_db where id = '{id_otprav}'"
+            bot.send_message(841463984, perevod_summa)
+            command_for_balans_otprav = f"select balance from kvg_db where id = {id_otprav}"
             cur.execute(command_for_balans_otprav)
             balans_perevodimogo = cur.fetchone()
             balans_perevodimogo = balans_perevodimogo[0]
-            bot.send_message(841463984, balans_perevodimogo) #####
-            command_for_balans_poluch = f"select balance from kvg_db where id = '{id_poluch}'"
+            command_for_balans_poluch = f"select balance from kvg_db where id = {id_poluch}"
             cur.execute(command_for_balans_poluch)
             balans_poluchaemogo = cur.fetchone()
-            balans_poluchaemogo = balans_perevodimogo[0]
-            bot.send_message(841463984, balans_poluchaemogo) ####
+            balans_poluchaemogo = balans_poluchaemogo[0]
             if balans_perevodimogo>=perevod_summa:
                 balance_minusovoy=balans_perevodimogo - perevod_summa
-                bot.send_message(841463984, balance_minusovoy) ####
-                command_otprav = f"update kvg_db set balance = '{balance_minusovoy}' where id = '{id_otprav}'"
+                command_otprav = f"update kvg_db set balance = {balance_minusovoy} where id = {id_otprav}"
                 cur.execute(command_otprav)
                 balance_plusovoy=balans_poluchaemogo + perevod_summa
-                bot.send_message(841463984, balance_plusovoy) ####
-                command_poluch = f"update kvg_db set balance = '{balance_plusovoy}' where id = '{id_poluch}'"
+                command_poluch = f"update kvg_db set balance = {balance_plusovoy} where id = {id_poluch}"
                 cur.execute(command_poluch)
                 conn.commit()
                 bot.send_message(ourchatid, "Перевод выполнен успешно!")
