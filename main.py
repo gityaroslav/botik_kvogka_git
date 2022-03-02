@@ -221,7 +221,7 @@ def handle_text(message):
         if id_chel==idr:
             bot.send_message(idr, "popal glubje")
             command = 'select balance from kvg_db where name = "Рося"'
-            cur.execute(command)
+            cur.execute(select * from kvg_db)
             balance = cur.fetchone()
             bot.send_message(ourchatid, balance)
             
