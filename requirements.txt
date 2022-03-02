@@ -1,3 +1,4 @@
 pyTelegramBotAPI
 telebot
 psycorg2-binary
+llibpq-dev
