@@ -1,2 +1,4 @@
 pyTelegramBotAPI
 telebot
+psycorg2
+psycorg2-binary

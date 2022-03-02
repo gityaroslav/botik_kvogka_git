@@ -1,9 +1,13 @@
 import telebot
 import random
 import time
+import psycorg2
 from datetime import datetime
 
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
+
+conn = psycorg2.connect("postgres://wqiszsmkmqykoe:9b2c12e5476cda13ac465e39824b68ba8843bd4973bd0b71f1b89120311b8a0d@ec2-52-51-155-48.eu-west-1.compute.amazonaws.com:5432/d36kgen4ps7bls", sslmode = "require")
+cur = db_connection.cursor()
 
 ourchatid=-1001139329557
 id_otchet_chat=-1001750309280
@@ -141,7 +145,7 @@ def handle_text(message):
     elif new_sms_l[0:4]=="мапс":
         bot.delete_message(message.chat.id, message.message_id)
         if new_sms_l[5:9]=='лиза':
-            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "спас лиза"')
+            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс лиза"')
             bot.send_message(ourchatid, nikl)
             time.sleep(1)
             bot.send_message(ourchatid, nikl)
@@ -149,7 +153,7 @@ def handle_text(message):
             bot.send_message(ourchatid, nikl)
             time.sleep(1)
         if new_sms_l[5:9]=='женя':
-            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "спас женя"')
+            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс женя"')
             bot.send_message(ourchatid, nikg)
             time.sleep(1)
             bot.send_message(ourchatid, nikg)
@@ -157,7 +161,7 @@ def handle_text(message):
             bot.send_message(ourchatid, nikg)
             time.sleep(1)
         if new_sms_l[5:9]=='даша':
-            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "спас даша"')
+            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс даша"')
             bot.send_message(ourchatid, nikd)
             time.sleep(1)
             bot.send_message(ourchatid, nikd)
@@ -165,7 +169,7 @@ def handle_text(message):
             bot.send_message(ourchatid, nikd)
             time.sleep(1)
         if new_sms_l[5:8]=='все':
-            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "спас все"')
+            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс все"')
             bot.send_message(ourchatid, f'{nikd} {nikl} {nikg}')
             time.sleep(1)
             bot.send_message(ourchatid, f'{nikd} {nikl} {nikg}')
@@ -205,6 +209,14 @@ def handle_text(message):
     elif new_sms_l == "шпион стоп":
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "шпион стоп"')
         bot.send_message(ourchatid, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
+#########################################################
+    elif new_sms_l=='баланс':
+        if id_user==idr:
+            command = 'select balance from kvg_db where name = "Рося"'
+            cur.execute(command)
+            balance = cur.fetchone()
+            bot.send_message(ourchatid, balance)
+            
 
 if __name__ == '__main__':
     bot.skip_pending = True
