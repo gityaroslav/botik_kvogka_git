@@ -1,13 +1,16 @@
 import telebot
 import random
 import time
-import psycorg2
+import os
+import psycopg2
 from datetime import datetime
 
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 
-conn = psycorg2.connect("postgres://wqiszsmkmqykoe:9b2c12e5476cda13ac465e39824b68ba8843bd4973bd0b71f1b89120311b8a0d@ec2-52-51-155-48.eu-west-1.compute.amazonaws.com:5432/d36kgen4ps7bls", sslmode = "require")
-cur = db_connection.cursor()
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+cur = conn.cursor()
 
 ourchatid=-1001139329557
 id_otchet_chat=-1001750309280
