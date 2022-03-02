@@ -226,7 +226,7 @@ def handle_text(message):
                 balance = cur.fetchone()
                 bot.send_message(ourchatid, balance)
             except Exception as e:
-                bot.send_message(841463984, "Е")
+                bot.send_message(841463984, e)
             
 
 if __name__ == '__main__':
