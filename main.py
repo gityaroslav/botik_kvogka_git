@@ -243,7 +243,7 @@ def handle_text(message):
                 balance_plusovoy=balans_poluchaemogo + perevod_summa
                 command_poluch = f"update kvg_db set balance = {balance_plusovoy} where id = {id_poluch}"
                 cur.execute(command_poluch)
-                conn.commit() ну хз, типо норм
+                conn.commit()
                 bot.send_message(ourchatid, "Перевод выполнен успешно!")
             else:
                 bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
