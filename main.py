@@ -227,7 +227,9 @@ def handle_text(message):
         id_otprav=message.from_user.id
         try:
             perevod_summa = int(new_sms[9:])
-            balans_perevodimogo = int(f"select balance from kvg_db where id = {id_otprav}")
+            command_for_balans_otprav = f"select balance from kvg_db where id = {id_otprav}"
+            cur.execute(command_for_balans_otprav)
+            balance_perevodimogo = cur.fetchone()
             if balans_perevodimogo>=perevod_summa:
                 command_otprav = f"update kvg_db set balance = balance - {perevod_summa} where id = {id_otprav}"
                 cur.execute(command_otprav)
