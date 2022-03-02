@@ -222,6 +222,24 @@ def handle_text(message):
         balance = cur.fetchone()
         balance = balance[0]
         bot.send_message(ourchatid, f"Ваш баланс: {balance}$")
+    elif new_sms_l[0:7]=='перевод':
+        id_poluch=message.reply_to_message.from_user.id 
+        id_otprav=message.from_user.id
+        try:
+            perevod_summa = int(new_sms[9:])
+            balans_perevodimogo = f"select balance from kvg_db where id = {id_otprav}"
+            if balans_perevodimogo>=perevod_summa:
+                command_otprav = f"update kvg_db set balance = balance - {perevod_summa} where id = {id_otprav}"
+                cur.execute(command_otprav)
+                command_poluch = f"update kvg_db set balance = balance + {perevod_summa} where id = {id_poluch}"
+                cur.execute(command_poluch)
+                conn.commit()
+                bot.send_message(ourchatid, "Перевод выполнен успешно!")
+            else:
+                bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
+        except:
+            bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
+        
 
 if __name__ == '__main__':
     bot.skip_pending = True
