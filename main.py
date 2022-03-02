@@ -8,9 +8,12 @@ from datetime import datetime
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 
 DATABASE_URL = os.environ['DATABASE_URL']
-
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-cur = conn.cursor()
+try:
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
+    bot.send_message(841463984, "Podkl")
+except Exception as e:
+    bot.send_message(841463984, "NEPodkl")
 
 ourchatid=-1001139329557
 id_otchet_chat=-1001750309280
