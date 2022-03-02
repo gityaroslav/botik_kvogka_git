@@ -237,7 +237,8 @@ def handle_text(message):
                 bot.send_message(ourchatid, "Перевод выполнен успешно!")
             else:
                 bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
-        except:
+        except Exception as e:
+            bot.send_message(841463984, f'Ошибка:\n{e}')
             bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
         
 
