@@ -226,7 +226,7 @@ def handle_text(message):
         id_poluch=message.reply_to_message.from_user.id 
         id_otprav=message.from_user.id
         try:
-            perevod_summa = int(new_sms[9:])
+            perevod_summa = int(new_sms[8:])
             bot.send_message(841463984, perevod_summa)
             command_for_balans_otprav = f"select balance from kvg_db where id = {id_otprav}"
             cur.execute(command_for_balans_otprav)
