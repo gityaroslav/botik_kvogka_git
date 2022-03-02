@@ -11,9 +11,9 @@ DATABASE_URL = os.environ['DATABASE_URL']
 try:
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
-    bot.send_message(841463984, "Podkl")
+    bot.send_message(841463984, "Подключился/Обновился")
 except Exception as e:
-    bot.send_message(841463984, "Е")
+    bot.send_message(841463984, f'Ошибка:\n{e}')
 
 ourchatid=-1001139329557
 id_otchet_chat=-1001750309280
@@ -226,6 +226,7 @@ def handle_text(message):
                 balance = cur.fetchone()
                 bot.send_message(ourchatid, balance)
             except Exception as e:
+                bot.send_message(841463984, f'Ошибка:\n{e}')
                 bot.send_message(841463984, e)
             
 
