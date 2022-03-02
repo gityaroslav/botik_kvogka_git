@@ -231,15 +231,15 @@ def handle_text(message):
             cur.execute(command_for_balans_otprav)
             balans_perevodimogo = cur.fetchone()
             balans_perevodimogo = balans_perevodimogo[0]
-            command_for_balans_otprav = f"select balance from kvg_db where id = {id_otprav}"
-            cur.execute(command_for_balans_otprav)
-            balans_perevodimogo = cur.fetchone()
-            balans_perevodimogo = balans_perevodimogo[0]
+            command_for_balans_poluch = f"select balance from kvg_db where id = {id_poluch}"
+            cur.execute(command_for_balans_poluch)
+            balans_poluchaemogo = cur.fetchone()
+            balans_poluchaemogo = balans_perevodimogo[0]
             if balans_perevodimogo>=perevod_summa:
                 balance_minusovoy=balans_perevodimogo - perevod_summa
                 command_otprav = f"update kvg_db set balance = {balance_minusovoy} where id = {id_otprav}"
                 cur.execute(command_otprav)
-                balance_plusovoy=balance + perevod_summa
+                balance_plusovoy=balans_poluchaemogo + perevod_summa
                 command_poluch = f"update kvg_db set balance = {balance_plusovoy} where id = {id_poluch}"
                 cur.execute(command_poluch)
                 conn.commit()
