@@ -221,12 +221,11 @@ def handle_text(message):
         if id_chel==idr:
             try:
                 bot.send_message(idr, "popal glubje")
-                command = '78select balance from kvg_db'
+                command = 'select balance from kvg_db'
                 cur.execute(command)
                 balance = cur.fetchone()
                 bot.send_message(ourchatid, balance)
             except Exception as e:
-                bot.send_message(841463984, f'Ошибка:\n{e}')
                 bot.send_message(841463984, e)
             
 
