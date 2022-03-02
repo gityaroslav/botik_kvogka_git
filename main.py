@@ -211,7 +211,7 @@ def handle_text(message):
         bot.send_message(ourchatid, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
 #########################################################
     elif new_sms_l=='баланс':
-        if id_user==idr:
+        if id_chel==idr:
             command = 'select balance from kvg_db where name = "Рося"'
             cur.execute(command)
             balance = cur.fetchone()
