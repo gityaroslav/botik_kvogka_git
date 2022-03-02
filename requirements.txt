@@ -1,4 +1,3 @@
 pyTelegramBotAPI
 telebot
-psycorg2-binary
-llibpq-dev
+psycopg2-binary==2.9.3
