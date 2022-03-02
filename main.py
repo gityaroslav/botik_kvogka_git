@@ -232,9 +232,11 @@ def handle_text(message):
             balans_perevodimogo = cur.fetchone()
             balans_perevodimogo = balans_perevodimogo[0]
             if balans_perevodimogo>=perevod_summa:
-                command_otprav = f"update kvg_db set balance = balance - {perevod_summa} where id = {id_otprav}"
+                balance_minusovoy=balance - perevod_summa
+                command_otprav = f"update kvg_db set balance = {balance_minusovoy} where id = {id_otprav}"
                 cur.execute(command_otprav)
-                command_poluch = f"update kvg_db set balance = balance + {perevod_summa} where id = {id_poluch}"
+                balance_plusovoy=balance + perevod_summa
+                command_poluch = f"update kvg_db set balance = {balance_plusovoy} where id = {id_poluch}"
                 cur.execute(command_poluch)
                 conn.commit()
                 bot.send_message(ourchatid, "Перевод выполнен успешно!")
