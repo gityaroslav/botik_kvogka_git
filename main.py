@@ -217,17 +217,11 @@ def handle_text(message):
         bot.send_message(ourchatid, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
 #########################################################
     elif new_sms_l=='баланс':
-        bot.send_message(idr, "popal")
         if id_chel==idr:
-            try:
-                bot.send_message(idr, "popal glubje")
-                command = 'select balance from kvg_db'
+                command = "select balance from kvg_db where name = 'Рося'"
                 cur.execute(command)
                 balance = cur.fetchone()
                 bot.send_message(ourchatid, balance)
-            except Exception as e:
-                bot.send_message(841463984, e)
-            
 
 if __name__ == '__main__':
     bot.skip_pending = True
