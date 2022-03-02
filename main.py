@@ -219,11 +219,14 @@ def handle_text(message):
     elif new_sms_l=='баланс':
         bot.send_message(idr, "popal")
         if id_chel==idr:
-            bot.send_message(idr, "popal glubje")
-            command = 'select balance from kvg_db where name = "Рося"'
-            cur.execute(select * from kvg_db)
-            balance = cur.fetchone()
-            bot.send_message(ourchatid, balance)
+            try:
+                bot.send_message(idr, "popal glubje")
+                command = 'select balance from kvg_db where name = "Рося"'
+                cur.execute(command)
+                balance = cur.fetchone()
+                bot.send_message(ourchatid, balance)
+            except Exception as e:
+                bot.send_message(841463984, "Е")
             
 
 if __name__ == '__main__':
