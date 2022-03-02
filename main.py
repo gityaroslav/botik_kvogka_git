@@ -220,7 +220,8 @@ def handle_text(message):
         command = f"select balance from kvg_db where id = {id_chel}"
         cur.execute(command)
         balance = cur.fetchone()
-        bot.send_message(ourchatid, f"Ваш баланс: {balance}💲")
+        balance = balance[0]
+        bot.send_message(ourchatid, f"Ваш баланс: {balance}$")
 
 if __name__ == '__main__':
     bot.skip_pending = True
