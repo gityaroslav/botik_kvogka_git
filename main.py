@@ -243,45 +243,25 @@ def handle_text(message):
                 command_poluch = f"update kvg_db set balance = {balance_plusovoy} where id = {id_poluch}"
                 cur.execute(command_poluch)
                 conn.commit()
-                bot.send_message(ourchatid, "Перевод выполнен успешно!")
+                command_for_balans_poluch = f"select balance from kvg_db where id = {id_poluch}"
+                cur.execute(command_for_balans_poluch)
+                balans_poluchaemogo = cur.fetchone()
+                balans_poluchaemogo = balans_poluchaemogo[0]
+                bot.send_message(ourchatid, f"Перевод выполнен успешно!\nВаш баланс: {balans_poluchaemogo}$")
             else:
                 bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
         except:
             bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
     elif new_sms_l[0:4]=="банк":
-        # как ты хочешь команду писать? банк =+5000 или банк +5000 неа) банк+5000/банк-5000 фулл без пробелов
         id_poluch=message.reply_to_message.from_user.id 
         try:
-            perevod_summa = new_sms[4:]
+            perevod_summa = new_sms[4:] # скажи, тка лучше? :) ага)
             command = f"update kvg_db set balance = balance {perevod_summa} where id = {id_poluch}"
             cur.execute(command)
             conn.commit()
             bot.send_message(ourchatid, "Операция выполнена успешно!")
         except Exception as e:
             bot.send_message(idr, e)
-'''
-        id_poluch=message.reply_to_message.from_user.id 
-        try:
-            perevod_summa = int(new_sms[5:])
-            command_for_balans_poluch = f"select balance from kvg_db where id = {id_poluch}"
-            cur.execute(command_for_balans_poluch)
-            balans_poluchaemogo = cur.fetchone()
-            balans_poluchaemogo = balans_poluchaemogo[0]
-            balance_minusovoy=balans_poluchaemogo - perevod_summa
-            balance_plusovoy=balans_poluchaemogo + perevod_summa
-            if new_sms[4]=="+":
-                command_poluch = f"update kvg_db set balance = {balance_plusovoy} where id = {id_poluch}"
-                cur.execute(command_poluch)
-                conn.commit()
-                bot.send_message(ourchatid, "Зачисление выполнено успешно!")
-            elif new_sms[4]=="-":
-                command_otprav = f"update kvg_db set balance = {balance_minusovoy} where id = {id_poluch}"
-                cur.execute(command_otprav)
-                conn.commit()
-                bot.send_message(ourchatid, "Списание выполнено успешно!")
-        except:
-            bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
-'''   
 
 if __name__ == '__main__':
     bot.skip_pending = True
