@@ -247,7 +247,11 @@ def handle_text(message):
                 cur.execute(command_for_balans_poluch)
                 balans_poluchaemogo = cur.fetchone()
                 balans_poluchaemogo = balans_poluchaemogo[0]
-                bot.send_message(ourchatid, f"Перевод выполнен успешно!\nВаш баланс: {balans_poluchaemogo}$")
+                command_for_balans_otprav = f"select balance from kvg_db where id = {id_otprav}"
+                cur.execute(command_for_balans_otprav)
+                balans_perevodimogo = cur.fetchone()
+                balans_perevodimogo = balans_poluchaemogo[0]
+                bot.send_message(ourchatid, f"Перевод выполнен успешно!\nБаланс получателя: {balans_poluchaemogo}$\nВаш баланс: {balans_perevodimogo}$")
             else:
                 bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
         except:
