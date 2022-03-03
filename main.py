@@ -76,14 +76,15 @@ def commands(m, res=False):
         bot.send_message(m.chat.id, commands_all)
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    new_sms_l=message.text.lower()
     new_sms=message.text
+    new_sms_l=message.text.lower()
     id_chel=message.from_user.id
+    id_chat=message.chat.id
 ######################################################
     if new_sms_l[0:2] == 'оп':
         if new_sms_l[2] == 'л':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "опл"')
-            bot.send_message(ourchatid, nikl)
+            bot.send_message(id_chat, nikl)
         elif new_sms_l[2] == 'д':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "опд"')
             bot.send_message(ourchatid, nikd)
