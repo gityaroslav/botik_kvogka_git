@@ -268,7 +268,8 @@ def handle_text(message):
                 cur.execute(command_otprav)
                 conn.commit()
                 bot.send_message(ourchatid, "Списание выполнено успешно!")
-        except:
+        except Exception as e:
+            bot.send_message(841463984, f'Ошибка:\n{e}')
             bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
         
 
