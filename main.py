@@ -264,12 +264,11 @@ def handle_text(message):
                 conn.commit()
                 bot.send_message(ourchatid, "Зачисление выполнено успешно!")
             elif new_sms[4]=="-":
-                command_otprav = f"update kvg_db set balance = {balance_minusovoy} where id = {id_otprav}"
+                command_otprav = f"update kvg_db set balance = {balance_minusovoy} where id = {id_poluch}"
                 cur.execute(command_otprav)
                 conn.commit()
                 bot.send_message(ourchatid, "Списание выполнено успешно!")
-        except Exception as e:
-            bot.send_message(841463984, f'Ошибка:\n{e}')
+        except:
             bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
         
 
