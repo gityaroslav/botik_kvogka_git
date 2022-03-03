@@ -252,7 +252,7 @@ def handle_text(message):
         # как ты хочешь команду писать? банк =+5000 или банк +5000 неа) банк+5000/банк-5000 фулл без пробелов
         id_poluch=message.reply_to_message.from_user.id 
         try:
-            perevod_summa = new_sms[5:]
+            perevod_summa = new_sms[4:]
             command = f"update kvg_db set balance = balance {perevod_summa} where id = {id_poluch}"
             cur.execute(command)
             conn.commit()
