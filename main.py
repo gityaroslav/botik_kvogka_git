@@ -249,6 +249,17 @@ def handle_text(message):
         except:
             bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
     elif new_sms_l[0:4]=="банк":
+        # как ты хочешь команду писать? банк =+5000 или банк +5000 неа) банк+5000/банк-5000 фулл без пробелов
+        id_poluch=message.reply_to_message.from_user.id 
+        try:
+            perevod_summa = new_sms[5:]
+            command = f"update kvg_db set balance = balance {perevod_summa} where id = {id_poluch}"
+            cur.execute(command)
+            conn.commit()
+            bot.send_message(ourchatid, "Операция выполнена успешно!")
+        except Exception as e:
+            bot.send_message(idr, e)
+'''
         id_poluch=message.reply_to_message.from_user.id 
         try:
             perevod_summa = int(new_sms[5:])
@@ -270,7 +281,7 @@ def handle_text(message):
                 bot.send_message(ourchatid, "Списание выполнено успешно!")
         except:
             bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
-        
+'''   
 
 if __name__ == '__main__':
     bot.skip_pending = True
