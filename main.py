@@ -227,7 +227,6 @@ def handle_text(message):
         id_otprav=message.from_user.id
         try:
             perevod_summa = int(new_sms[8:])
-            bot.send_message(841463984, perevod_summa)
             command_for_balans_otprav = f"select balance from kvg_db where id = {id_otprav}"
             cur.execute(command_for_balans_otprav)
             balans_perevodimogo = cur.fetchone()
@@ -247,8 +246,29 @@ def handle_text(message):
                 bot.send_message(ourchatid, "Перевод выполнен успешно!")
             else:
                 bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
-        except Exception as e:
-            bot.send_message(841463984, f'Ошибка:\n{e}')
+        except:
+            bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
+    elif new_sms_l[0:4]=="банк":
+        id_poluch=message.reply_to_message.from_user.id 
+        try:
+            perevod_summa = int(new_sms[5:])
+            command_for_balans_poluch = f"select balance from kvg_db where id = {id_poluch}"
+            cur.execute(command_for_balans_poluch)
+            balans_poluchaemogo = cur.fetchone()
+            balans_poluchaemogo = balans_poluchaemogo[0]
+            balance_minusovoy=balans_poluchaemogo - perevod_summa
+            balance_plusovoy=balans_poluchaemogo + perevod_summa
+            if new_sms[4]=="+":
+                command_poluch = f"update kvg_db set balance = {balance_plusovoy} where id = {id_poluch}"
+                cur.execute(command_poluch)
+                conn.commit()
+                bot.send_message(ourchatid, "Зачисление выполнено успешно!")
+            elif new_sms[4]=="-":
+                command_otprav = f"update kvg_db set balance = {balance_minusovoy} where id = {id_otprav}"
+                cur.execute(command_otprav)
+                conn.commit()
+                bot.send_message(ourchatid, "Списание выполнено успешно!")
+        except:
             bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
         
 
