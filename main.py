@@ -4,7 +4,7 @@ import time
 import os
 import psycopg2
 from datetime import datetime
-
+idr = 841463984
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -13,7 +13,7 @@ try:
     cur = conn.cursor()
     bot.send_message(841463984, "Подключился/Обновился")
 except Exception as e:
-    bot.send_message(841463984, f'Ошибка:\n{e}')
+    bot.send_message(idr, f'Ошибка:\n{e}')
 
 ourchatid1=-1001139329557
 ourchatid=-1001681687517
@@ -28,6 +28,7 @@ nikl = '@lizk1a1'
 nikr = '@gikhok'
 game_shp_locations=['Футбольное поле', 'Школа', 'Рынок', 'Магазин', 'Площадка', 'Квартира', 'Ферма', 'Лес', 'Парк', 'Озеро', 'Сад', 'Пляж', 'Заброшка', 'Стройка', 'Поляна', 'Аквапарк', 'Лагерь', 'Зоопарк', 'Цум', 'Отель']
 ludi=['Даша', 'Лиза', 'Женя', 'Рося']
+random_kefiki=["0", "0", "0", "0", "0", "0", "0", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5",  "1", "1", "1", "1", "1", "1", "1", "1.25", "1.25", "1.25", "1.25", "1.25", "1.5", "1.5", "1.5", "1.5", "1.5", "2", "2", "2", "2", "2", "5", "5", "5", "5", "10", "10", "10", "10", "100"]
 chel_shpion=0
 location_shp=0
 my_zastavka="""
@@ -87,19 +88,19 @@ def handle_text(message):
             bot.send_message(id_chat, nikl)
         elif new_sms_l[2] == 'д':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "опд"')
-            bot.send_message(ourchatid, nikd)
+            bot.send_message(id_chat, nikd)
         elif new_sms_l[2] == 'ж':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "опж"')
-            bot.send_message(ourchatid, nikg)
+            bot.send_message(id_chat, nikg)
         elif new_sms_l[2] == 'р':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "опр"')
-            bot.send_message(ourchatid, nikr)
+            bot.send_message(id_chat, nikr)
         elif new_sms_l[2:5] == 'все':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "опвсе"')
-            bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}')
+            bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}')
     elif new_sms_l == 'квожка':
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "квожка"')
-        bot.send_message(message.chat.id, 'Квожка здесь, чё пристали?')
+        bot.send_message(id_chat, 'Квожка здесь, чё пристали?')
     elif new_sms_l[0:7]=='отпвчат':
         bot.send_message(ourchatid, new_sms[8:])
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "отпвчат"')
@@ -228,7 +229,7 @@ def handle_text(message):
         id_poluch=message.reply_to_message.from_user.id 
         id_otprav=message.from_user.id
         try:
-            perevod_summa = int(new_sms[8:])
+            perevod_summa = int(new_sms[7:])
             command_for_balans_otprav = f"select balance from kvg_db where id = {id_otprav}"
             cur.execute(command_for_balans_otprav)
             balans_perevodimogo = cur.fetchone()
@@ -257,18 +258,33 @@ def handle_text(message):
             else:
                 bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
         except:
-            bot.send_message(ourchatid, "Что-то пошло не так. Попробуйте заново")
+            bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
     elif new_sms_l[0:4]=="банк":
         id_poluch=message.reply_to_message.from_user.id 
         try:
-            perevod_summa = new_sms[4:] # скажи, тка лучше? :) ага)
+            perevod_summa = new_sms[4:]            
             command = f"update kvg_db set balance = balance {perevod_summa} where id = {id_poluch}"
             cur.execute(command)
             conn.commit()
-            bot.send_message(ourchatid, "Операция выполнена успешно!")
+            bot.send_message(id_chat, "Операция выполнена успешно!")
+        except:
+            bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
+    elif new_sms_l[0:3]=="куб":
+        random_kef=random.choice(random_kefiki)
+        try:
+            igr_kubick_summa = int(new_sms[3:])
+            command_for_kubick= f"select balance from kvg_db where id = {id_chel}"
+            cur.execute(command_for_kubick)
+            balans_igr_vkubick = cur.fetchone()
+            balans_igr_vkubick = balans_igr_vkubick[0]
+            new_igr_kubick_summa=igr_kubick_summa*(int(random_kef))
+            command = f"update kvg_db set balance +={new_igr_kubick_summa} where id = {id_poluch}"
+            cur.execute(command)
+            conn.commit()
+            bot.send_message(id_chat, "Операция выполнена успешно!")
         except Exception as e:
-            bot.send_message(idr, e)
-
+            bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
+            bot.send_message(idr, f'Ошибка:\n{e}')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
