@@ -278,7 +278,7 @@ def handle_text(message):
             balans_igr_vkubick = cur.fetchone()
             balans_igr_vkubick = balans_igr_vkubick[0]
             new_igr_kubick_summa=igr_kubick_summa*(float(random_kef))
-            command = f"update kvg_db set balance +={new_igr_kubick_summa} where id = {id_chel}"
+            command = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
             cur.execute(command)
             conn.commit()
             bot.send_message(id_chat, "Операция выполнена успешно!")
