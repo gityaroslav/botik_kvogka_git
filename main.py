@@ -277,6 +277,9 @@ def handle_text(message):
             cur.execute(command_for_kubick)
             balans_igr_vkubick = cur.fetchone()
             balans_igr_vkubick = balans_igr_vkubick[0]
+            command3 = f"update kvg_db set balance=balance-{igr_kubick_summa} where id = {id_chel}"
+            cur.execute(command3)
+            conn.commit()
             new_igr_kubick_summa=igr_kubick_summa*(float(random_kef))
             command1 = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
             cur.execute(command1)
