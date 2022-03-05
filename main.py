@@ -277,18 +277,21 @@ def handle_text(message):
             cur.execute(command_for_kubick)
             balans_igr_vkubick = cur.fetchone()
             balans_igr_vkubick = balans_igr_vkubick[0]
-            command3 = f"update kvg_db set balance=balance-{igr_kubick_summa} where id = {id_chel}"
-            cur.execute(command3)
-            conn.commit()
-            new_igr_kubick_summa=igr_kubick_summa*(float(random_kef))
-            command1 = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
-            cur.execute(command1)
-            conn.commit()
-            command_for_kubick2= f"select balance from kvg_db where id = {id_chel}"
-            cur.execute(command_for_kubick2)
-            balans_igr_vkubick = cur.fetchone()
-            balans_igr_vkubick = balans_igr_vkubick[0]
-            bot.send_message(id_chat, f"Куб: {random_kef}\nВаш баланс: {balans_igr_vkubick}$")
+            if balans_igr_vkubick>=igr_kubick_summa:
+                command3 = f"update kvg_db set balance=balance-{igr_kubick_summa} where id = {id_chel}"
+                cur.execute(command3)
+                conn.commit()
+                new_igr_kubick_summa=igr_kubick_summa*(float(random_kef))
+                command1 = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
+                cur.execute(command1)
+                conn.commit()
+                command_for_kubick2= f"select balance from kvg_db where id = {id_chel}"
+                cur.execute(command_for_kubick2)
+                balans_igr_vkubick = cur.fetchone()
+                balans_igr_vkubick = balans_igr_vkubick[0]
+                bot.send_message(id_chat, f"Куб: {random_kef}\nВаш баланс: {balans_igr_vkubick}$")
+            else:
+                bot.send_message(id_chat, "На вашем балансе недостаточно средств!")
         except Exception as e:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
             bot.send_message(idr, f'Ошибка:\n{e}')
