@@ -278,10 +278,14 @@ def handle_text(message):
             balans_igr_vkubick = cur.fetchone()
             balans_igr_vkubick = balans_igr_vkubick[0]
             new_igr_kubick_summa=igr_kubick_summa*(float(random_kef))
-            command = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
-            cur.execute(command)
+            command1 = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
+            cur.execute(command1)
             conn.commit()
-            bot.send_message(id_chat, "Операция выполнена успешно!")
+            command_for_kubick2= f"select balance from kvg_db where id = {id_chel}"
+            cur.execute(command_for_kubick2)
+            balans_igr_vkubick = cur.fetchone()
+            balans_igr_vkubick = balans_igr_vkubick[0]
+            bot.send_message(id_chat, f"Куб: {random_kef}\nВаш баланс: {balans_igr_vkubick}$")
         except Exception as e:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
             bot.send_message(idr, f'Ошибка:\n{e}')
