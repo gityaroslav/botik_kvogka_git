@@ -315,7 +315,7 @@ def handle_text(message):
         namebalance = cur.fetchall()
         try:
             for el in namebalance:
-                kolp=str(el[0]+el[1])
+                kolp=str(el[0]+str(el[1]))
                 bot.send_message(id_chat, kolp)
         except Exception as e:
             bot.send_message(idr, f'Ошибка:\n{e}')
