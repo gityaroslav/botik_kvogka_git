@@ -80,7 +80,7 @@ commands_rosya="""
 КУБ[ПРОГНОЗ][СУММА] - поставить в кубик ставку размером с сумму с прогнозом(цифрой от 1 до 6)
 ВСЕБАЛЫ - посмотреть балансы всех игроков
 """
-emoji='✋😴💰😔'# {emoji[]}
+emoji='✋😴💰😔😲'# {emoji[]}
 ########################################### все функции для хендлеров
 def kakoy_balans(id_chelika):
     command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
@@ -269,7 +269,7 @@ def handle_text(message):
             else:
                 bot.send_message(ourchatid, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
-            bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
+            bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l[0:4]=="банк" and id_chel==idr:
         id_poluch=message.reply_to_message.from_user.id 
         try:
@@ -279,7 +279,7 @@ def handle_text(message):
             conn.commit()
             bot.send_message(id_chat, "Операция выполнена успешно!")
         except:
-            bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
+            bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l[0:3]=="каз":
         random_kef=random.choice(random_kefiki)
         try:
@@ -294,7 +294,7 @@ def handle_text(message):
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
-            bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
+            bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l[0:3]=="куб":
         random_cifra = random.randint(1,6)
         try:
@@ -311,7 +311,7 @@ def handle_text(message):
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
-            bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
+            bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l=="всебалы":
         cur.execute("select name, balance from kvg_db")
         namebalance = cur.fetchall()
@@ -321,7 +321,7 @@ def handle_text(message):
                 itogoviy_vivod+=str(str(el[0])+f"{emoji[2]}"+str(el[1])+"\n")
             bot.send_message(id_chat, itogoviy_vivod)
         except:
-            bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
+            bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
