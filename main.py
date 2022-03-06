@@ -314,9 +314,7 @@ def handle_text(message):
         cur.execute(command1)
         namebalance = cur.fetchall()
         for el in namebalance:
-            bot.send_message(id_chat, el[0])
-            bot.send_message(id_chat, el[1])
-        
+            bot.send_message(id_chat, el[0]+el[1])
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
