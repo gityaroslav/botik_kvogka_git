@@ -51,7 +51,7 @@ commands_all="""
 Для игры (тут типо название будет как придумаем):
 БАЛАНС - узнать свой баланс
 ПЕРЕВОД[СУММА] - перевести другому пользователю (ответом на сообщение)
-КУБ[СУММА] - поставить в куб судьбы ставку размером с сумму
+КАЗ[СУММА] - поставить в казино ставку размером с сумму
 """
 commands_rosya="""
 Р - рося
@@ -73,7 +73,7 @@ commands_rosya="""
 Для игры (тут типо название будет как придумаем):
 БАЛАНС - узнать свой баланс
 ПЕРЕВОД[СУММА] - перевести другому пользователю (ответом на сообщение)
-КУБ[СУММА] - поставить в куб судьбы ставку размером с сумму
+КАЗ[СУММА] - поставить в казино ставку размером с сумму
 """
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
@@ -279,7 +279,7 @@ def handle_text(message):
             bot.send_message(id_chat, "Операция выполнена успешно!")
         except:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
-    elif new_sms_l[0:3]=="куб":
+    elif new_sms_l[0:3]=="каз":
         random_kef=random.choice(random_kefiki)
         try:
             igr_kubick_summa = int(new_sms[3:])
@@ -299,7 +299,7 @@ def handle_text(message):
                 cur.execute(command_for_kubick2)
                 balans_igr_vkubick = cur.fetchone()
                 balans_igr_vkubick = balans_igr_vkubick[0]
-                bot.send_message(id_chat, f"Куб: {random_kef}\nВаш баланс: {balans_igr_vkubick}$")
+                bot.send_message(id_chat, f"Казино: {random_kef}\nВаш баланс: {balans_igr_vkubick}$")
             else:
                 bot.send_message(id_chat, "На вашем балансе недостаточно средств!")
         except Exception as e:
