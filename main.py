@@ -305,10 +305,10 @@ def handle_text(message):
         except Exception as e:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
     elif new_sms_l[0:3]=="куб":
+        random_cifra = random.randint(1,6)
         try:
-            igr_kubick_summa = int(new_sms[4:])
             igr_kubick_cifra = int(new_sms[3])
-            random_cifra = random.randint(1,6)
+            igr_kubick_summa = int(new_sms[4:])
             command_for_kubick= f"select balance from kvg_db where id = {id_chel}"
             cur.execute(command_for_kubick)
             balans_igr_vkubick = cur.fetchone()
@@ -317,7 +317,7 @@ def handle_text(message):
                 command3 = f"update kvg_db set balance=balance-{igr_kubick_summa} where id = {id_chel}"
                 cur.execute(command3)
                 conn.commit()
-                new_igr_kubick_summa=int(igr_kubick_summa*4,5)
+                new_igr_kubick_summa=igr_kubick_summa*4
                 if igr_kubick_cifra==random_cifra:
                     command1 = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
                     cur.execute(command1)
