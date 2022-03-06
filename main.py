@@ -1,12 +1,13 @@
+############################ все модули и импорты
 import telebot
 import random
 import time
 import os
 import psycopg2
 from datetime import datetime
+######################################## все подсоединения + мой айди
 idr = 841463984
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
-
 DATABASE_URL = os.environ['DATABASE_URL']
 try:
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -14,7 +15,7 @@ try:
     bot.send_message(841463984, "Подключился/Обновился")
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
-
+######################################### все переменные
 ourchatid1=-1001139329557
 ourchatid=-1001681687517
 id_otchet_chat=-1001750309280
@@ -77,12 +78,22 @@ commands_rosya="""
 КАЗ[СУММА] - поставить в казино ставку размером с сумму
 КУБ[ПРОГНОЗ][СУММА] - поставить в кубик ставку размером с сумму с прогнозом(цифрой от 1 до 6)
 """
+########################################### все функции для хендлеров
 def kakoy_balans(id_chelika):
     command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
     cur.execute(command_kakoy_balans)
     balans_kakoy_balans = cur.fetchone()
     balans_kakoy_balans = balans_kakoy_balans[0]
     return balans_kakoy_balans
+def plus_balans(id_plus_balansa, summa_plus_balansa):
+    command_plus_balansa = f"update kvg_db set balance = balance + {summa_plus_balansa} where id = {id_plus_balansa}"
+    cur.execute(command_plus_balansa)
+    conn.commit()
+def minus_balans(id_minus_balansa, summa_minus_balansa):
+    command_minus_balansa = f"update kvg_db set balance = balance - {summa_minus_balansa} where id = {id_minus_balansa}"
+    cur.execute(command_minus_balansa)
+    conn.commit()
+############################################# все хендлеры
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
     bot.send_message(m.chat.id, 'Привет! Я Квожка, вы наверно уже заскучали?')
@@ -99,7 +110,7 @@ def handle_text(message):
     new_sms_l=message.text.lower()
     id_chel=message.from_user.id
     id_chat=message.chat.id
-######################################################
+### основная часть хендлера
     if new_sms_l[0:2] == 'оп':
         if new_sms_l[2] == 'л':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "опл"')
@@ -155,7 +166,7 @@ def handle_text(message):
         finish_time = end_time - start_time
         bot.send_message(ourchatid, f'Понг (за {finish_time.total_seconds()} секунд)')
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "пинг"')
-######################################################
+### скрытые команды хендлера
     elif new_sms == "*+":
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "*+"')
         bot.send_message(message.chat.id, 'Квожка работает!')
@@ -203,7 +214,7 @@ def handle_text(message):
             time.sleep(1)
             bot.send_message(ourchatid, f'{nikd} {nikl} {nikg}')
             time.sleep(1)
-#########################################################
+### все для игры в шпиона
     elif new_sms_l == "шпион старт":
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "шпион старт"')
         game_shp_chel=random.choice(ludi)
@@ -236,12 +247,9 @@ def handle_text(message):
     elif new_sms_l == "шпион стоп":
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "шпион стоп"')
         bot.send_message(ourchatid, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
-#########################################################
+### все для валютной игры
     elif new_sms_l=='баланс':
-        command = f"select balance from kvg_db where id = {id_chel}"
-        cur.execute(command)
-        balance = cur.fetchone()
-        balance = balance[0]
+        balance = kakoy_balans(id_chel)
         bot.send_message(ourchatid, f"Ваш баланс: {balance}$")
     elif new_sms_l[0:7]=='перевод':
         id_poluch=message.reply_to_message.from_user.id 
@@ -249,23 +257,11 @@ def handle_text(message):
         try:
             perevod_summa = int(new_sms[7:])
             balans_perevodimogo = kakoy_balans(id_otprav)
-            balans_poluchaemogo = kakoy_balans(id_poluch)
             if balans_perevodimogo>=perevod_summa:
-                balance_minusovoy=balans_perevodimogo - perevod_summa
-                command_otprav = f"update kvg_db set balance = {balance_minusovoy} where id = {id_otprav}"
-                cur.execute(command_otprav)
-                balance_plusovoy=balans_poluchaemogo + perevod_summa
-                command_poluch = f"update kvg_db set balance = {balance_plusovoy} where id = {id_poluch}"
-                cur.execute(command_poluch)
-                conn.commit()
-                command_for_balans_poluch = f"select balance from kvg_db where id = {id_poluch}"
-                cur.execute(command_for_balans_poluch)
-                balans_poluchaemogo = cur.fetchone()
-                balans_poluchaemogo = balans_poluchaemogo[0]
-                command_for_balans_otprav = f"select balance from kvg_db where id = {id_otprav}"
-                cur.execute(command_for_balans_otprav)
-                balans_perevodimogo = cur.fetchone()
-                balans_perevodimogo = balans_perevodimogo[0]
+                minus_balans(id_otprav, perevod_summa)
+                plus_balans(id_poluch, perevod_summa)
+                balans_poluchaemogo = kakoy_balans(id_poluch)
+                balans_perevodimogo = kakoy_balans(id_otprav)
                 bot.send_message(ourchatid, f"Перевод выполнен успешно!\nБаланс получателя: {balans_poluchaemogo}$\nВаш баланс: {balans_perevodimogo}$")
             else:
                 bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
@@ -285,23 +281,13 @@ def handle_text(message):
         random_kef=random.choice(random_kefiki)
         try:
             igr_kazik_summa = int(new_sms[3:])
-            command_for_kubick= f"select balance from kvg_db where id = {id_chel}"
-            cur.execute(command_for_kubick)
-            balans_igr_vkazik = cur.fetchone()
-            balans_igr_vkazik = balans_igr_vkazik[0]
+            balans_igr_vkazik = kakoy_balans(id_chel)
             if balans_igr_vkazik>=igr_kazik_summa:
-                command3 = f"update kvg_db set balance=balance-{igr_kazik_summa} where id = {id_chel}"
-                cur.execute(command3)
-                conn.commit()
-                new_igr_kubick_summa=igr_kazik_summa*(float(random_kef))
-                command1 = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
-                cur.execute(command1)
-                conn.commit()
-                command_for_kubick2= f"select balance from kvg_db where id = {id_chel}"
-                cur.execute(command_for_kubick2)
-                balans_igr_vkubick = cur.fetchone()
-                balans_igr_vkubick = balans_igr_vkubick[0]
-                bot.send_message(id_chat, f"Казино: {random_kef}\nВаш баланс: {balans_igr_vkubick}$")
+                minus_balans(id_chel, igr_kazik_summa)
+                new_igr_kazik_summa=igr_kazik_summa*(float(random_kef))
+                plus_balans(id_chel, new_igr_kazik_summa)
+                balans_igr_vkazik = kakoy_balans(id_chel)
+                bot.send_message(id_chat, f"Казино: {random_kef}\nВаш баланс: {balans_igr_vkazik}$")
             else:
                 bot.send_message(id_chat, "На вашем балансе недостаточно средств!")
         except:
@@ -311,23 +297,13 @@ def handle_text(message):
         try:
             igr_kubick_cifra = int(new_sms[3])
             igr_kubick_summa = int(new_sms[4:])
-            command_for_kubick= f"select balance from kvg_db where id = {id_chel}"
-            cur.execute(command_for_kubick)
-            balans_igr_vkubick = cur.fetchone()
-            balans_igr_vkubick = balans_igr_vkubick[0]
+            balans_igr_vkubick = kakoy_balans(id_chel)
             if balans_igr_vkubick>=igr_kubick_summa:
-                command3 = f"update kvg_db set balance=balance-{igr_kubick_summa} where id = {id_chel}"
-                cur.execute(command3)
-                conn.commit()
+                minus_balans(id_chel, igr_kubick_summa)
                 new_igr_kubick_summa=igr_kubick_summa*6
                 if igr_kubick_cifra==random_cifra:
-                    command1 = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
-                    cur.execute(command1)
-                    conn.commit()
-                command_for_kubick2= f"select balance from kvg_db where id = {id_chel}"
-                cur.execute(command_for_kubick2)
-                balans_igr_vkubick = cur.fetchone()
-                balans_igr_vkubick = balans_igr_vkubick[0]
+                    plus_balans(id_chel, new_igr_kubick_summa)
+                balans_igr_vkubick = kakoy_balans(id_chel)
                 bot.send_message(id_chat, f"Кубик: {random_cifra}\nВаш баланс: {balans_igr_vkubick}$")
             else:
                 bot.send_message(id_chat, "На вашем балансе недостаточно средств!")
