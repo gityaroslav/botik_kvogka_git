@@ -331,9 +331,14 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Кубик: {random_cifra}\nВаш баланс: {balans_igr_vkubick}$")
             else:
                 bot.send_message(id_chat, "На вашем балансе недостаточно средств!")
-        except Exception as e:
+        except:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
-            bot.send_message(idr, f'Ошибка:\n{e}')
+    elif new_sms_l=="всебалы":
+        command1= f"select name, balance from kvg_db"
+        cur.execute(command1)
+        namebalance = cur.fetchall()
+        bot.send_message(id_chat, namebalance)
+        
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
