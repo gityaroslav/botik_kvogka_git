@@ -313,9 +313,11 @@ def handle_text(message):
         command1= f"select name, balance from kvg_db"
         cur.execute(command1)
         namebalance = cur.fetchall()
+        itogoviy_vivod=""
         try:
             for el in namebalance:
                 bot.send_message(id_chat, el[0]+" "+str(el[1]))
+                itogoviy_vivod+=(el[0]+" "+str(el[1])+"\n")
         except Exception as e:
             bot.send_message(idr, f'Ошибка:\n{e}')
 if __name__ == '__main__':
