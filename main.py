@@ -318,6 +318,7 @@ def handle_text(message):
             for el in namebalance:
                 bot.send_message(id_chat, el[0]+" "+str(el[1]))
                 itogoviy_vivod+=(el[0]+" "+str(el[1])+"\n")
+            bot.send_message(id_chat, itogoviy_vivod)
         except Exception as e:
             bot.send_message(idr, f'Ошибка:\n{e}')
 if __name__ == '__main__':
