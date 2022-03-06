@@ -80,6 +80,7 @@ commands_rosya="""
 КУБ[ПРОГНОЗ][СУММА] - поставить в кубик ставку размером с сумму с прогнозом(цифрой от 1 до 6)
 ВСЕБАЛЫ - посмотреть балансы всех игроков
 """
+emoji='✋😴💰'
 ########################################### все функции для хендлеров
 def kakoy_balans(id_chelika):
     command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
@@ -98,7 +99,7 @@ def minus_balans(id_minus_balansa, summa_minus_balansa):
 ############################################# все хендлеры
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
-    bot.send_message(m.chat.id, 'Привет! ✋ Я Квожка, вы наверно уже заскучали? 😴')
+    bot.send_message(m.chat.id, f'Привет! {emoji[0]} Я Квожка, вы наверно уже заскучали? {emoji[1]}')
 
 @bot.message_handler(commands=["commands"])
 def commands(m, res=False):
@@ -317,7 +318,7 @@ def handle_text(message):
         itogoviy_vivod="Балансы всех:\n"
         try:
             for el in namebalance:
-                itogoviy_vivod+=str(str(el[0])+"💰"+str(el[1])+"\n")
+                itogoviy_vivod+=str(str(el[0])+f"{emoji[2]}"+str(el[1])+"\n")
             bot.send_message(id_chat, itogoviy_vivod)
         except:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
