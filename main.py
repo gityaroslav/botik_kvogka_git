@@ -316,10 +316,10 @@ def handle_text(message):
         itogoviy_vivod="Балансы всех:\n"
         try:
             for el in namebalance:
-                itogoviy_vivod+=(el[0]+"_"+str(el[1])+"\n")
+                itogoviy_vivod+=(el[0]+"💰"+str(el[1])+"\n")
             bot.send_message(id_chat, itogoviy_vivod)
-        except Exception as e:
-            bot.send_message(idr, f'Ошибка:\n{e}')
+        except:
+            bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
