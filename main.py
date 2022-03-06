@@ -98,7 +98,7 @@ def minus_balans(id_minus_balansa, summa_minus_balansa):
 ############################################# все хендлеры
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
-    bot.send_message(m.chat.id, 'Привет! Я Квожка, вы наверно уже заскучали?')
+    bot.send_message(m.chat.id, 'Привет!✋ Я Квожка, вы наверно уже заскучали?😴')
 
 @bot.message_handler(commands=["commands"])
 def commands(m, res=False):
