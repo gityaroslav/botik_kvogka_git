@@ -304,7 +304,7 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Казино: {random_kef}\nВаш баланс: {balans_igr_vkubick}$")
             else:
                 bot.send_message(id_chat, "На вашем балансе недостаточно средств!")
-        except Exception as e:
+        except:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
     elif new_sms_l[0:3]=="куб":
         random_cifra = random.randint(1,6)
@@ -319,7 +319,7 @@ def handle_text(message):
                 command3 = f"update kvg_db set balance=balance-{igr_kubick_summa} where id = {id_chel}"
                 cur.execute(command3)
                 conn.commit()
-                new_igr_kubick_summa=igr_kubick_summa*4
+                new_igr_kubick_summa=igr_kubick_summa*6
                 if igr_kubick_cifra==random_cifra:
                     command1 = f"update kvg_db set balance=balance+{new_igr_kubick_summa} where id = {id_chel}"
                     cur.execute(command1)
