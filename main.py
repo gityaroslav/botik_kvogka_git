@@ -271,7 +271,7 @@ def handle_text(message):
                 bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
         except:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
-    elif new_sms_l[0:4]=="банк":
+    elif new_sms_l[0:4]=="банк" and id_chel==idr:
         id_poluch=message.reply_to_message.from_user.id 
         try:
             perevod_summa = new_sms[4:]            
