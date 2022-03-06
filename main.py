@@ -80,7 +80,7 @@ commands_rosya="""
 КУБ[ПРОГНОЗ][СУММА] - поставить в кубик ставку размером с сумму с прогнозом(цифрой от 1 до 6)
 ВСЕБАЛЫ - посмотреть балансы всех игроков
 """
-emoji='✋😴💰'
+emoji='✋😴💰😔'# {emoji[]}
 ########################################### все функции для хендлеров
 def kakoy_balans(id_chelika):
     command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
@@ -267,7 +267,7 @@ def handle_text(message):
                 balans_perevodimogo = kakoy_balans(id_otprav)
                 bot.send_message(ourchatid, f"Перевод выполнен успешно!\nБаланс получателя: {balans_poluchaemogo}$\nВаш баланс: {balans_perevodimogo}$")
             else:
-                bot.send_message(ourchatid, "На вашем балансе недостаточно средств!")
+                bot.send_message(ourchatid, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
     elif new_sms_l[0:4]=="банк" and id_chel==idr:
@@ -292,7 +292,7 @@ def handle_text(message):
                 balans_igr_vkazik = kakoy_balans(id_chel)
                 bot.send_message(id_chat, f"Казино: {random_kef}\nВаш баланс: {balans_igr_vkazik}$")
             else:
-                bot.send_message(id_chat, "На вашем балансе недостаточно средств!")
+                bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
     elif new_sms_l[0:3]=="куб":
@@ -309,7 +309,7 @@ def handle_text(message):
                 balans_igr_vkubick = kakoy_balans(id_chel)
                 bot.send_message(id_chat, f"Кубик: {random_cifra}\nВаш баланс: {balans_igr_vkubick}$")
             else:
-                bot.send_message(id_chat, "На вашем балансе недостаточно средств!")
+                bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
     elif new_sms_l=="всебалы":
