@@ -310,8 +310,7 @@ def handle_text(message):
         except:
             bot.send_message(id_chat, "Что-то пошло не так. Попробуйте заново")
     elif new_sms_l=="всебалы":
-        command1= f"select name, balance from kvg_db"
-        cur.execute(command1)
+        cur.execute("select name, balance from kvg_db")
         namebalance = cur.fetchall()
         itogoviy_vivod="Балансы всех:\n"
         try:
