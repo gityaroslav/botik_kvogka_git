@@ -313,7 +313,8 @@ def handle_text(message):
         command1= f"select name, balance from kvg_db"
         cur.execute(command1)
         namebalance = cur.fetchall()
-        bot.send_message(id_chat, namebalance)
+        for el in namebalance:
+            bot.send_message(id_chat, el[0])
         
 if __name__ == '__main__':
     bot.skip_pending = True
