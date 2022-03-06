@@ -77,6 +77,12 @@ commands_rosya="""
 КАЗ[СУММА] - поставить в казино ставку размером с сумму
 КУБ[ПРОГНОЗ][СУММА] - поставить в кубик ставку размером с сумму с прогнозом(цифрой от 1 до 6)
 """
+def kakoy_balans(id_chelika):
+    command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
+    cur.execute(command_kakoy_balans)
+    balans_kakoy_balans = cur.fetchone()
+    balans_kakoy_balans = balans_kakoy_balans[0]
+    return balans_kakoy_balans
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
     bot.send_message(m.chat.id, 'Привет! Я Квожка, вы наверно уже заскучали?')
@@ -242,14 +248,8 @@ def handle_text(message):
         id_otprav=message.from_user.id
         try:
             perevod_summa = int(new_sms[7:])
-            command_for_balans_otprav = f"select balance from kvg_db where id = {id_otprav}"
-            cur.execute(command_for_balans_otprav)
-            balans_perevodimogo = cur.fetchone()
-            balans_perevodimogo = balans_perevodimogo[0]
-            command_for_balans_poluch = f"select balance from kvg_db where id = {id_poluch}"
-            cur.execute(command_for_balans_poluch)
-            balans_poluchaemogo = cur.fetchone()
-            balans_poluchaemogo = balans_poluchaemogo[0]
+            balans_perevodimogo = kakoy_balans(id_otprav)
+            balans_poluchaemogo = kakoy_balans(id_poluch)
             if balans_perevodimogo>=perevod_summa:
                 balance_minusovoy=balans_perevodimogo - perevod_summa
                 command_otprav = f"update kvg_db set balance = {balance_minusovoy} where id = {id_otprav}"
