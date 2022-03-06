@@ -313,9 +313,12 @@ def handle_text(message):
         command1= f"select name, balance from kvg_db"
         cur.execute(command1)
         namebalance = cur.fetchall()
-        for el in namebalance:
-            kolp=str(el[0]+el[1])
-            bot.send_message(id_chat, kolp)
+        try:
+            for el in namebalance:
+                kolp=str(el[0]+el[1])
+                bot.send_message(id_chat, kolp)
+        except Exception as e:
+            bot.send_message(idr, f'Ошибка:\n{e}')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
