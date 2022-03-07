@@ -12,7 +12,7 @@ DATABASE_URL = os.environ['DATABASE_URL']
 try:
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
-    bot.send_message(841463984, "Подключился/Обновился")
+    bot.send_message(idr, "Подключился/Обновился")
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
 ######################################### все переменные
@@ -265,7 +265,7 @@ def handle_text(message):
                 plus_balans(id_poluch, perevod_summa)
                 balans_poluchaemogo = kakoy_balans(id_poluch)
                 balans_perevodimogo = kakoy_balans(id_otprav)
-                bot.send_message(ourchatid, f"Перевод выполнен успешно!\nБаланс получателя: {balans_poluchaemogo}$\nВаш баланс: {balans_perevodimogo}$")
+                bot.send_message(ourchatid, f"Перевод выполнен успешно!\nБаланс получателя: {balans_poluchaemogo}{emoji[2]}\nВаш баланс: {balans_perevodimogo}{emoji[2]}")
             else:
                 bot.send_message(ourchatid, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
@@ -290,7 +290,7 @@ def handle_text(message):
                 new_igr_kazik_summa=igr_kazik_summa*(float(random_kef))
                 plus_balans(id_chel, new_igr_kazik_summa)
                 balans_igr_vkazik = kakoy_balans(id_chel)
-                bot.send_message(id_chat, f"Казино: {random_kef}\nВаш баланс: {balans_igr_vkazik}$")
+                bot.send_message(id_chat, f"Казино: {random_kef}\nВаш баланс: {balans_igr_vkazik}{emoji[2]}")
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
@@ -307,7 +307,7 @@ def handle_text(message):
                 if igr_kubick_cifra==random_cifra:
                     plus_balans(id_chel, new_igr_kubick_summa)
                 balans_igr_vkubick = kakoy_balans(id_chel)
-                bot.send_message(id_chat, f"Кубик: {random_cifra}\nВаш баланс: {balans_igr_vkubick}$")
+                bot.send_message(id_chat, f"Кубик: {random_cifra}\nВаш баланс: {balans_igr_vkubick}{emoji[2]}")
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
