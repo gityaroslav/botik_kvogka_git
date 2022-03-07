@@ -142,81 +142,81 @@ def handle_text(message):
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "уебать"')
-        bot.send_message(ourchatid, f"{name_otprav} уебал(а) {name_poluch}")
+        bot.send_message(id_chat, f"{name_otprav} уебал(а) {name_poluch}")
     elif message.text == 'полюбить':
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "полюбить"')
-        bot.send_message(ourchatid, f"{name_otprav} полюбил(а) {name_poluch}")
+        bot.send_message(id_chat, f"{name_otprav} полюбил(а) {name_poluch}")
     elif message.text == 'послать':
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "послать"')
-        bot.send_message(ourchatid, f"{name_otprav} послал(а) {name_poluch}")
+        bot.send_message(id_chat, f"{name_otprav} послал(а) {name_poluch}")
     elif message.text == 'похвалить':
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "похвалить"')
-        bot.send_message(ourchatid, f"{name_otprav} похвалил(а) {name_poluch}")
+        bot.send_message(id_chat, f"{name_otprav} похвалил(а) {name_poluch}")
     elif message.text == 'обидеться':
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "обидеться"')
-        bot.send_message(ourchatid, f"{name_otprav} обиделся(ась) на {name_poluch}")
+        bot.send_message(id_chat, f"{name_otprav} обиделся(ась) на {name_poluch}")
     elif message.text == 'пинг':
         start_time = datetime.now()
-        bot.send_message(ourchatid, "Беру ракетку!")
+        bot.send_message(id_chat, "Беру ракетку!")
         end_time = datetime.now()
         finish_time = end_time - start_time
-        bot.send_message(ourchatid, f'Понг (за {finish_time.total_seconds()} секунд)')
+        bot.send_message(id_chat, f'Понг (за {finish_time.total_seconds()} секунд)')
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "пинг"')
 ### скрытые команды хендлера
     elif new_sms == "*+":
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "*+"')
-        bot.send_message(message.chat.id, 'Квожка работает!')
+        bot.send_message(id_chat, 'Квожка работает!')
     elif new_sms_l[0:11]=='ночь квожка':
-        bot.delete_message(message.chat.id, message.message_id)
+        bot.delete_message(id_chat, message.message_id)
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "ночь квожка"')
-        bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем спокойной ночи!')
+        bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}\nВсем спокойной ночи!')
         bot.send_message(idr, 'Пожелал спокойной ночи!')
     elif new_sms_l[0:11]=='утро квожка':
-        bot.delete_message(message.chat.id, message.message_id)
+        bot.delete_message(id_chat, message.message_id)
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "утро квожка"')
-        bot.send_message(ourchatid, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
+        bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
         bot.send_message(idr, 'Пожелал доброго утра!')
     elif new_sms_l[0:4]=="мапс":
         bot.delete_message(message.chat.id, message.message_id)
         if new_sms_l[5:9]=='лиза':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс лиза"')
-            bot.send_message(ourchatid, nikl)
+            bot.send_message(id_chat, nikl)
             time.sleep(1)
-            bot.send_message(ourchatid, nikl)
+            bot.send_message(id_chat, nikl)
             time.sleep(1)
-            bot.send_message(ourchatid, nikl)
+            bot.send_message(id_chat, nikl)
             time.sleep(1)
         if new_sms_l[5:9]=='женя':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс женя"')
-            bot.send_message(ourchatid, nikg)
+            bot.send_message(id_chat, nikg)
             time.sleep(1)
-            bot.send_message(ourchatid, nikg)
+            bot.send_message(id_chat, nikg)
             time.sleep(1)
-            bot.send_message(ourchatid, nikg)
+            bot.send_message(id_chat, nikg)
             time.sleep(1)
         if new_sms_l[5:9]=='даша':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс даша"')
-            bot.send_message(ourchatid, nikd)
+            bot.send_message(id_chat, nikd)
             time.sleep(1)
-            bot.send_message(ourchatid, nikd)
+            bot.send_message(id_chat, nikd)
             time.sleep(1)
-            bot.send_message(ourchatid, nikd)
+            bot.send_message(id_chat, nikd)
             time.sleep(1)
         if new_sms_l[5:8]=='все':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс все"')
-            bot.send_message(ourchatid, f'{nikd} {nikl} {nikg}')
+            bot.send_message(id_chat, f'{nikd} {nikl} {nikg}')
             time.sleep(1)
-            bot.send_message(ourchatid, f'{nikd} {nikl} {nikg}')
+            bot.send_message(id_chat, f'{nikd} {nikl} {nikg}')
             time.sleep(1)
-            bot.send_message(ourchatid, f'{nikd} {nikl} {nikg}')
+            bot.send_message(id_chat, f'{nikd} {nikl} {nikg}')
             time.sleep(1)
 ### все для игры в шпиона
     elif new_sms_l == "шпион старт":
@@ -247,10 +247,10 @@ def handle_text(message):
             bot.send_message(idr, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
-        bot.send_message(ourchatid, 'Игра Шпион начинается. Зайдите в лс бота узнать вашу роль/локацию!')
+        bot.send_message(id_chat, 'Игра Шпион начинается. Зайдите в лс бота узнать вашу роль/локацию!')
     elif new_sms_l == "шпион стоп":
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "шпион стоп"')
-        bot.send_message(ourchatid, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
+        bot.send_message(id_chat, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
 ### все для валютной игры
     elif new_sms_l=='баланс':
         balance = kakoy_balans(id_chel)
@@ -266,9 +266,9 @@ def handle_text(message):
                 plus_balans(id_poluch, perevod_summa)
                 balans_poluchaemogo = kakoy_balans(id_poluch)
                 balans_perevodimogo = kakoy_balans(id_otprav)
-                bot.send_message(ourchatid, f"Перевод выполнен успешно!\nБаланс получателя: {balans_poluchaemogo}{emoji[2]}\nВаш баланс: {balans_perevodimogo}{emoji[2]}")
+                bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {balans_poluchaemogo}{emoji[2]}\nВаш баланс: {balans_perevodimogo}{emoji[2]}")
             else:
-                bot.send_message(ourchatid, f"На вашем балансе недостаточно средств! {emoji[3]}")
+                bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l[0:4]=="банк" and id_chel==idr:
