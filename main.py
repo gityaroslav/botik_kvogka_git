@@ -303,7 +303,7 @@ def handle_text(message):
             balans_igr_vkubick = kakoy_balans(id_chel)
             if balans_igr_vkubick>=igr_kubick_summa:
                 minus_balans(id_chel, igr_kubick_summa)
-                new_igr_kubick_summa=igr_kubick_summa*6
+                new_igr_kubick_summa=igr_kubick_summa*5
                 if igr_kubick_cifra==random_cifra:
                     plus_balans(id_chel, new_igr_kubick_summa)
                 balans_igr_vkubick = kakoy_balans(id_chel)
