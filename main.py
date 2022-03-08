@@ -324,14 +324,17 @@ def handle_text(message):
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l=="курс":
-        cur.execute("select balance from kvg_db")
-        namebalance = cur.fetchall()
-        summ_balans=0
-        count_balans=0
-        for el in namebalance:
-            count_balans+=1
-            summ_balans+=int(el[0])
-            bot.send_message(id_chat, summ_balans+" "+count_balans)
+        try:
+            cur.execute("select balance from kvg_db")
+            namebalance = cur.fetchall()
+            summ_balans=0
+            count_balans=0
+            for el in namebalance:
+                count_balans+=1
+                summ_balans+=int(el[0])
+                bot.send_message(id_chat, summ_balans+" "+count_balans)
+        except Exception as e:
+            bot.send_message(idr, f'Ошибка:\n{e}')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
