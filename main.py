@@ -336,7 +336,7 @@ def handle_text(message):
             bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik*3}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-    elif new_sms_l=="квожка скажи его айди":
+    elif new_sms_l=="квожка скажи айди" and message.from_user.id==idr:
         bot.send_message(id_chat, message.reply_to_message.from_user.id)
 if __name__ == '__main__':
     bot.skip_pending = True
