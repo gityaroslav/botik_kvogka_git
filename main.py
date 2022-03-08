@@ -332,7 +332,7 @@ def handle_text(message):
             for el in namebalance:
                 count_balans+=1
                 summ_balans+=int(el[0])
-                bot.send_message(id_chat, summ_balans+" "+count_balans)
+                bot.send_message(id_chat, str(summ_balans)+" "+str(count_balans))
         except Exception as e:
             bot.send_message(idr, f'Ошибка:\n{e}')
 if __name__ == '__main__':
