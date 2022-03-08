@@ -81,7 +81,7 @@ commands_rosya="""
 ВСЕБАЛЫ - посмотреть балансы всех игроков
 БАНК[ДЕЙСТВИЕ] - выполнить любое действие с балансом (ответом на сообщение)
 """
-emoji='✋😴💰😔😲🎲🎰'# {emoji[6]}
+emoji='✋😴💰😔😲🎲🎰'# {emoji[2]}
 ########################################### все функции для хендлеров
 def kakoy_balans(id_chelika):
     command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
@@ -332,7 +332,8 @@ def handle_text(message):
             for el in namebalance:
                 count_balans+=1
                 summ_balans+=int(el[0])
-                bot.send_message(id_chat, str(summ_balans)+" "+str(count_balans))
+            kursik=summ_balans//(count_balans**2)
+            bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik*3}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)")
         except Exception as e:
             bot.send_message(idr, f'Ошибка:\n{e}')
 if __name__ == '__main__':
