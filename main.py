@@ -332,7 +332,7 @@ def handle_text(message):
             for el in namebalance:
                 count_balans+=1
                 summ_balans+=int(el[0])
-            kursik=summ_balans//(count_balans**2)
+            kursik=summ_balans//(count_balans**3)
             bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik*3}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
