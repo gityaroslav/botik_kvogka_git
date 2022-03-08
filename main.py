@@ -334,8 +334,8 @@ def handle_text(message):
                 summ_balans+=int(el[0])
             kursik=summ_balans//(count_balans**2)
             bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik*3}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
-        except Exception as e:
-            bot.send_message(idr, f'Ошибка:\n{e}')
+        except:
+            bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
