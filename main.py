@@ -333,7 +333,7 @@ def handle_text(message):
                 count_balans+=1
                 summ_balans+=int(el[0])
             kursik=summ_balans//(count_balans**2)
-            bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik*3}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)")
+            bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik*3}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {idr}")
         except Exception as e:
             bot.send_message(idr, f'Ошибка:\n{e}')
 if __name__ == '__main__':
