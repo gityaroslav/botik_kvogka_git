@@ -16,8 +16,7 @@ try:
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
 ######################################### все переменные
-ourchatid1=-1001139329557
-ourchatid=-1001681687517
+ourchatid=-1001139329557
 id_otchet_chat=-1001750309280
 idg = 789996181
 idd = 719289365
