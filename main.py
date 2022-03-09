@@ -6,5 +6,4 @@ app = Client("my_account")
 def echo(client, message):
     message.reply_text(message.text)
 
-
 app.run()
