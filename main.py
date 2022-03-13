@@ -88,6 +88,13 @@ def kakoy_balans(id_chelika):
     balans_kakoy_balans = cur.fetchone()
     balans_kakoy_balans = balans_kakoy_balans[0]
     return balans_kakoy_balans
+def kkakoy_balans(id_chelika):
+    command_kkakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
+    cur.execute(command_kkakoy_balans)
+    balans_kkakoy_balans = cur.fetchone()
+    balans_kkakoy_balans = balans_kkakoy_balans[0]
+    kiber_balance='{0:,}'.format(balans_kkakoy_balans).replace(',', ' ')
+    return kiber_balance
 def plus_balans(id_plus_balansa, summa_plus_balansa):
     command_plus_balansa = f"update kvg_db set balance = balance + {summa_plus_balansa} where id = {id_plus_balansa}"
     cur.execute(command_plus_balansa)
@@ -252,9 +259,7 @@ def handle_text(message):
         bot.send_message(id_chat, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
 ### все для валютной игры
     elif new_sms_l=='баланс':
-        balance = kakoy_balans(id_chel)
-        kiber_balance='{0:,}'.format(balance).replace(',', "'")
-        bot.send_message(id_chat, f"Ваш баланс: {kiber_balance}{emoji[2]}")
+        bot.send_message(id_chat, f"Ваш баланс: {kkakoy_balans(id_chel)}{emoji[2]}")
     elif new_sms_l[0:7]=='перевод':
         id_poluch=message.reply_to_message.from_user.id 
         id_otprav=message.from_user.id
