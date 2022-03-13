@@ -348,8 +348,10 @@ def handle_text(message):
                 count_balans+=1
                 summ_balans+=int(el[0])
             kursik=summ_balans//(count_balans**3)
+            kursik3=kursik*3
             kursik='{0:,}'.format(kursik).replace(',', ' ')
-            bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik*3}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
+            kursik3='{0:,}'.format(kursik3).replace(',', ' ')
+            bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik3}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l=="квожка скажи айди" and message.from_user.id==idr:
