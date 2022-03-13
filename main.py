@@ -260,7 +260,7 @@ def handle_text(message):
 ### все для валютной игры
     elif new_sms_l=='баланс' or new_sms_l=='бал':
         bot.send_message(id_chat, f"Ваш баланс: {kkakoy_balans(id_chel)}{emoji[2]}")
-    elif new_sms_l[0:7]=='перевод' or new_sms_l[0:4]=='своп':
+    elif new_sms_l[0:7]=='перевод':
         id_poluch=message.reply_to_message.from_user.id 
         id_otprav=message.from_user.id
         try:
@@ -273,7 +273,20 @@ def handle_text(message):
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
-            bot.send_message(idr, f'Ошибка:\n{e}')
+            bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+    elif new_sms_l[0:4]=='своп':
+        id_poluch=message.reply_to_message.from_user.id 
+        id_otprav=message.from_user.id
+        try:
+            perevod_summa = int(new_sms[4:])
+            balans_perevodimogo = kakoy_balans(id_otprav)
+            if balans_perevodimogo>=perevod_summa:
+                minus_balans(id_otprav, perevod_summa)
+                plus_balans(id_poluch, perevod_summa)
+                bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kkakoy_balans(id_poluch)}{emoji[2]}\nВаш баланс: {kkakoy_balans(id_otprav)}{emoji[2]}")
+            else:
+                bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
+        except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l[0:4]=="банк" and id_chel==idr:
         id_poluch=message.reply_to_message.from_user.id 
