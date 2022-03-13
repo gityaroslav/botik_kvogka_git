@@ -26,6 +26,7 @@ nikg = '@freak_sqd03'
 nikd = '@artmv_d'
 nikl = '@lizk1a1'
 nikr = '@gikhok'
+niki_ludishek=[idg, idd, idl, idr]
 game_shp_locations=['Футбольное поле', 'Школа', 'Рынок', 'Магазин', 'Площадка', 'Квартира', 'Ферма', 'Лес', 'Парк', 'Озеро', 'Сад', 'Пляж', 'Заброшка', 'Стройка', 'Поляна', 'Аквапарк', 'Лагерь', 'Зоопарк', 'Цум', 'Отель']
 ludi=['Даша', 'Лиза', 'Женя', 'Рося']
 random_kefiki=["0", "0", "0", "0", "0", "0", "0", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5",  "1", "1", "1", "1", "1", "1", "1", "1.25", "1.25", "1.25", "1.25", "1.25", "1.5", "1.5", "1.5", "1.5", "1.5", "2", "2", "2", "2", "5", "5", "5", "10", "10", "100"]
@@ -121,7 +122,7 @@ def handle_text(message):
     id_chel=message.from_user.id
     id_chat=message.chat.id
 ### основная часть хендлера
-    if new_sms_l[0:2] == 'оп':
+    if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
         if new_sms_l[2] == 'л':
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "опл"')
             bot.send_message(id_chat, nikl)
@@ -140,7 +141,7 @@ def handle_text(message):
     elif new_sms_l == 'квожка':
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "квожка"')
         bot.send_message(id_chat, 'Квожка здесь, чё пристали?')
-    elif new_sms_l[0:7]=='отпвчат':
+    elif new_sms_l[0:7]=='отпвчат' and id_chel in niki_ludishek:
         bot.send_message(ourchatid, new_sms[8:])
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "отпвчат"')
         bot.send_message(message.chat.id, 'Отправил ваше сообщение!')
@@ -177,23 +178,23 @@ def handle_text(message):
         bot.send_message(id_chat, f'Понг (за {finish_time.total_seconds()} секунд)')
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "пинг"')
 ### скрытые команды хендлера
-    elif new_sms == "*+":
+    elif new_sms == "*+" and id_chel==idr:
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "*+"')
         bot.send_message(id_chat, 'Квожка работает!')
-    elif new_sms_l[0:11]=='ночь квожка':
+    elif new_sms_l[0:11]=='ночь квожка' and id_chel==idr:
         bot.delete_message(id_chat, message.message_id)
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "ночь квожка"')
         bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}\nВсем спокойной ночи!')
         bot.send_message(idr, 'Пожелал спокойной ночи!')
-    elif new_sms_l[0:11]=='утро квожка':
+    elif new_sms_l[0:11]=='утро квожка' and id_chel==idr:
         bot.delete_message(id_chat, message.message_id)
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "утро квожка"')
         bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
         bot.send_message(idr, 'Пожелал доброго утра!')
-    elif new_sms_l[0:4]=="мапс":
+    elif new_sms_l[0:4]=="спам" and id_chel==idr:
         bot.delete_message(message.chat.id, message.message_id)
         if new_sms_l[5:9]=='лиза':
-            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс лиза"')
+            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "спам лиза"')
             bot.send_message(id_chat, nikl)
             time.sleep(1)
             bot.send_message(id_chat, nikl)
@@ -201,7 +202,7 @@ def handle_text(message):
             bot.send_message(id_chat, nikl)
             time.sleep(1)
         if new_sms_l[5:9]=='женя':
-            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс женя"')
+            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "спам женя"')
             bot.send_message(id_chat, nikg)
             time.sleep(1)
             bot.send_message(id_chat, nikg)
@@ -209,7 +210,7 @@ def handle_text(message):
             bot.send_message(id_chat, nikg)
             time.sleep(1)
         if new_sms_l[5:9]=='даша':
-            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс даша"')
+            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "спам даша"')
             bot.send_message(id_chat, nikd)
             time.sleep(1)
             bot.send_message(id_chat, nikd)
@@ -217,7 +218,7 @@ def handle_text(message):
             bot.send_message(id_chat, nikd)
             time.sleep(1)
         if new_sms_l[5:8]=='все':
-            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "мапс все"')
+            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "спам все"')
             bot.send_message(id_chat, f'{nikd} {nikl} {nikg}')
             time.sleep(1)
             bot.send_message(id_chat, f'{nikd} {nikl} {nikg}')
@@ -225,7 +226,7 @@ def handle_text(message):
             bot.send_message(id_chat, f'{nikd} {nikl} {nikg}')
             time.sleep(1)
 ### все для игры в шпиона
-    elif new_sms_l == "шпион старт":
+    elif new_sms_l == "шпион старт" and id_chel in niki_ludishek:
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "шпион старт"')
         game_shp_chel=random.choice(ludi)
         game_shp_locat=random.choice(game_shp_locations)
@@ -254,7 +255,7 @@ def handle_text(message):
             bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
             bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
         bot.send_message(id_chat, 'Игра Шпион начинается. Зайдите в лс бота узнать вашу роль/локацию!')
-    elif new_sms_l == "шпион стоп":
+    elif new_sms_l == "шпион стоп" and id_chel in niki_ludishek:
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "шпион стоп"')
         bot.send_message(id_chat, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
 ### все для валютной игры
