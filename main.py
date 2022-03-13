@@ -253,7 +253,8 @@ def handle_text(message):
 ### все для валютной игры
     elif new_sms_l=='баланс':
         balance = kakoy_balans(id_chel)
-        bot.send_message(id_chat, f"Ваш баланс: {balance}{emoji[2]}")
+        kiber_balance='{0:,}'.format(balance).replace(',', "'")
+        bot.send_message(id_chat, f"Ваш баланс: {kiber_balance}{emoji[2]}")
     elif new_sms_l[0:7]=='перевод':
         id_poluch=message.reply_to_message.from_user.id 
         id_otprav=message.from_user.id
