@@ -283,7 +283,7 @@ def handle_text(message):
             command = f"update kvg_db set balance = balance {perevod_summa} where id = {id_poluch}"
             cur.execute(command)
             conn.commit()
-            bot.send_message(id_chat, "Операция выполнена успешно!")
+            bot.send_message(id_chat, f"Операция выполнена успешно!\nБаланс клиента: {kkakoy_balans(id_poluch)}")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l[0:3]=="каз":
