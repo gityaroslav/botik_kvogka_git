@@ -332,8 +332,7 @@ def handle_text(message):
         try:
             for el in namebalance:
                 name=el[0]
-                balans=el[1]
-                balans='{0:,}'.format(balans).replace(',', ' ')
+                balans='{0:,}'.format(el[1]).replace(',', ' ')
                 itogoviy_vivod+=str(str(name)+f"{emoji[2]}"+str(balans)+"\n")
             bot.send_message(id_chat, itogoviy_vivod)
         except:
