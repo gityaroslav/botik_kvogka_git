@@ -273,6 +273,7 @@ def handle_text(message):
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
+            bot.send_message(idr, f'Ошибка:\n{e}')
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l[0:4]=="банк" and id_chel==idr:
         id_poluch=message.reply_to_message.from_user.id 
@@ -320,7 +321,7 @@ def handle_text(message):
         itogoviy_vivod="Балансы всех:\n"
         try:
             for el in namebalance:
-                itogoviy_vivod+=str(str(el[0])+f"{emoji[2]}"+str(el[1])+"\n")
+                itogoviy_vivod+=str(str(el[0])+f"{emoji[2]}"+str(el[1].)+"\n")
             bot.send_message(id_chat, itogoviy_vivod)
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
