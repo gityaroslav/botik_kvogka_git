@@ -260,7 +260,7 @@ def handle_text(message):
 ### все для валютной игры
     elif new_sms_l=='баланс' or new_sms_l=='бал':
         bot.send_message(id_chat, f"Ваш баланс: {kkakoy_balans(id_chel)}{emoji[2]}")
-    elif new_sms_l[0:7]=='перевод':
+    elif new_sms_l[0:7]=='перевод' or new_sms_l[0:4]=='своп':
         id_poluch=message.reply_to_message.from_user.id 
         id_otprav=message.from_user.id
         try:
@@ -269,9 +269,7 @@ def handle_text(message):
             if balans_perevodimogo>=perevod_summa:
                 minus_balans(id_otprav, perevod_summa)
                 plus_balans(id_poluch, perevod_summa)
-                balans_poluchaemogo = kakoy_balans(id_poluch)
-                balans_perevodimogo = kakoy_balans(id_otprav)
-                bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {balans_poluchaemogo}{emoji[2]}\nВаш баланс: {balans_perevodimogo}{emoji[2]}")
+                bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kkakoy_balans(id_poluch)}{emoji[2]}\nВаш баланс: {kkakoy_balans(id_otprav)}{emoji[2]}")
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
@@ -316,7 +314,7 @@ def handle_text(message):
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-    elif new_sms_l=="всебалы":
+    elif new_sms_l=="всебалы" or new_sms_l=="топ":
         cur.execute("select name, balance from kvg_db")
         namebalance = cur.fetchall()
         itogoviy_vivod="Балансы всех:\n"
@@ -336,6 +334,7 @@ def handle_text(message):
                 count_balans+=1
                 summ_balans+=int(el[0])
             kursik=summ_balans//(count_balans**3)
+            kursik='{0:,}'.format(kursik).replace(',', ' ')
             bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik*3}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
