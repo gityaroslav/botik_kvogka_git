@@ -295,8 +295,7 @@ def handle_text(message):
                 minus_balans(id_chel, igr_kazik_summa)
                 new_igr_kazik_summa=igr_kazik_summa*(float(random_kef))
                 plus_balans(id_chel, new_igr_kazik_summa)
-                balans_igr_vkazik = kakoy_balans(id_chel)
-                bot.send_message(id_chat, f"Казино: {emoji[6]} {random_kef} {emoji[6]}\nВаш баланс: {emoji[2]}{balans_igr_vkazik}{emoji[2]}")
+                bot.send_message(id_chat, f"Казино: {emoji[6]} {random_kef} {emoji[6]}\nВаш баланс: {emoji[2]}{kkakoy_balans(id_chel)}{emoji[2]}")
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
@@ -312,8 +311,7 @@ def handle_text(message):
                 new_igr_kubick_summa=igr_kubick_summa*5
                 if igr_kubick_cifra==random_cifra:
                     plus_balans(id_chel, new_igr_kubick_summa)
-                balans_igr_vkubick = kakoy_balans(id_chel)
-                bot.send_message(id_chat, f"Кубик: {emoji[5]} {random_cifra} {emoji[5]}\nВаш баланс: {emoji[2]}{balans_igr_vkubick}{emoji[2]}")
+                bot.send_message(id_chat, f"Кубик: {emoji[5]} {random_cifra} {emoji[5]}\nВаш баланс: {emoji[2]}{kkakoy_balans(id_chel)}{emoji[2]}")
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
