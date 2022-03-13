@@ -258,7 +258,7 @@ def handle_text(message):
         bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "шпион стоп"')
         bot.send_message(id_chat, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
 ### все для валютной игры
-    elif new_sms_l=='баланс':
+    elif new_sms_l=='баланс' or new_sms_l=='бал':
         bot.send_message(id_chat, f"Ваш баланс: {kkakoy_balans(id_chel)}{emoji[2]}")
     elif new_sms_l[0:7]=='перевод':
         id_poluch=message.reply_to_message.from_user.id 
