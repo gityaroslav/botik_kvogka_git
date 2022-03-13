@@ -130,7 +130,7 @@ def start(m, res=False):
 def commands(m, res=False):
     if m.chat.id == idr:
         bot.send_message(m.chat.id, commands_rosya)
-    elif m.from_user.id == idg or m.from_user.id == idl or m.from_user.id == idd:
+    elif m.from_user.id in niki_ludishek:
         bot.send_message(m.chat.id, commands_ludishki)
     else:
         bot.send_message(m.chat.id, commands_all)
