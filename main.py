@@ -328,7 +328,7 @@ def handle_text(message):
     elif new_sms_l=="всебалы" and id_chel in niki_ludishek:
         cur.execute("select name, balance from kvg_db")
         namebalance = cur.fetchall()
-        itogoviy_vivod="Балансы всех:\n"
+        itogoviy_vivod="Балансы наших:\n"
         try:
             for el in namebalance:
                 itogoviy_vivod+=str(str(el[0])+f"{emoji[2]}"+str('{0:,}'.format(el[1]).replace(',', ' '))+"\n")
