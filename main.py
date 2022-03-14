@@ -355,6 +355,7 @@ def handle_text(message):
         try:
             cur.execute("select balance, id from kvg_db")
             namebalance = cur.fetchall()
+            perevod_summa = new_sms[7:]  
             for el in namebalance:
                 command = f"update kvg_db set balance = balance {perevod_summa} where id = {el[1]}"
                 cur.execute(command)
