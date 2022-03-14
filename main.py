@@ -26,7 +26,7 @@ nikg = '@freak_sqd03'
 nikd = '@artmv_d'
 nikl = '@lizk1a1'
 nikr = '@gikhok'
-niki_ludishek=[idg, idd, idl, idr, "@ytik_pytik13", "@Dolly_Holly"]
+niki_ludishek=[idg, idd, idl, idr, 1039315228, 1230762892]
 nashi_ludishki=["Ника", "Рося", "Женя", "Поля", "Лиза", "Даша"]
 game_shp_locations=['Футбольное поле', 'Школа', 'Рынок', 'Магазин', 'Площадка', 'Квартира', 'Ферма', 'Лес', 'Парк', 'Озеро', 'Сад', 'Пляж', 'Заброшка', 'Стройка', 'Поляна', 'Аквапарк', 'Лагерь', 'Зоопарк', 'Цум', 'Отель']
 ludi=['Даша', 'Лиза', 'Женя', 'Рося']
@@ -351,6 +351,17 @@ def handle_text(message):
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l=="квожка скажи айди" and message.from_user.id==idr:
         bot.send_message(id_chat, message.reply_to_message.from_user.id)
+    elif new_sms_l[0:7]=='банквсе':
+        try:
+            cur.execute("select balance, id from kvg_db")
+            namebalance = cur.fetchall()
+            for el in namebalance:
+                command = f"update kvg_db set balance = balance {perevod_summa} where id = {el[1]}"
+                cur.execute(command)
+                conn.commit()
+            bot.send_message(id_chat, f"Операция {perevod_summa} для всех выполнена успешно!")
+        except:
+            bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
