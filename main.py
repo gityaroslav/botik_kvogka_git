@@ -353,11 +353,12 @@ def handle_text(message):
         bot.send_message(id_chat, message.reply_to_message.from_user.id)
     elif new_sms_l[0:7]=='банквсе':
         try:
-            cur.execute("select balance, id from kvg_db")
-            namebalance = cur.fetchall()
-            perevod_summa = new_sms[7:]  
-            for el in namebalance:
-                command = f"update kvg_db set balance = balance {perevod_summa} where id = {el[1]}"
+            cur.execute("select id from kvg_db")
+            idshki = cur.fetchall()
+            perevod_summa = new_sms[7:]
+            for el in idshki:
+                command = f"update kvg_db set balance = balance {perevod_summa} where id = {el[0]}"
+                bot.send_message(id_chat, f"Операция {el[0]} для всех выполнена успешно!")
                 cur.execute(command)
                 conn.commit()
             bot.send_message(id_chat, f"Операция {perevod_summa} для всех выполнена успешно!")
