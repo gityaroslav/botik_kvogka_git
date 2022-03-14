@@ -355,13 +355,13 @@ def handle_text(message):
         try:
             cur.execute("select id from kvg_db")
             idshki = cur.fetchall()
-            perevod_summa = new_sms[7:]
+            summa_vseh = new_sms[7:]
             for el in idshki:
-                command = f"update kvg_db set balance = balance {perevod_summa} where id = {int(el[0])}"
-                bot.send_message(id_chat, f"Операция {el[0]} для всех выполнена успешно!")
+                command = f"update kvg_db set balance = balance {summa_vseh} where id = {int(el[0])}"
+                bot.send_message(id_chat, f"Айди {el[0]}")
                 cur.execute(command)
-                conn.commit()
-            bot.send_message(id_chat, f"Операция {perevod_summa} для всех выполнена успешно!")
+            conn.commit()
+            bot.send_message(id_chat, f"Операция {summa_vseh} для всех выполнена успешно!")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
 if __name__ == '__main__':
