@@ -357,7 +357,7 @@ def handle_text(message):
             idshki = cur.fetchall()
             perevod_summa = new_sms[7:]
             for el in idshki:
-                command = f"update kvg_db set balance = balance {perevod_summa} where id = {el[0]}"
+                command = f"update kvg_db set balance = balance {perevod_summa} where id = {int(el[0])}"
                 bot.send_message(id_chat, f"Операция {el[0]} для всех выполнена успешно!")
                 cur.execute(command)
                 conn.commit()
