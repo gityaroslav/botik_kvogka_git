@@ -157,23 +157,23 @@ def handle_text(message):
     elif new_sms_l[0:7]=='отпвчат' and id_chel in niki_ludishek:
         bot.send_message(ourchatid, new_sms[8:])
         bot.send_message(message.chat.id, 'Отправил ваше сообщение!')
-    elif message.text == 'полюбить':
+    elif new_sms_l == 'полюбить':
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(id_chat, f"{name_otprav} полюбил(а) {name_poluch}")
-    elif message.text == 'послать':
+    elif new_sms_l == 'послать':
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(id_chat, f"{name_otprav} послал(а) {name_poluch}")
-    elif message.text == 'похвалить':
+    elif new_sms_l == 'похвалить':
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(id_chat, f"{name_otprav} похвалил(а) {name_poluch}")
-    elif message.text == 'обидеться':
+    elif new_sms_l == 'обидеться':
         name_poluch=message.reply_to_message.from_user.first_name
         name_otprav=message.from_user.first_name
         bot.send_message(id_chat, f"{name_otprav} обиделся(ась) на {name_poluch}")
-    elif message.text == 'пинг':
+    elif new_sms_l == 'пинг':
         start_time = datetime.now()
         bot.send_message(id_chat, "Беру ракетку!")
         end_time = datetime.now()
