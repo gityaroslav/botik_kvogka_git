@@ -27,6 +27,7 @@ nikd = '@artmv_d'
 nikl = '@lizk1a1'
 nikr = '@gikhok'
 niki_ludishek=[idg, idd, idl, idr]
+nashi_ludishki=["Ника", "Рося", "Женя", "Поля", "Лиза", "Даша"]
 game_shp_locations=['Футбольное поле', 'Школа', 'Рынок', 'Магазин', 'Площадка', 'Квартира', 'Ферма', 'Лес', 'Парк', 'Озеро', 'Сад', 'Пляж', 'Заброшка', 'Стройка', 'Поляна', 'Аквапарк', 'Лагерь', 'Зоопарк', 'Цум', 'Отель']
 ludi=['Даша', 'Лиза', 'Женя', 'Рося']
 random_kefiki=["0", "0", "0", "0", "0", "0", "0", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5",  "1", "1", "1", "1", "1", "1", "1", "1.25", "1.25", "1.25", "1.25", "1.25", "1.5", "1.5", "1.5", "1.5", "1.5", "2", "2", "2", "2", "5", "5", "5", "10", "10", "100"]
@@ -327,7 +328,8 @@ def handle_text(message):
         itogoviy_vivod="Балансы наших:\n"
         try:
             for el in namebalance:
-                itogoviy_vivod+=str(str(el[0])+f"{emoji[2]}"+str('{0:,}'.format(el[1]).replace(',', ' '))+"\n")
+                if str(el[0]) in nashi_ludishki:
+                    itogoviy_vivod+=str(str(el[0])+f"{emoji[2]}"+str('{0:,}'.format(el[1]).replace(',', ' '))+"\n")
             bot.send_message(id_chat, itogoviy_vivod)
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
