@@ -349,7 +349,7 @@ def handle_text(message):
             bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik4}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-    elif new_sms_l=="квожка скажи айди" and message.from_user.id==idr:
+    elif new_sms_l=="квожка скажи айди" and id_chel==idr:
         bot.send_message(id_chat, message.reply_to_message.from_user.id)
     elif new_sms_l[0:8]=='весьбанк' and id_chel==idr:
         try:
