@@ -363,6 +363,10 @@ def handle_text(message):
             bot.send_message(id_chat, f"Операция {summa_vseh} для всех выполнена успешно!")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+    elif new_sms=="заспамь лс":
+        bot.send_message(idr, nikr)
+        for i in range(20):
+            bot.send_message(idr, 78)
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
