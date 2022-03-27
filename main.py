@@ -172,8 +172,8 @@ def handle_text(message):
                 bot.send_message(id_chat, nikr)
             elif new_sms_l[2:5] == 'все':
                 bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}')
-        elif new_sms_l == 'квожка':
-            bot.send_message(id_chat, 'Квожка здесь, чё пристали?')
+        #elif new_sms_l == 'квожка':
+            #bot.send_message(id_chat, 'Квожка здесь, чё пристали?')
         elif new_sms_l[0:7]=='отпвчат' and id_chel in niki_ludishek:
             bot.send_message(ourchatid, new_sms[8:])
             bot.send_message(message.chat.id, 'Отправил ваше сообщение!')
@@ -391,6 +391,8 @@ def handle_text(message):
             is_kvogka_rabotaet="YES"
             cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
             conn.commit()
+    if new_sms_l == 'квожка':
+        bot.send_message(id_chat, f'КВОЖКА\nСтатус работы: {is_kvogka_rabotaet}\nСпасибо за внимание!')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
