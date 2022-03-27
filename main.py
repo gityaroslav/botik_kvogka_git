@@ -7,13 +7,14 @@ import psycopg2
 from datetime import datetime
 ######################################## все подсоединения + мой айди
 idr = 841463984
-is_kvogka_rabotaet="YEs"
+is_kvogka_rabotaet="YeS"
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 DATABASE_URL = os.environ['DATABASE_URL']
 try:
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
     bot.send_message(idr, "Подключился/Обновился")
+    bot.send_message(idr, is_kvogka_rabotaet)
     cur.execute("select key from bool_keys where name = 'is_kvogka_rabotaet'")
     is_kvogka_rabotaet = cur.fetchone()
     bot.send_message(idr, is_kvogka_rabotaet)
