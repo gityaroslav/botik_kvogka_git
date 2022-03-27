@@ -14,7 +14,7 @@ try:
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
     bot.send_message(idr, "Подключился/Обновился")
-    cur.execute(f"select key from bool_keys where name = is_kvogka_rabotaet")
+    cur.execute("select key from bool_keys where name = is_kvogka_rabotaet")
     is_kvogka_rabotaet = cur.fetchone() #
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
