@@ -160,6 +160,8 @@ def handle_text(message):
     id_chat=message.chat.id
 ### основная часть хендлера
     global is_kvogka_rabotaet
+    cur.execute("select key from names_keys where name = 'is_kvogka_rabotaet'")
+    is_kvogka_rabotaet = cur.fetchone()
     if is_kvogka_rabotaet[0]=="YES":
         if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
             if new_sms_l[2] == 'л':
@@ -389,8 +391,6 @@ def handle_text(message):
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
         conn.commit()
     if new_sms_l == 'квожка':
-        cur.execute("select key from names_keys where name = 'is_kvogka_rabotaet'")
-        is_kvogka_rabotaet = cur.fetchone()
         bot.send_message(id_chat, f'КВОЖКА\nСтатус работы: {is_kvogka_rabotaet[0]}')
 if __name__ == '__main__':
     bot.skip_pending = True
