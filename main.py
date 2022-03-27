@@ -14,7 +14,7 @@ try:
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
     bot.send_message(idr, "Подключился/Обновился")
-    cur.execute("select key from bool_keys where name = 'is_kvogka_rabotaet'")
+    cur.execute("select key from names_keys where name = 'is_kvogka_rabotaet'")
     is_kvogka_rabotaet = cur.fetchone()
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
@@ -384,12 +384,12 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
         elif new_sms_l=="квожка я выключаю тебя" and id_chel==idr:
             is_kvogka_rabotaet="NO"
-            cur.execute("update bool_keys set key = 'NO' where name = 'is_kvogka_rabotaet'")
+            cur.execute("update names_keys set key = 'NO' where name = 'is_kvogka_rabotaet'")
             conn.commit()
     else:
         if new_sms_l=="квожка я включаю тебя" and id_chel==idr:
             is_kvogka_rabotaet="YES"
-            cur.execute("update bool_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
+            cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
             conn.commit()
 if __name__ == '__main__':
     bot.skip_pending = True
