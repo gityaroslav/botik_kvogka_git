@@ -160,7 +160,7 @@ def handle_text(message):
     id_chat=message.chat.id
 ### основная часть хендлера
     global is_kvogka_rabotaet
-    if is_kvogka_rabotaet=="YES":
+    if is_kvogka_rabotaet[0]=="YES":
         if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
             if new_sms_l[2] == 'л':
                 bot.send_message(id_chat, nikl)
