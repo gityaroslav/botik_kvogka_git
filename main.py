@@ -16,9 +16,9 @@ try:
     bot.send_message(idr, "Подключился/Обновился")
     cur.execute("select key from bool_keys where name = 'is_kvogka_rabotaet'")
     is_kvogka_rabotaet = cur.fetchone()
-    kvogechka_robit=is_kvogka_rabotaet
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
+kvogechka_robit=is_kvogka_rabotaet
 ######################################### все переменные
 ourchatid=-1001139329557
 id_otchet_chat=-1001750309280
