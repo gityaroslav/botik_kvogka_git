@@ -7,17 +7,15 @@ import psycopg2
 from datetime import datetime
 ######################################## все подсоединения + мой айди
 idr = 841463984
-is_kvogka_rabotaet="YeS"
+is_kvogka_rabotaet=""
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 DATABASE_URL = os.environ['DATABASE_URL']
 try:
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
     bot.send_message(idr, "Подключился/Обновился")
-    bot.send_message(idr, is_kvogka_rabotaet)
     cur.execute("select key from bool_keys where name = 'is_kvogka_rabotaet'")
     is_kvogka_rabotaet = cur.fetchone()
-    bot.send_message(idr, is_kvogka_rabotaet)
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
 ######################################### все переменные
@@ -161,7 +159,9 @@ def handle_text(message):
     id_chel=message.from_user.id
     id_chat=message.chat.id
 ### основная часть хендлера
+    bot.send_message(idr, is_kvogka_rabotaet)
     global is_kvogka_rabotaet
+    bot.send_message(idr, is_kvogka_rabotaet)
     if is_kvogka_rabotaet=="YES":
         if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
             if new_sms_l[2] == 'л':
