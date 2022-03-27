@@ -2,7 +2,7 @@
 import telebot
 import random
 import time
-import os #
+import os
 import psycopg2
 from datetime import datetime
 ######################################## все подсоединения + мой айди
@@ -383,8 +383,8 @@ def handle_text(message):
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
         elif new_sms_l=="квожка я выключаю тебя" and id_chel==idr:
-            is_kvogka_rabotaet="NO"
-            cur.execute("update bool_keys set key = 'NO' where name = 'is_kvogka_rabotaet'")
+            command_vikl_bota = f"update bool_keys set key = 'NO' where name = 'is_kvogka_rabotaet'"
+            cur.execute(command_vikl_bota)
             conn.commit()
     else:
         if new_sms_l=="квожка я включаю тебя" and id_chel==idr:
