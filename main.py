@@ -392,7 +392,7 @@ def handle_text(message):
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
         conn.commit()
     if new_sms_l == 'квожка':
-        bot.send_message(id_chat, f'КВОЖКА\nСтатус работы: {is_kvogka_rabotaet[0]}')
+        bot.send_message(id_chat, f'КВОЖКА\n----------\nСтатус работы: {is_kvogka_rabotaet[0]}')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
