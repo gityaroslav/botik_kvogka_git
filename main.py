@@ -2,7 +2,7 @@
 import telebot
 import random
 import time
-import os
+import os #
 import psycopg2
 from datetime import datetime
 ######################################## все подсоединения + мой айди
