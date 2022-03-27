@@ -3,7 +3,7 @@ import telebot
 import random
 import time
 import os
-import psycopg2
+import psycopg2 #
 from datetime import datetime
 ######################################## все подсоединения + мой айди
 idr = 841463984
