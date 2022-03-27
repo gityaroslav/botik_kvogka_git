@@ -206,10 +206,10 @@ def handle_text(message):
             bot.send_message(id_chat, 'Квожка работает!')
         elif new_sms_l[0:11]=='ночь квожка' and id_chel==idr:
             bot.delete_message(id_chat, message.message_id)
-            bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}\nВсем спокойной ночи!')
+            bot.send_message(id_chat, f'{nikd} {nikl} {nikg}\nВсем спокойной ночи!')
         elif new_sms_l[0:11]=='утро квожка' and id_chel==idr:
             bot.delete_message(id_chat, message.message_id)
-            bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}\nВсем доброе утро!')
+            bot.send_message(id_chat, f'{nikd} {nikl} {nikg}\nВсем доброе утро!')
         elif new_sms_l[0:4]=="спам" and id_chel==idr:
             bot.delete_message(message.chat.id, message.message_id)
             if new_sms_l[5:9]=='лиза':
