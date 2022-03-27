@@ -160,7 +160,6 @@ def handle_text(message):
     id_chel=message.from_user.id
     id_chat=message.chat.id
 ### основная часть хендлера
-    bot.send_message(idr, kvogechka_robit)
     global kvogechka_robit
     bot.send_message(idr, kvogechka_robit)
     if kvogechka_robit=="YES":
