@@ -386,13 +386,12 @@ def handle_text(message):
             is_kvogka_rabotaet="NO"
             cur.execute("update names_keys set key = 'NO' where name = 'is_kvogka_rabotaet'")
             conn.commit()
-    else:
-        if new_sms_l=="квожка я включаю тебя" and id_chel==idr:
-            is_kvogka_rabotaet="YES"
-            cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
-            conn.commit()
+    if new_sms_l=="квожка я включаю тебя" and id_chel==idr:
+        is_kvogka_rabotaet="YES"
+        cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
+        conn.commit()
     if new_sms_l == 'квожка':
-        bot.send_message(id_chat, f'КВОЖКА\nСтатус работы: {is_kvogka_rabotaet[0]}\nСпасибо за внимание!')
+        bot.send_message(id_chat, f'КВОЖКА\nСтатус работы: {is_kvogka_rabotaet[0]}')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
