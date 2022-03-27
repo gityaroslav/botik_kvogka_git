@@ -16,6 +16,7 @@ try:
     bot.send_message(idr, "Подключился/Обновился")
     cur.execute("select key from bool_keys where name = 'is_kvogka_rabotaet'")
     is_kvogka_rabotaet = cur.fetchone()
+    kvogechka_robit=is_kvogka_rabotaet
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
 ######################################### все переменные
@@ -159,10 +160,10 @@ def handle_text(message):
     id_chel=message.from_user.id
     id_chat=message.chat.id
 ### основная часть хендлера
-    bot.send_message(idr, is_kvogka_rabotaet)
-    global is_kvogka_rabotaet
-    bot.send_message(idr, is_kvogka_rabotaet)
-    if is_kvogka_rabotaet=="YES":
+    bot.send_message(idr, kvogechka_robit)
+    global kvogechka_robit
+    bot.send_message(idr, kvogechka_robit)
+    if kvogechka_robit=="YES":
         if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
             if new_sms_l[2] == 'л':
                 bot.send_message(id_chat, nikl)
@@ -385,12 +386,12 @@ def handle_text(message):
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
         elif new_sms_l=="квожка я выключаю тебя" and id_chel==idr:
-            command_vikl_bota = f"update bool_keys set key = 'NO' where name = 'is_kvogka_rabotaet'"
-            cur.execute(command_vikl_bota)
+            kvogechka_robit="NO"
+            cur.execute("update bool_keys set key = 'NO' where name = 'is_kvogka_rabotaet'")
             conn.commit()
     else:
         if new_sms_l=="квожка я включаю тебя" and id_chel==idr:
-            is_kvogka_rabotaet="YES"
+            kvogechka_robit="YES"
             cur.execute("update bool_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
             conn.commit()
 if __name__ == '__main__':
