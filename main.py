@@ -15,7 +15,8 @@ try:
     cur = conn.cursor()
     bot.send_message(idr, "Подключился/Обновился")
     cur.execute("select key from bool_keys where name = 'is_kvogka_rabotaet'")
-    is_kvogka_rabotaet = cur.fetchone() #
+    is_kvogka_rabotaet = cur.fetchone()
+    bot.send_message(idr, is_kvogka_rabotaet)
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
 ######################################### все переменные
