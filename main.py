@@ -7,12 +7,15 @@ import psycopg2
 from datetime import datetime
 ######################################## все подсоединения + мой айди
 idr = 841463984
+is_kvogka_rabotaet="YES"
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 DATABASE_URL = os.environ['DATABASE_URL']
 try:
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cur = conn.cursor()
     bot.send_message(idr, "Подключился/Обновился")
+    cur.execute(f"select key from bool_keys where name = is_kvogka_rabotaet")
+    is_kvogka_rabotaet = cur.fetchone()
 except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
 ######################################### все переменные
@@ -33,7 +36,6 @@ ludi=['Даша', 'Лиза', 'Женя', 'Рося']
 random_kefiki=["0", "0", "0", "0", "0", "0", "0", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5",  "1", "1", "1", "1", "1", "1", "1", "1.25", "1.25", "1.25", "1.25", "1.25", "1.5", "1.5", "1.5", "1.5", "1.5", "2", "2", "2", "2", "5", "5", "5", "10", "10", "100"]
 chel_shpion=0
 location_shp=0
-is_kvogka_rabotaet=True
 my_zastavka="""
 ============================================================================
 ============================================================================
@@ -158,7 +160,7 @@ def handle_text(message):
     id_chat=message.chat.id
 ### основная часть хендлера
     global is_kvogka_rabotaet
-    if is_kvogka_rabotaet==True:
+    if is_kvogka_rabotaet=="YES":
         if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
             if new_sms_l[2] == 'л':
                 bot.send_message(id_chat, nikl)
@@ -381,10 +383,10 @@ def handle_text(message):
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
         elif new_sms_l=="квожка я выключаю тебя" and id_chel==idr:
-            is_kvogka_rabotaet=False
+            is_kvogka_rabotaet="NO"
     else:
         if new_sms_l=="квожка я включаю тебя" and id_chel==idr:
-            is_kvogka_rabotaet=True
+            is_kvogka_rabotaet="YES"
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
