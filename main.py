@@ -102,6 +102,7 @@ commands_rosya="""
 """
 emoji='✋😴💰😔😲🎲🎰'# {emoji[2]}
 ########################################### все функции для хендлеров
+'''
 def kakoy_balans(id_chelika):
     command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
     cur.execute(command_kakoy_balans)
@@ -115,6 +116,16 @@ def kkakoy_balans(id_chelika):
     balans_kkakoy_balans = balans_kkakoy_balans[0]
     kiber_balance='{0:,}'.format(balans_kkakoy_balans).replace(',', ' ')
     return kiber_balance
+'''
+def kakoy_balans(id_chelika, type_vivod):
+    command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
+    cur.execute(command_kakoy_balans)
+    balans_kakoy_balans = cur.fetchone()
+    balans_kakoy_balans = balans_kakoy_balans[0]
+    if type_vivod==1:
+        return '{0:,}'.format(balans_kakoy_balans).replace(',', ' ')
+    if type_vivod==0:
+        return balans_kakoy_balans
 def plus_balans(id_plus_balansa, summa_plus_balansa):
     command_plus_balansa = f"update kvg_db set balance = balance + {summa_plus_balansa} where id = {id_plus_balansa}"
     cur.execute(command_plus_balansa)
@@ -254,17 +265,17 @@ def handle_text(message):
         bot.send_message(id_chat, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
 ### все для валютной игры
     elif new_sms_l=='баланс' or new_sms_l=='бал':
-        bot.send_message(id_chat, f"Ваш баланс: {kkakoy_balans(id_chel)}{emoji[2]}")
+        bot.send_message(id_chat, f"Ваш баланс: {kakoy_balans(id_chel, 0)}{emoji[2]}")
     elif new_sms_l[0:7]=='перевод':
         id_poluch=message.reply_to_message.from_user.id 
         id_otprav=message.from_user.id
         try:
             perevod_summa = int(new_sms[7:])
-            balans_perevodimogo = kakoy_balans(id_otprav)
+            balans_perevodimogo = kakoy_balans(id_otprav, 0)
             if balans_perevodimogo>=perevod_summa:
                 minus_balans(id_otprav, perevod_summa)
                 plus_balans(id_poluch, perevod_summa)
-                bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kkakoy_balans(id_poluch)}{emoji[2]}\nВаш баланс: {kkakoy_balans(id_otprav)}{emoji[2]}")
+                bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kakoy_balans(id_poluch, 1)}{emoji[2]}\nВаш баланс: {kakoy_balans(id_otprav, 1)}{emoji[2]}")
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
@@ -274,11 +285,11 @@ def handle_text(message):
         id_otprav=message.from_user.id
         try:
             perevod_summa = int(new_sms[4:])
-            balans_perevodimogo = kakoy_balans(id_otprav)
+            balans_perevodimogo = kakoy_balans(id_otprav, 0)
             if balans_perevodimogo>=perevod_summa:
                 minus_balans(id_otprav, perevod_summa)
                 plus_balans(id_poluch, perevod_summa)
-                bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kkakoy_balans(id_poluch)}{emoji[2]}\nВаш баланс: {kkakoy_balans(id_otprav)}{emoji[2]}")
+                bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kakoy_balans(id_poluch, 1)}{emoji[2]}\nВаш баланс: {kakoy_balans(id_otprav, 1)}{emoji[2]}")
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
@@ -290,19 +301,19 @@ def handle_text(message):
             command = f"update kvg_db set balance = balance {perevod_summa} where id = {id_poluch}"
             cur.execute(command)
             conn.commit()
-            bot.send_message(id_chat, f"Операция выполнена успешно!\nБаланс клиента: {kkakoy_balans(id_poluch)}")
+            bot.send_message(id_chat, f"Операция выполнена успешно!\nБаланс клиента: {kakoy_balans(id_poluch, 1)}")
         except:
             bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
     elif new_sms_l[0:3]=="каз":
         random_kef=random.choice(random_kefiki)
         try:
             igr_kazik_summa = int(new_sms[3:])
-            balans_igr_vkazik = kakoy_balans(id_chel)
+            balans_igr_vkazik = kakoy_balans(id_chel, 0)
             if balans_igr_vkazik>=igr_kazik_summa:
                 minus_balans(id_chel, igr_kazik_summa)
                 new_igr_kazik_summa=igr_kazik_summa*(float(random_kef))
                 plus_balans(id_chel, new_igr_kazik_summa)
-                bot.send_message(id_chat, f"Казино: {emoji[6]} {random_kef} {emoji[6]}\nВаш баланс: {emoji[2]}{kkakoy_balans(id_chel)}{emoji[2]}")
+                bot.send_message(id_chat, f"Казино: {emoji[6]} {random_kef} {emoji[6]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
@@ -312,13 +323,13 @@ def handle_text(message):
         try:
             igr_kubick_cifra = int(new_sms[3])
             igr_kubick_summa = int(new_sms[4:])
-            balans_igr_vkubick = kakoy_balans(id_chel)
+            balans_igr_vkubick = kakoy_balans(id_chel, 0)
             if balans_igr_vkubick>=igr_kubick_summa:
                 minus_balans(id_chel, igr_kubick_summa)
                 new_igr_kubick_summa=igr_kubick_summa*5
                 if igr_kubick_cifra==random_cifra:
                     plus_balans(id_chel, new_igr_kubick_summa)
-                bot.send_message(id_chat, f"Кубик: {emoji[5]} {random_cifra} {emoji[5]}\nВаш баланс: {emoji[2]}{kkakoy_balans(id_chel)}{emoji[2]}")
+                bot.send_message(id_chat, f"Кубик: {emoji[5]} {random_cifra} {emoji[5]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
             else:
                 bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
         except:
