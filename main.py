@@ -7,7 +7,7 @@ import psycopg2
 from datetime import datetime
 ######################################## все подсоединения + мой айди
 idr = 841463984
-is_kvogka_rabotaet="YES"
+is_kvogka_rabotaet="YEs"
 bot = telebot.TeleBot('5075753945:AAHLRPtgOoUTyps1AntGwpY3lsCEcIoQ-No')
 DATABASE_URL = os.environ['DATABASE_URL']
 try:
