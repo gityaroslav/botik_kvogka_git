@@ -167,6 +167,7 @@ def handle_text(message):
     cur.execute("select key from names_keys where name = 'sms_count'")
     sms_count=cur.fetchone()
     sms_count=int(sms_count[0])+1
+    bot.send_message(idr, sms_count)
     if is_kvogka_rabotaet[0]=="YES":
         if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
             if new_sms_l[2] == 'л':
