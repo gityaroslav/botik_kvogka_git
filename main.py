@@ -3,7 +3,7 @@ import telebot
 import random
 import time
 import os
-import psycopg2 #
+import psycopg2
 from datetime import datetime
 ######################################## все подсоединения + мой айди
 idr = 841463984
@@ -204,6 +204,8 @@ def handle_text(message):
             bot.send_message(id_chat, f'Понг (за {finish_time.total_seconds()} секунд)')
             bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "пинг"')
     ### скрытые команды хендлера
+        elif new_sms_l=="квожка скажи айди" and id_chel==idr:
+            bot.send_message(id_chat, message.reply_to_message.from_user.id)
         elif new_sms == "*+" and id_chel==idr:
             bot.send_message(id_chat, 'Квожка работает!')
         elif new_sms_l[0:11]=='ночь квожка' and id_chel==idr:
@@ -242,6 +244,11 @@ def handle_text(message):
                 time.sleep(1)
                 bot.send_message(id_chat, f'{nikd} {nikl} {nikg}')
                 time.sleep(1)
+        elif new_sms_l=="квожка режим выкл" and id_chel==idr:
+            cur.execute("update names_keys set key = 'NO' where name = 'is_kvogka_rabotaet'")
+            conn.commit()
+        elif new_sms_l=="квожка скажи сообщение":
+            bot.send_message(idr, message)
     ### все для игры в шпиона
         elif new_sms_l == "шпион старт" and id_chel in niki_ludishek:
             game_shp_chel=random.choice(ludi)
@@ -371,8 +378,6 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik4}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-        elif new_sms_l=="квожка скажи айди" and id_chel==idr:
-            bot.send_message(id_chat, message.reply_to_message.from_user.id)
         elif new_sms_l[0:8]=='весьбанк' and id_chel==idr:
             try:
                 cur.execute("select id from kvg_db")
@@ -385,16 +390,11 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Операция {summa_vseh} для всех выполнена успешно!")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-        elif new_sms_l=="квожка режим выкл" and id_chel==idr:
-            cur.execute("update names_keys set key = 'NO' where name = 'is_kvogka_rabotaet'")
-            conn.commit()
     if new_sms_l=="квожка режим вкл" and id_chel==idr:
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
         conn.commit()
     if new_sms_l == 'квожка':
         bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {is_kvogka_rabotaet[0]}')
-    if new_sms_l=="145278963":
-        bot.send_message(idr, message)
         
 if __name__ == '__main__':
     bot.skip_pending = True
