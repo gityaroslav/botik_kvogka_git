@@ -399,16 +399,17 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Операция {summa_vseh} для всех выполнена успешно!")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
+                conn.commit
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
+                conn.commit
     if new_sms_l=="квожка режим вкл" and id_chel==idr:
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
         conn.commit()
     if new_sms_l == 'квожка':
         bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {is_kvogka_rabotaet[0]}\nКоличество сообщений: {sms_count}')
-    conn.commit
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
