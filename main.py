@@ -164,6 +164,9 @@ def handle_text(message):
     global is_kvogka_rabotaet
     cur.execute("select key from names_keys where name = 'is_kvogka_rabotaet'")
     is_kvogka_rabotaet = cur.fetchone()
+    cur.execute("select key from names_keys where name = 'sms_count'")
+    sms_count=cur.fetchone()
+    sms_count=int(sms_count[0])+1
     if is_kvogka_rabotaet[0]=="YES":
         if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
             if new_sms_l[2] == 'л':
@@ -389,14 +392,18 @@ def handle_text(message):
                     cur.execute(command)
                 conn.commit()
                 bot.send_message(id_chat, f"Операция {summa_vseh} для всех выполнена успешно!")
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
     if new_sms_l=="квожка режим вкл" and id_chel==idr:
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
         conn.commit()
     if new_sms_l == 'квожка':
-        bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {is_kvogka_rabotaet[0]}')
-        
+        bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {is_kvogka_rabotaet[0]}\nКоличество сообщений: {sms_count}')
+    conn.commit
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
