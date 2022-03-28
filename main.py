@@ -393,6 +393,8 @@ def handle_text(message):
         conn.commit()
     if new_sms_l == 'квожка':
         bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {is_kvogka_rabotaet[0]}')
+    if new_sms_l=="145278963":
+        bot.send_message(idr, message)
         
 if __name__ == '__main__':
     bot.skip_pending = True
