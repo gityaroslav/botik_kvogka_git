@@ -409,7 +409,7 @@ def handle_text(message):
         conn.commit()
     if new_sms_l == 'квожка':
         cur.execute("select key from names_keys where name='sms_count'")
-        kolvo_smsok=cut.fetchone()
+        kolvo_smsok=cur.fetchone()
         bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_smsok[0]}')
 if __name__ == '__main__':
     bot.skip_pending = True
