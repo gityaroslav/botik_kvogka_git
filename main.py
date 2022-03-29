@@ -396,7 +396,7 @@ def handle_text(message):
                     cur.execute(command)
                 conn.commit()
                 bot.send_message(id_chat, f"Операция {summa_vseh} для всех выполнена успешно!")
-                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                command123456 = f"update names_keys set key = {str(sms_count)} where name = 'sms_count'"
                 cur.execute(command123456)
                 conn.commit
             except:
@@ -408,9 +408,11 @@ def handle_text(message):
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
         conn.commit()
     if new_sms_l == 'квожка':
+        cur.execute("select key from names_keys where name='is_kvogka_rabotaet'")
+        kolvo_is_kvogka_rabotaet=cur.fetchone()
         cur.execute("select key from names_keys where name='sms_count'")
-        kolvo_smsok=cur.fetchone()
-        bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_smsok[0]}')
+        kolvo_sms_count=cur.fetchone()
+        bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
