@@ -408,9 +408,9 @@ def handle_text(message):
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
         conn.commit()
     if new_sms_l == 'квожка':
-        cur.execute("select key from names_keys where name='is_kvogka_rabotaet'")
-        kolvo_is_kvogka_rabotaet=cur.fetchone()
-        cur.execute("select key from names_keys where name='sms_count'")
+        cur.execute("select key from names_keys where name = 'is_kvogka_rabotaet'")
+        kolvo_is_kvogka_rabotaet = cur.fetchone()
+        cur.execute("select key from names_keys where name = 'sms_count'")
         kolvo_sms_count=cur.fetchone()
         bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
 if __name__ == '__main__':
