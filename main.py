@@ -380,12 +380,8 @@ def handle_text(message):
                 kursik='{0:,}'.format(kursik).replace(',', ' ')
                 kursik4='{0:,}'.format(kursik4).replace(',', ' ')
                 bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik4}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
-                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
-                cur.execute(command123456)
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
-                cur.execute(command123456)
         elif new_sms_l[0:8]=='весьбанк' and id_chel==idr:
             try:
                 cur.execute("select id from kvg_db")
@@ -396,13 +392,9 @@ def handle_text(message):
                     cur.execute(command)
                 conn.commit()
                 bot.send_message(id_chat, f"Операция {summa_vseh} для всех выполнена успешно!")
-                command123456 = f"update names_keys set key = {str(sms_count)} where name = 'sms_count'"
-                cur.execute(command123456)
                 conn.commit
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
-                cur.execute(command123456)
                 conn.commit
     if new_sms_l=="квожка режим вкл" and id_chel==idr:
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
