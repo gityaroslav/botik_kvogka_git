@@ -177,6 +177,8 @@ def handle_text(message):
                 bot.send_message(id_chat, nikg)
             elif new_sms_l[2] == 'р':
                 bot.send_message(id_chat, nikr)
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
             elif new_sms_l[2:5] == 'все':
                 bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}')
         #elif new_sms_l == 'квожка':
@@ -395,7 +397,7 @@ def handle_text(message):
                 conn.commit
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-                conn.commit
+        conn.commit()
     if new_sms_l=="квожка режим вкл" and id_chel==idr:
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
         conn.commit()
