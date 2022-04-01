@@ -193,8 +193,6 @@ def handle_text(message):
                 cur.execute(command123456)
             elif new_sms_l[2:5] == 'все':
                 bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}')
-        #elif new_sms_l == 'квожка':
-            #bot.send_message(id_chat, 'Квожка здесь, чё пристали?')
         elif new_sms_l[0]=='!':
             bot.delete_message(message.chat.id, message.message_id)
             bot.send_message(id_chat, new_sms[1:])
@@ -237,6 +235,8 @@ def handle_text(message):
             bot.send_message(idr, message)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
+        elif new_sms_l=="квожка работа с базой данных":
+            bot.send_message(idr, len(new_sms_l))
         elif new_sms_l=="квожка скажи айди" and id_chel==idr:
             bot.send_message(id_chat, message.reply_to_message.from_user.id)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
