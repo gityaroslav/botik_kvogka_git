@@ -171,10 +171,16 @@ def handle_text(message):
         if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
             if new_sms_l[2] == 'л':
                 bot.send_message(id_chat, nikl)
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
             elif new_sms_l[2] == 'д':
                 bot.send_message(id_chat, nikd)
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
             elif new_sms_l[2] == 'ж':
                 bot.send_message(id_chat, nikg)
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
             elif new_sms_l[2] == 'р':
                 bot.send_message(id_chat, nikr)
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
@@ -186,40 +192,63 @@ def handle_text(message):
         elif new_sms_l[0]=='!':
             bot.delete_message(message.chat.id, message.message_id)
             bot.send_message(id_chat, new_sms[1:])
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l == 'полюбить':
             name_poluch=message.reply_to_message.from_user.first_name
             name_otprav=message.from_user.first_name
             bot.send_message(id_chat, f"{name_otprav} полюбил(а) {name_poluch}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l == 'послать':
             name_poluch=message.reply_to_message.from_user.first_name
             name_otprav=message.from_user.first_name
             bot.send_message(id_chat, f"{name_otprav} послал(а) {name_poluch}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l == 'похвалить':
             name_poluch=message.reply_to_message.from_user.first_name
             name_otprav=message.from_user.first_name
             bot.send_message(id_chat, f"{name_otprav} похвалил(а) {name_poluch}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l == 'обидеться':
             name_poluch=message.reply_to_message.from_user.first_name
             name_otprav=message.from_user.first_name
             bot.send_message(id_chat, f"{name_otprav} обиделся(ась) на {name_poluch}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l == 'пинг':
             start_time = datetime.now()
             bot.send_message(id_chat, "Беру ракетку!")
             end_time = datetime.now()
             finish_time = end_time - start_time
             bot.send_message(id_chat, f'Понг (за {finish_time.total_seconds()} секунд)')
-            bot.send_message(id_otchet_chat, f'{message.from_user.first_name} ({message.from_user.username}) команда - "пинг"')
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
     ### скрытые команды хендлера
+        elif new_sms_l=="квожка скажи сообщение":
+            bot.send_message(idr, message)
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l=="квожка скажи айди" and id_chel==idr:
             bot.send_message(id_chat, message.reply_to_message.from_user.id)
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms == "*+" and id_chel==idr:
             bot.send_message(id_chat, 'Квожка работает!')
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l[0:11]=='ночь квожка' and id_chel==idr:
             bot.delete_message(id_chat, message.message_id)
             bot.send_message(id_chat, f'{nikd} {nikl} {nikg}\nВсем спокойной ночи!')
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l[0:11]=='утро квожка' and id_chel==idr:
             bot.delete_message(id_chat, message.message_id)
             bot.send_message(id_chat, f'{nikd} {nikl} {nikg}\nВсем доброе утро!')
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l[0:4]=="спам" and id_chel==idr:
             bot.delete_message(message.chat.id, message.message_id)
             if new_sms_l[5:9]=='лиза':
@@ -229,6 +258,8 @@ def handle_text(message):
                 time.sleep(1)
                 bot.send_message(id_chat, nikl)
                 time.sleep(1)
+                command123456 = f"update names_keys set key = {sms_count+2} where name = 'sms_count'"
+                cur.execute(command123456)
             if new_sms_l[5:9]=='женя':
                 bot.send_message(id_chat, nikg)
                 time.sleep(1)
@@ -236,6 +267,8 @@ def handle_text(message):
                 time.sleep(1)
                 bot.send_message(id_chat, nikg)
                 time.sleep(1)
+                command123456 = f"update names_keys set key = {sms_count+2} where name = 'sms_count'"
+                cur.execute(command123456)
             if new_sms_l[5:9]=='даша':
                 bot.send_message(id_chat, nikd)
                 time.sleep(1)
@@ -243,6 +276,8 @@ def handle_text(message):
                 time.sleep(1)
                 bot.send_message(id_chat, nikd)
                 time.sleep(1)
+                command123456 = f"update names_keys set key = {sms_count+2} where name = 'sms_count'"
+                cur.execute(command123456)
             if new_sms_l[5:8]=='все':
                 bot.send_message(id_chat, f'{nikd} {nikl} {nikg}')
                 time.sleep(1)
@@ -250,11 +285,13 @@ def handle_text(message):
                 time.sleep(1)
                 bot.send_message(id_chat, f'{nikd} {nikl} {nikg}')
                 time.sleep(1)
+                command123456 = f"update names_keys set key = {sms_count+2} where name = 'sms_count'"
+                cur.execute(command123456)
         elif new_sms_l=="квожка режим выкл" and id_chel==idr:
             cur.execute("update names_keys set key = 'NO' where name = 'is_kvogka_rabotaet'")
-            conn.commit()
-        elif new_sms_l=="квожка скажи сообщение":
-            bot.send_message(idr, message)
+            bot.send_message(idr, "Режим квожки изменён на 'NO'")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
     ### все для игры в шпиона
         elif new_sms_l == "шпион старт" and id_chel in niki_ludishek:
             game_shp_chel=random.choice(ludi)
@@ -400,6 +437,9 @@ def handle_text(message):
         conn.commit()
     if new_sms_l=="квожка режим вкл" and id_chel==idr:
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
+        bot.send_message(idr, "Режим квожки изменён на 'YES'")
+        command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+        cur.execute(command123456)
         conn.commit()
     if new_sms_l == 'квожка':
         cur.execute("select key from names_keys where name = 'is_kvogka_rabotaet'")
@@ -407,6 +447,9 @@ def handle_text(message):
         cur.execute("select key from names_keys where name = 'sms_count'")
         kolvo_sms_count=cur.fetchone()
         bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
+        command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+        cur.execute(command123456)
+        conn.commit()
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
