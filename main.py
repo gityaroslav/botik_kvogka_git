@@ -470,14 +470,14 @@ def handle_text(message):
         cur.execute(command123456)
         conn.commit()
     if new_sms_l == 'квожка':
+        command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+        cur.execute(command123456)
+        conn.commit()
         cur.execute("select key from names_keys where name = 'is_kvogka_rabotaet'")
         kolvo_is_kvogka_rabotaet = cur.fetchone()
         cur.execute("select key from names_keys where name = 'sms_count'")
         kolvo_sms_count=cur.fetchone()
         bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
-        command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
-        cur.execute(command123456)
-        conn.commit()
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
