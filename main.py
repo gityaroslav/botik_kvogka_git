@@ -457,7 +457,6 @@ def handle_text(message):
                     cur.execute(command)
                 conn.commit()
                 bot.send_message(id_chat, f"Операция {summa_vseh} для всех выполнена успешно!")
-                conn.commit
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
