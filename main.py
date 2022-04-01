@@ -235,8 +235,18 @@ def handle_text(message):
             bot.send_message(idr, message)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
-        elif new_sms_l=="квожка работа с базой данных":
-            bot.send_message(idr, len(new_sms_l))
+        elif new_sms_l[0:28]=="квожка работа с базой данных":
+            try:
+                sql_zaprosik=new_sms_l[29:]
+                if sql_zaprosik[0:6]=="select":
+                    cur.execute(sql_zaprosik)
+                    vivod_sql_zaprosika=cur.fetchall()
+                    bot.send_message(id_chat, vivod_sql_zaprosika)
+                else:
+                    cur.execute(sql_zaprosik)
+                    conn.commit()
+            except:
+                bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
         elif new_sms_l=="квожка скажи айди" and id_chel==idr:
             bot.send_message(id_chat, message.reply_to_message.from_user.id)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
