@@ -245,8 +245,9 @@ def handle_text(message):
                 else:
                     cur.execute(sql_zaprosik)
                     conn.commit()
-            except:
+            except Exception as e:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+                bot.send_message(idr, e)
         elif new_sms_l=="квожка скажи айди" and id_chel==idr:
             bot.send_message(id_chat, message.reply_to_message.from_user.id)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
