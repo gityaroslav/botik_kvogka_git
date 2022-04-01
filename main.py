@@ -144,6 +144,9 @@ def minus_balans(id_minus_balansa, summa_minus_balansa):
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
     bot.send_message(m.chat.id, f'Привет! {emoji[0]} Я Квожка, вы наверно уже заскучали? {emoji[1]}')
+    command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+    cur.execute(command123456)
+    conn.commit()
 
 @bot.message_handler(commands=["commands"])
 def commands(m, res=False):
@@ -153,6 +156,9 @@ def commands(m, res=False):
         bot.send_message(m.chat.id, commands_ludishki)
     else:
         bot.send_message(m.chat.id, commands_all)
+    command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+    cur.execute(command123456)
+    conn.commit()
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
@@ -321,11 +327,17 @@ def handle_text(message):
                 bot.send_message(idl, f'Локация на игру: {game_shp_locat}')
                 bot.send_message(idd, f'Локация на игру: {game_shp_locat}')
             bot.send_message(id_chat, 'Игра Шпион начинается. Зайдите в лс бота узнать вашу роль/локацию!')
+            command123456 = f"update names_keys set key = {sms_count+4} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l == "шпион стоп" and id_chel in niki_ludishek:
             bot.send_message(id_chat, f'Игра Шпион окончена.\nПредателем был(а) {chel_shpion}.\nЛокация называлась {location_shp}')
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
     ### все для валютной игры
         elif new_sms_l=='баланс' or new_sms_l=='бал':
             bot.send_message(id_chat, f"Ваш баланс: {kakoy_balans(id_chel, 1)}{emoji[2]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l[0:7]=='перевод':
             id_poluch=message.reply_to_message.from_user.id 
             id_otprav=message.from_user.id
@@ -340,6 +352,8 @@ def handle_text(message):
                     bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l[0:4]=='своп':
             id_poluch=message.reply_to_message.from_user.id 
             id_otprav=message.from_user.id
@@ -354,6 +368,8 @@ def handle_text(message):
                     bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l[0:4]=="банк" and id_chel==idr:
             id_poluch=message.reply_to_message.from_user.id 
             try:
@@ -364,6 +380,8 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Операция выполнена успешно!\nБаланс клиента: {kakoy_balans(id_poluch, 1)}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l[0:3]=="каз":
             random_kef=random.choice(random_kefiki)
             try:
@@ -378,6 +396,8 @@ def handle_text(message):
                     bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l[0:3]=="куб":
             random_cifra = random.randint(1,6)
             try:
@@ -394,6 +414,8 @@ def handle_text(message):
                     bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l=="всебалы" and id_chel in niki_ludishek:
             cur.execute("select name, balance from kvg_db")
             namebalance = cur.fetchall()
@@ -405,6 +427,8 @@ def handle_text(message):
                 bot.send_message(id_chat, itogoviy_vivod)
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l=="курс":
             try:
                 cur.execute("select balance from kvg_db")
@@ -421,6 +445,8 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik4}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l[0:8]=='весьбанк' and id_chel==idr:
             try:
                 cur.execute("select id from kvg_db")
@@ -434,6 +460,8 @@ def handle_text(message):
                 conn.commit
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         conn.commit()
     if new_sms_l=="квожка режим вкл" and id_chel==idr:
         cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
