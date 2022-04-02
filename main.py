@@ -246,7 +246,7 @@ def handle_text(message):
                     cur.execute(sql_zaprosik)
                     conn.commit()
                 index_command_sql_zaprosik=sql_zaprosik.find(" ")
-                command_sql_zaprosik=sql_zaprosik[:index_command_sql_zaprosik+1]
+                command_sql_zaprosik=sql_zaprosik[:index_command_sql_zaprosik]
                 sql_zaprosik=sql_zaprosik[index_command_sql_zaprosik+1:]
                 table_sql_zaprosik=''
                 if command_sql_zaprosik=="update":
