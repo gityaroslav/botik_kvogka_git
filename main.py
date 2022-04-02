@@ -242,7 +242,7 @@ def handle_text(message):
                     dlya_vivoda_sql_zaprosika=cur.fetchall()
                     vivod_sql_zaprosika=''
                     for el in dlya_vivoda_sql_zaprosika:
-                        vivod_sql_zaprosika+=f"{el}\n"
+                        vivod_sql_zaprosika+=f"{*el}\n"
                     bot.send_message(id_chat, vivod_sql_zaprosika)
                 else:
                     cur.execute(sql_zaprosik)
