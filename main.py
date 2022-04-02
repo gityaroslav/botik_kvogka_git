@@ -236,7 +236,7 @@ def handle_text(message):
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
         elif new_sms_l[0:28]=="квожка работа с базой данных" and id_chel==idr:
-            try:
+            try: #insert, select, update, delete
                 sql_zaprosik=new_sms_l[29:]
                 if sql_zaprosik[0:6]=="select":
                     cur.execute(sql_zaprosik)
@@ -248,9 +248,24 @@ def handle_text(message):
                 index_command_sql_zaprosik=sql_zaprosik.find(" ")
                 command_sql_zaprosik=sql_zaprosik[:index_command_sql_zaprosik+1]
                 sql_zaprosik=sql_zaprosik[index_command_sql_zaprosik+1:]
-                itog_sql_zaprosika=f"SQL запрос:\n―――――\nТип запроса: {command_sql_zaprosik}\nТаблица: ля1\nЗапрос: ля2\n―――――\nУспешно!"
+                if command_sql_zaprosik=="update":
+                    index_table_sql_zaprosik=sql_zaprosik.find(" ")
+                    table_sql_zaprosik=sql_zaprosik[:index_table_sql_zaprosik]
+                elif command_sql_zaprosik=="select":
+                    index_table_sql_zaprosik=sql_zaprosik.find("from")
+                    dop1_index_table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
+                    if dop1_index_table_sql_zaprosik==-1:
+                        table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+1:]
+                    else:
+                        table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+1:dop1_index_table_sql_zaprosik]
+                elif command_sql_zaprosik=="insert":
+                    index_table_sql_zaprosik=sql_zaprosik.find("into")
+                    table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
+                elif command_sql_zaprosik=="delete":
+                    index_table_sql_zaprosik=sql_zaprosik.find("from")
+                    table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
+                itog_sql_zaprosika=f"SQL запрос:\n―――――\nТип запроса: {command_sql_zaprosik}\nТаблица: {table_sql_zaprosik}\nЗапрос: ля2\n―――――\nУспешно!"
                 bot.send_message(id_chat, itog_sql_zaprosika)
-                bot.send_message(id_chat, sql_zaprosik)
             except Exception as e:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 bot.send_message(idr, e)
