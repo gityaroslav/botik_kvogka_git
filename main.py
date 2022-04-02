@@ -256,7 +256,7 @@ def handle_text(message):
                     zapros_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+1:]
                 elif command_sql_zaprosik=="select":
                     index_table_sql_zaprosik=sql_zaprosik.find("from")
-                    dop1_index_table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
+                    dop1_index_table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:].find(" ")
                     if dop1_index_table_sql_zaprosik==-1:
                         table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+1:]
                     else:
