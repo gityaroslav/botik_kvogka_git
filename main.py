@@ -248,6 +248,7 @@ def handle_text(message):
                 index_command_sql_zaprosik=sql_zaprosik.find(" ")
                 command_sql_zaprosik=sql_zaprosik[:index_command_sql_zaprosik+1]
                 sql_zaprosik=sql_zaprosik[index_command_sql_zaprosik+1:]
+                table_sql_zaprosik=''
                 if command_sql_zaprosik=="update":
                     index_table_sql_zaprosik=sql_zaprosik.find(" ")
                     table_sql_zaprosik=sql_zaprosik[:index_table_sql_zaprosik]
