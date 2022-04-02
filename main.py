@@ -253,7 +253,7 @@ def handle_text(message):
                 if command_sql_zaprosik=="update":
                     index_table_sql_zaprosik=sql_zaprosik.find(" ")
                     table_sql_zaprosik=sql_zaprosik[:index_table_sql_zaprosik]
-                    zapros_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik_sql_zaprosik+1:]
+                    zapros_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+1:]
                 elif command_sql_zaprosik=="select":
                     index_table_sql_zaprosik=sql_zaprosik.find("from")
                     dop1_index_table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
