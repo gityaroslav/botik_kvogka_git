@@ -247,7 +247,7 @@ def handle_text(message):
                     conn.commit()
                 index_command_sql_zaprosik=sql_zaprosik.find(" ")
                 command_sql_zaprosik=sql_zaprosik[:index_command_sql_zaprosik+1]
-                itog_sql_zaprosika=f"SQL запрос:\n―――――\nКоманда: {command_sql_zaprosik}\n456"
+                itog_sql_zaprosika=f"SQL запрос:\n―――――\nТип запроса: {command_sql_zaprosik}\nТаблица: ля1\nЗапрос: ля2\n―――――\nУспешно!"
                 bot.send_message(id_chat, itog_sql_zaprosika)
             except Exception as e:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
