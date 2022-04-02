@@ -267,7 +267,7 @@ def handle_text(message):
                     else:
                         sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
                         table_sql_zaprosik=sql_zaprosik[:dop1_index_table_sql_zaprosik]
-                        zapros_sql_zaprosik+="(|)"
+                        zapros_sql_zaprosik+="―"
                         zapros_sql_zaprosik+=sql_zaprosik[dop1_index_table_sql_zaprosik+1:]
                 elif command_sql_zaprosik=="insert":
                     index_table_sql_zaprosik=sql_zaprosik.find("into")
