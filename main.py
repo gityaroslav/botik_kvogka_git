@@ -249,9 +249,11 @@ def handle_text(message):
                 command_sql_zaprosik=sql_zaprosik[:index_command_sql_zaprosik]
                 sql_zaprosik=sql_zaprosik[index_command_sql_zaprosik+1:]
                 table_sql_zaprosik=''
+                zapros_sql_zaprosik=""
                 if command_sql_zaprosik=="update":
                     index_table_sql_zaprosik=sql_zaprosik.find(" ")
                     table_sql_zaprosik=sql_zaprosik[:index_table_sql_zaprosik]
+                    zapros_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik_sql_zaprosik+1:]
                 elif command_sql_zaprosik=="select":
                     index_table_sql_zaprosik=sql_zaprosik.find("from")
                     dop1_index_table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
@@ -265,7 +267,7 @@ def handle_text(message):
                 elif command_sql_zaprosik=="delete":
                     index_table_sql_zaprosik=sql_zaprosik.find("from")
                     table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
-                itog_sql_zaprosika=f"SQL запрос:\n―――――\nТип запроса: {command_sql_zaprosik}\nТаблица: {table_sql_zaprosik}\nЗапрос: ля2\n―――――\nУспешно!"
+                itog_sql_zaprosika=f"SQL запрос:\n―――――\nТип запроса: {command_sql_zaprosik}\nТаблица: {table_sql_zaprosik}\nЗапрос: {zapros_sql_zaprosik}\n―――――\nУспешно!"
                 bot.send_message(id_chat, itog_sql_zaprosika)
             except Exception as e:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
