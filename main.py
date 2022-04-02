@@ -231,11 +231,11 @@ def handle_text(message):
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
     ### скрытые команды хендлера
-        elif new_sms_l=="квожка скажи сообщение":
+        elif new_sms_l=="квожка скажи сообщение" and id_chel==idr:
             bot.send_message(idr, message)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
-        elif new_sms_l[0:28]=="квожка работа с базой данных":
+        elif new_sms_l[0:28]=="квожка работа с базой данных" and id_chel==idr:
             try:
                 sql_zaprosik=new_sms_l[29:]
                 if sql_zaprosik[0:6]=="select":
@@ -245,6 +245,9 @@ def handle_text(message):
                 else:
                     cur.execute(sql_zaprosik)
                     conn.commit()
+                command_sql_zaprosik=sql_zaprosik.find(" ")
+                itog_sql_zaprosika=f"SQL запрос:\nКоманда:{sql_zaprosik[:command_sql_zaprosik+1]}"
+                bot.send_message(id_chat, itog_sql_zaprosika)
             except Exception as e:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 bot.send_message(idr, e)
