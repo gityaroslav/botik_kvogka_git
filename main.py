@@ -20,7 +20,6 @@ except Exception as e:
     bot.send_message(idr, f'Ошибка:\n{e}')
 ######################################### все переменные
 ourchatid=-1001139329557
-id_otchet_chat=-1001750309280
 idg = 789996181
 idd = 719289365
 idl = 1359601863
@@ -240,7 +239,10 @@ def handle_text(message):
                 sql_zaprosik=new_sms_l[29:]
                 if sql_zaprosik[0:6]=="select":
                     cur.execute(sql_zaprosik)
-                    vivod_sql_zaprosika=cur.fetchall()
+                    dlya_vivoda_sql_zaprosika=cur.fetchall()
+                    vivod_sql_zaprosika=''
+                    for el in dlya_vivoda_sql_zaprosika:
+                        vivod_sql_zaprosika+=f"{el}\n"
                     bot.send_message(id_chat, vivod_sql_zaprosika)
                 else:
                     cur.execute(sql_zaprosik)
