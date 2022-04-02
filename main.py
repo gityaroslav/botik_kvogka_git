@@ -257,7 +257,8 @@ def handle_text(message):
                 elif command_sql_zaprosik=="select":
                     index_table_sql_zaprosik=sql_zaprosik.find("from")
                     zapros_sql_zaprosik+=sql_zaprosik[:index_table_sql_zaprosik-1]
-                    dop1_index_table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:].find(" ")
+                    dlya_dop1_index_table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
+                    dop1_index_table_sql_zaprosik=dlya_dop1_index_table_sql_zaprosik.find(" ")
                     bot.send_message(idr, dop1_index_table_sql_zaprosik)
                     if dop1_index_table_sql_zaprosik==-1:
                         table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
