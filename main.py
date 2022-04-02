@@ -260,6 +260,7 @@ def handle_text(message):
                     dlya_dop1_index_table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
                     dop1_index_table_sql_zaprosik=dlya_dop1_index_table_sql_zaprosik.find(" ")
                     bot.send_message(idr, dop1_index_table_sql_zaprosik)
+                    bot.send_message(idr, index_table_sql_zaprosik)
                     if dop1_index_table_sql_zaprosik==-1:
                         table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
                     else:
