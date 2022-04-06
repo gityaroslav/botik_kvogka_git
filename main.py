@@ -223,7 +223,7 @@ def handle_text(message):
                 bot.send_message(id_chat, "Три ромашка")
             elif new_sms_l[3:]=="три ромашка":
                 bot.send_message(id_chat, "А я четвёртую сорву")
-            elif new_sms_l[3:]=="а я четвёртую сорву":
+            elif new_sms_l[3:]=="а я четвёртую сорву" or new_sms_l[3:]=="а я четвертую сорву":
                 bot.send_message(id_chat, "Пять ромашка")
             elif new_sms_l[3:]=="пять ромашка":
                 bot.send_message(id_chat, "Шесть ромашка")
