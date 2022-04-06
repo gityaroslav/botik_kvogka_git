@@ -216,20 +216,28 @@ def handle_text(message):
             cur.execute(command123456)
         elif "dashina_pesnya"=="dashina_pesnya" and (id_chel==idd or id_chel==idr) and new_sms_l[0:3]=="кв ":
             if new_sms_l[3:]=="пой трям":
+                time.sleep(0.5)
                 bot.send_message(id_chat, "Раз ромашка")
             elif new_sms_l[3:]=="раз ромашка":
+                time.sleep(0.5)
                 bot.send_message(id_chat, "Два ромашка")
             elif new_sms_l[3:]=="два ромашка":
+                time.sleep(0.5)
                 bot.send_message(id_chat, "Три ромашка")
             elif new_sms_l[3:]=="три ромашка":
+                time.sleep(0.5)
                 bot.send_message(id_chat, "А я четвёртую сорву")
             elif new_sms_l[3:]=="а я четвёртую сорву" or new_sms_l[3:]=="а я четвертую сорву":
+                time.sleep(0.5)
                 bot.send_message(id_chat, "Пять ромашка")
             elif new_sms_l[3:]=="пять ромашка":
+                time.sleep(0.5)
                 bot.send_message(id_chat, "Шесть ромашка")
             elif new_sms_l[3:]=="шесть ромашка":
+                time.sleep(0.5)
                 bot.send_message(id_chat, "Семь")
             elif new_sms_l[3:]=="семь":
+                time.sleep(0.5)
                 bot.send_message(id_chat, "А она это, того самое, закончилась, песенка то :(")
     ### скрытые команды хендлера
         elif new_sms_l=="квожка скажи сообщение" and id_chel==idr:
