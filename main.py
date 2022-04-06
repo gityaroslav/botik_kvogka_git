@@ -28,8 +28,8 @@ nikg = '@freak_sqd03'
 nikd = '@artmv_d'
 nikl = '@lizk1a1'
 nikr = '@gikhok'
-niki_ludishek=[idg, idd, idl, idr, 1039315228, 1230762892, 981661206]
-nashi_ludishki=["Ника", "Рося", "Женя", "Поля", "Лиза", "Даша", "Егор"]
+niki_ludishek=[idg, idd, idl, idr, 1039315228, 1230762892]
+imena_nashih_ludishek=["Ника", "Рося", "Женя", "Поля", "Лиза", "Даша", "Егор"]
 game_shp_locations=['Футбольное поле', 'Школа', 'Рынок', 'Магазин', 'Площадка', 'Квартира', 'Ферма', 'Лес', 'Парк', 'Озеро', 'Сад', 'Пляж', 'Заброшка', 'Стройка', 'Поляна', 'Аквапарк', 'Лагерь', 'Зоопарк', 'Цум', 'Отель']
 ludi=['Даша', 'Лиза', 'Женя', 'Рося']
 random_kefiki=["0", "0", "0", "0", "0", "0", "0", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5",  "1", "1", "1", "1", "1", "1", "1", "1.25", "1.25", "1.25", "1.25", "1.25", "1.5", "1.5", "1.5", "1.5", "1.5", "2", "2", "2", "2", "5", "5", "5", "10", "10", "100"]
@@ -107,21 +107,6 @@ commands_rosya="""
 """
 emoji='✋😴💰😔😲🎲🎰'# {emoji[2]}
 ########################################### все функции для хендлеров
-'''
-def kakoy_balans(id_chelika):
-    command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
-    cur.execute(command_kakoy_balans)
-    balans_kakoy_balans = cur.fetchone()
-    balans_kakoy_balans = balans_kakoy_balans[0]
-    return balans_kakoy_balans
-def kkakoy_balans(id_chelika):
-    command_kkakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
-    cur.execute(command_kkakoy_balans)
-    balans_kkakoy_balans = cur.fetchone()
-    balans_kkakoy_balans = balans_kkakoy_balans[0]
-    kiber_balance='{0:,}'.format(balans_kkakoy_balans).replace(',', ' ')
-    return kiber_balance
-'''
 def kakoy_balans(id_chelika, type_vivod):
     command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
     cur.execute(command_kakoy_balans)
@@ -229,6 +214,23 @@ def handle_text(message):
             bot.send_message(id_chat, f'Понг (за {finish_time.total_seconds()} секунд)')
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
+        elif "dashina_pesnya"=="dashina_pesnya" and (id_chel==idd or id_chel==idr) and new_sms_l[0:3]=="кв ":
+            if new_sms_l[3:]=="пой трям":
+                bot.send_message(id_chat, "Раз ромашка")
+            elif new_sms_l[3:]=="раз ромашка":
+                bot.send_message(id_chat, "Два ромашка")
+            elif new_sms_l[3:]=="два ромашка":
+                bot.send_message(id_chat, "Три ромашка")
+            elif new_sms_l[3:]=="три ромашка":
+                bot.send_message(id_chat, "А я четвёртую сорву")
+            elif new_sms_l[3:]=="а я четвёртую сорву":
+                bot.send_message(id_chat, "Пять ромашка")
+            elif new_sms_l[3:]=="пять ромашка":
+                bot.send_message(id_chat, "Шесть ромашка")
+            elif new_sms_l[3:]=="шесть ромашка":
+                bot.send_message(id_chat, "Семь")
+            elif new_sms_l[3:]=="семь":
+                bot.send_message(id_chat, "А она это, того самое, закончилась, песенка то :(")
     ### скрытые команды хендлера
         elif new_sms_l=="квожка скажи сообщение" and id_chel==idr:
             bot.send_message(idr, message)
@@ -464,7 +466,7 @@ def handle_text(message):
             itogoviy_vivod="Балансы наших:\n"
             try:
                 for el in namebalance:
-                    if str(el[0]) in nashi_ludishki:
+                    if str(el[0]) in imena_nashih_ludishek:
                         itogoviy_vivod+=str(str(el[0])+f"{emoji[2]}"+str('{0:,}'.format(el[1]).replace(',', ' '))+"\n")
                 bot.send_message(id_chat, itogoviy_vivod)
             except:
@@ -519,6 +521,7 @@ def handle_text(message):
         cur.execute("select key from names_keys where name = 'sms_count'")
         kolvo_sms_count=cur.fetchone()
         bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
+    
 if __name__ == '__main__':
     bot.skip_pending = True
     bot.infinity_polling()
