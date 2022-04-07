@@ -448,8 +448,9 @@ def handle_text(message):
                 cur.execute(command)
                 conn.commit()
                 bot.send_message(id_chat, f"Операция выполнена успешно!\nБаланс клиента: {kakoy_balans(id_poluch, 1)}")
-            except:
+            except Exception as e:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+                bot.send_message(idr, e)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
         elif new_sms_l[0:3]=="каз":
