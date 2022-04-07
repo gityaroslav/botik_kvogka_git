@@ -501,7 +501,7 @@ def handle_text(message):
                 kursik4=kursik*4
                 kursik='{0:,}'.format(kursik).replace(',', ' ')
                 kursik4='{0:,}'.format(kursik4).replace(',', ' ')
-                bot.send_message(id_chat, f"Курс:\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПродавать другим игрокам ниже курса запрещается!\nПо всем вопросам: {nikr}")
+                bot.send_message(id_chat, f"Курс:\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПродавать другим игрокам ниже курса запрещается!")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
