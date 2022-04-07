@@ -429,9 +429,8 @@ def handle_text(message):
                     bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kakoy_balans(id_poluch, 1)}{emoji[2]}\nВаш баланс: {kakoy_balans(id_otprav, 1)}{emoji[2]}")
                 else:
                     bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-            except Exception as e:
+            except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-                bot.send_message(idr, e)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
         elif new_sms_l[0:4]=="банк" and id_chel==idr:
@@ -441,7 +440,6 @@ def handle_text(message):
                 kolichestvo_k=new_sms_l[4:].count("к")
                 if kolichestvo_k>0:
                     index_kolichestva_k=(new_sms_l[4:].find("к"))+4
-                    bot.send_message(idr, f"{index_kolichestva_k}, {kolichestvo_k}")
                     perevod_summa = int(new_sms_l[5:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
                     perevod_summa = int(new_sms_l[5:])         
@@ -449,15 +447,19 @@ def handle_text(message):
                 cur.execute(command)
                 conn.commit()
                 bot.send_message(id_chat, f"Операция выполнена успешно!\nБаланс клиента: {kakoy_balans(id_poluch, 1)}")
-            except Exception as e:
+            except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-                bot.send_message(idr, e)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
         elif new_sms_l[0:3]=="каз":
             random_kef=random.choice(random_kefiki)
             try:
-                igr_kazik_summa = int(new_sms[3:])
+                kolichestvo_k=new_sms_l[1:].count("к")
+                if kolichestvo_k>0:
+                    index_kolichestva_k=(new_sms_l[1:].find("к"))+1
+                    igr_kazik_summa = int(new_sms[3:index_kolichestva_k])*(1000**(kolichestvo_k))
+                else:
+                    igr_kazik_summa = int(new_sms[3:])
                 balans_igr_vkazik = kakoy_balans(id_chel, 0)
                 if balans_igr_vkazik>=igr_kazik_summa:
                     minus_balans(id_chel, igr_kazik_summa)
