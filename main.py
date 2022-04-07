@@ -290,10 +290,6 @@ def handle_text(message):
             except Exception as e:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 bot.send_message(idr, e)
-        elif new_sms_l=="квожка скажи айди" and id_chel==idr:
-            bot.send_message(id_chat, message.reply_to_message.from_user.id)
-            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
-            cur.execute(command123456)
         elif new_sms == "*+" and id_chel==idr:
             bot.send_message(id_chat, 'Квожка работает!')
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
@@ -501,6 +497,14 @@ def handle_text(message):
                 bot.send_message(id_chat, itogoviy_vivod)
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
+        elif new_sms_l=="инфо" and id_chel==idr:
+            id_togo_chela=message.reply_to_message.from_user.id
+            try:
+                bot.send_message(f"Айди: {id_togo_chela}\nБаланс в валютке: {kakoy_balans(id_togo_chela, 1)}")
+            except:
+                bot.send_message(f"Айди: {id_togo_chela}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
         elif new_sms_l=="курс":
