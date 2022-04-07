@@ -441,9 +441,10 @@ def handle_text(message):
                 kolichestvo_k=new_sms_l[4:].count("к")
                 if kolichestvo_k>0:
                     index_kolichestva_k=new_sms_l[4:].find("к")
+                    bot.send_message(idr, f"{index_kolichestva_k}, {kolichestvo_k}")
                     perevod_summa = int(new_sms_l[5:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
-                    perevod_summa = int(new_sms[5:])         
+                    perevod_summa = int(new_sms_l[5:])         
                 command = f"update kvg_db set balance = balance {znak_banka}{perevod_summa} where id = {id_poluch}"
                 cur.execute(command)
                 conn.commit()
