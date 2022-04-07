@@ -503,10 +503,9 @@ def handle_text(message):
             id_togo_chela=message.reply_to_message.from_user.id
             bot.send_message(idr, id_togo_chela)
             try:
-                bot.send_message(f"Айди: {id_togo_chela}\nБаланс в валютке: {kakoy_balans(id_togo_chela, 1)}")
-            except Exception as e:
-                bot.send_message(f"Айди: {id_togo_chela}")
-                bot.send_message(idr, e)
+                bot.send_message(id_chat, f"Айди: {id_togo_chela}\nБаланс в валютке: {kakoy_balans(id_togo_chela, 1)}")
+            except:
+                bot.send_message(id_chat, f"Айди: {id_togo_chela}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
         elif new_sms_l=="курс":
