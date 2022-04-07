@@ -500,12 +500,12 @@ def handle_text(message):
                 kursik20=kursik*20
                 kursik='{0:,}'.format(kursik).replace(',', ' ')
                 kursik20='{0:,}'.format(kursik20).replace(',', ' ')
-                bot.send_message(id_chat, f"Курс:\nПродажа: 1 рубль = {kursik}{emoji[2]}\nПродавать другим игрокам ниже курса запрещается!Награда за находку бага: {kursik20}")
+                bot.send_message(id_chat, f"Курс:\nПродажа: 1 рубль = {kursik}{emoji[2]}\nПродавать другим игрокам ниже курса запрещается!\nНаграда за находку бага: {kursik20}{emoji[2]}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
-        elif new_sms_l=="квожка выдай награду за находку бага":
+        elif new_sms_l=="квожка выдай награду за баг":
             try:
                 cur.execute("select balance from kvg_db")
                 namebalance = cur.fetchall()
@@ -514,8 +514,8 @@ def handle_text(message):
                 for el in namebalance:
                     count_balans+=1
                     summ_balans+=int(el[0])
-                kursik20=(summ_balans//(count_balans**3))*20
-                plus_balans(message.reply_to_message.from_user.id, kursik20)
+                kursik15=(summ_balans//(count_balans**3))*15
+                plus_balans(message.reply_to_message.from_user.id, kursik15)
                 bot.send_message(id_chat, "Успешно выдал награду за находку бага!")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
