@@ -440,8 +440,8 @@ def handle_text(message):
                 znak_banka=new_sms[4]
                 kolichestvo_k=new_sms_l.count("к")
                 if kolichestvo_k>1:
-                    index_kolichestva_k=new_sms_l.find("к")
-                    perevod_summa = new_sms[5:index_kolichestva_k]*(1000**(kolichestvo_k))
+                    index_kolichestva_k=new_sms_l[4:].find("к")
+                    perevod_summa = int(new_sms[5:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
                     perevod_summa = int(new_sms[5:])         
                 command = f"update kvg_db set balance = balance {znak_banka}{perevod_summa} where id = {id_poluch}"
