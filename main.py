@@ -413,7 +413,8 @@ def handle_text(message):
                 kolichestvo_k=new_sms_l.count("к")
                 if kolichestvo_k>0:
                     index_kolichestva_k=new_sms_l.find("к")
-                    perevod_summa = int(new_sms[4:index_kolichestva_k])*(1000*(kolichestvo_k-1))
+                    perevod_summa = int(new_sms[4:index_kolichestva_k])*(1000*(kolichestvo_k))
+                    bot.send_message(idr, perevod_summa)
                 else:
                     perevod_summa = int(new_sms[4:])
                 balans_perevodimogo = kakoy_balans(id_otprav, 0)
