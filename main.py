@@ -94,6 +94,7 @@ commands_rosya="""
 КВОЖКА СКАЖИ АЙДИ - скажет айди пользователя(ответом на сообщение)
 КВОЖКА РЕЖИМ ВКЛ/ВЫКЛ - включить/выключить бота
 КВОЖКА СКАЖИ СООБЩЕНИЕ - скажет сообщение(message, все его данные)
+КВОЖКА ВЫДАЙ ЗА БАГ - выдаст валютку за находку бага
 ——————————————
 Для игры "Валютка":
 БАЛАНС(или БАЛ) - узнать свой баланс
@@ -394,7 +395,12 @@ def handle_text(message):
             id_poluch=message.reply_to_message.from_user.id 
             id_otprav=message.from_user.id
             try:
-                perevod_summa = int(new_sms[7:])
+                kolichestvo_k=new_sms_l.count("к")
+                if kolichestvo_k>0:
+                    index_kolichestva_k=new_sms_l.find("к")
+                    perevod_summa = int(new_sms[7:index_kolichestva_k])*(1000**(kolichestvo_k))
+                else:
+                    perevod_summa = int(new_sms[7:])
                 balans_perevodimogo = kakoy_balans(id_otprav, 0)
                 if balans_perevodimogo>=perevod_summa:
                     minus_balans(id_otprav, perevod_summa)
@@ -431,8 +437,14 @@ def handle_text(message):
         elif new_sms_l[0:4]=="банк" and id_chel==idr:
             id_poluch=message.reply_to_message.from_user.id 
             try:
-                perevod_summa = new_sms[4:]            
-                command = f"update kvg_db set balance = balance {perevod_summa} where id = {id_poluch}"
+                znak_banka=new_sms[4]
+                kolichestvo_k=new_sms_l.count("к")
+                if kolichestvo_k>1:
+                    index_kolichestva_k=new_sms_l.find("к")
+                    perevod_summa = int(new_sms[5:index_kolichestva_k])*(1000**(kolichestvo_k))
+                else:
+                    perevod_summa = int(new_sms[5:])         
+                command = f"update kvg_db set balance = balance {znak_banka}{perevod_summa} where id = {id_poluch}"
                 cur.execute(command)
                 conn.commit()
                 bot.send_message(id_chat, f"Операция выполнена успешно!\nБаланс клиента: {kakoy_balans(id_poluch, 1)}")
@@ -505,7 +517,7 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
-        elif new_sms_l=="квожка выдай награду за баг":
+        elif new_sms_l=="квожка выдай за баг":
             try:
                 cur.execute("select balance from kvg_db")
                 namebalance = cur.fetchall()
