@@ -501,6 +501,7 @@ def handle_text(message):
             cur.execute(command123456)
         elif new_sms_l=="инфо" and id_chel==idr:
             id_togo_chela=message.reply_to_message.from_user.id
+            bot.send_message(idr, id_togo_chela)
             try:
                 bot.send_message(f"Айди: {id_togo_chela}\nБаланс в валютке: {kakoy_balans(id_togo_chela, 1)}")
             except Exception as e:
