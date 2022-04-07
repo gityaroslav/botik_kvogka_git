@@ -422,8 +422,9 @@ def handle_text(message):
                     bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kakoy_balans(id_poluch, 1)}{emoji[2]}\nВаш баланс: {kakoy_balans(id_otprav, 1)}{emoji[2]}")
                 else:
                     bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-            except:
+            except Exception as e:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+                bot.send_message(idr, e)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
         elif new_sms_l[0:4]=="банк" and id_chel==idr:
