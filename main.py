@@ -410,7 +410,11 @@ def handle_text(message):
             id_poluch=message.reply_to_message.from_user.id 
             id_otprav=message.from_user.id
             try:
-                perevod_summa = int(new_sms[4:])
+                kolichestvo_k=new_sms)l.count("к")
+                if kolishestvo_k>1:
+                    perevod_summa = int(new_sms[4:])*(1000*(kolishestvo_k-1))
+                else:
+                    perevod_summa = int(new_sms[4:])
                 balans_perevodimogo = kakoy_balans(id_otprav, 0)
                 if balans_perevodimogo>=perevod_summa:
                     minus_balans(id_otprav, perevod_summa)
