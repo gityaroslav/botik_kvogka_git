@@ -440,7 +440,7 @@ def handle_text(message):
                 znak_banka=new_sms[4]
                 kolichestvo_k=new_sms_l[4:].count("к")
                 if kolichestvo_k>0:
-                    index_kolichestva_k=new_sms_l[4:].find("к")
+                    index_kolichestva_k=(new_sms_l[4:].find("к"))+4
                     bot.send_message(idr, f"{index_kolichestva_k}, {kolichestvo_k}")
                     perevod_summa = int(new_sms_l[5:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
