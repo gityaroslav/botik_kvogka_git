@@ -410,9 +410,9 @@ def handle_text(message):
             id_poluch=message.reply_to_message.from_user.id 
             id_otprav=message.from_user.id
             try:
-                kolichestvo_k=new_sms)l.count("к")
-                if kolishestvo_k>1:
-                    perevod_summa = int(new_sms[4:])*(1000*(kolishestvo_k-1))
+                kolichestvo_k=new_sms_l.count("к")
+                if kolichestvo_k>1:
+                    perevod_summa = int(new_sms[4:])*(1000*(kolichestvo_k-1))
                 else:
                     perevod_summa = int(new_sms[4:])
                 balans_perevodimogo = kakoy_balans(id_otprav, 0)
@@ -498,7 +498,7 @@ def handle_text(message):
                 kursik4=kursik*4
                 kursik='{0:,}'.format(kursik).replace(',', ' ')
                 kursik4='{0:,}'.format(kursik4).replace(',', ' ')
-                bot.send_message(id_chat, f"Курс:\nСкупка: 1 рубль = {kursik4}{emoji[2]} (от 10Р)\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПо всем вопросам: {nikr}")
+                bot.send_message(id_chat, f"Курс:\nПродажа: 1 рубль = {kursik}{emoji[2]} (от 1Р)\nПродавать другим игрокам ниже курса запрещается!\nПо всем вопросам: {nikr}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
