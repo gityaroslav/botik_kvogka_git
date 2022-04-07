@@ -438,8 +438,8 @@ def handle_text(message):
             id_poluch=message.reply_to_message.from_user.id 
             try:
                 znak_banka=new_sms[4]
-                kolichestvo_k=new_sms_l.count("к")
-                if kolichestvo_k>1:
+                kolichestvo_k=new_sms_l[4:].count("к")
+                if kolichestvo_k>0:
                     index_kolichestva_k=new_sms_l[4:].find("к")
                     perevod_summa = int(new_sms[5:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
