@@ -411,7 +411,7 @@ def handle_text(message):
             id_otprav=message.from_user.id
             try:
                 kolichestvo_k=new_sms_l.count("к")
-                if kolichestvo_k>1:
+                if kolichestvo_k>0:
                     perevod_summa = int(new_sms[4:])*(1000*(kolichestvo_k-1))
                 else:
                     perevod_summa = int(new_sms[4:])
