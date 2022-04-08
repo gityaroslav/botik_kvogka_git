@@ -514,9 +514,9 @@ def handle_text(message):
                 kolichestvo_k=new_sms_l[1:].count("к")
                 if kolichestvo_k>0:
                     index_kolichestva_k=(new_sms_l[1:].find("к"))+1
-                    igr_krashik_summa = int(new_sms[3:index_kolichestva_k])*(1000**(kolichestvo_k))
+                    igr_krashik_summa = int(new_sms[gde_tochka+3:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
-                    igr_krashik_summa = int(new_sms[3:])
+                    igr_krashik_summa = int(new_sms[gde_tochka+3:])
                 gde_tochka=new_sms_l.find(".")
                 prognoz_igrayushego=str(new_sms_l[4:gde_tochka]+new_sms_l[gde_tochka+1:gde_tochka+3])
                 kefik_krasha=str(random.choice(nachalo_kefikov)+random.choice(okonchanie_kefikov))
