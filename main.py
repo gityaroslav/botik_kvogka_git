@@ -518,8 +518,7 @@ def handle_text(message):
                     igr_krashik_summa = int(new_sms[gde_tochka+3:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
                     igr_krashik_summa = int(new_sms[gde_tochka+3:])
-                prognoz_igrayushego=str(new_sms_l[4]+new_sms_l[gde_tochka+1:gde_tochka+3])
-                bot.send_message(idr, str(index_kolichestva_k)+"/"+str(igr_krashik_summa)+"/"+str(prognoz_igrayushego))
+                prognoz_igrayushego=str(new_sms_l[4:gde_tochka]+new_sms_l[gde_tochka+1:gde_tochka+3])
                 nach_kefika_krasha=random.choice(nachalo_kefikov)
                 okon_kefika_krasha=random.choice(okonchaniya_kefikov)
                 kefik_krasha=str(nach_kefika_krasha+okon_kefika_krasha)
@@ -530,7 +529,7 @@ def handle_text(message):
                         if int(prognoz_igrayushego)<=int(kefik_krasha):
                             new_igr_krashik_summa=igr_krashik_summa*(float(f"{new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}"))
                             plus_balans(id_chel, new_igr_krashik_summa)
-                        bot.send_message(id_chat, f"Краш: {emoji[7]} {nach_kefika_krasha}.{okon_kefika_krasha} {emoji[7]}\nВаш прогноз: {emoji[8]} {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]} {emoji[8]}\nВаша ставка: {igr_krashik_summa}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
+                        bot.send_message(id_chat, f"Краш: {emoji[7]} {nach_kefika_krasha}.{okon_kefika_krasha} {emoji[7]}\nВаш прогноз: {emoji[8]} {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+1:gde_tochka+3]} {emoji[8]}\nВаша ставка: {igr_krashik_summa}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                     else:#
                         bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
                 else:
