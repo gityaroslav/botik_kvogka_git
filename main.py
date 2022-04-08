@@ -519,7 +519,9 @@ def handle_text(message):
                 else:
                     igr_krashik_summa = int(new_sms[gde_tochka+3:])
                 prognoz_igrayushego=str(new_sms_l[4:gde_tochka]+new_sms_l[gde_tochka+1:gde_tochka+3])
-                kefik_krasha=str(random.choice(nachalo_kefikov)+random.choice(okonchaniya_kefikov))
+                nach_kefika_krasha=random.choice(nachalo_kefikov)
+                okon_kefika_krasha=random.choice(okonchaniya_kefikov)
+                kefik_krasha=str(nach_kefika_krasha+okon_kefika_krasha)
                 balans_igr_vkrashik = kakoy_balans(id_chel, 0)
                 if int(prognoz_igrayushego)>100:
                     if balans_igr_vkrashik>=igr_krashik_summa:
@@ -527,13 +529,12 @@ def handle_text(message):
                         if int(prognoz_igrayushego)<=int(kefik_krasha):
                             new_igr_krashik_summa=igr_krashik_summa*(float(f"{new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}"))
                             plus_balans(id_chel, new_igr_krashik_summa)
-                        bot.send_message(id_chat, f"Краш: {emoji[7]} {kefik_krasha} {emoji[7]}\nВаш прогноз: {emoji[8]} {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]} {emoji[8]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
-                    else:
+                        bot.send_message(id_chat, f"Краш: {emoji[7]} {nach_kefika_krasha}.{okon_kefika_krasha} {emoji[7]}\nВаш прогноз: {emoji[8]} {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]} {emoji[8]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
+                    else:#
                         bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
                 else:
                     bot.send_message(id_chat, "Сделайте ставку в краше побольше :)")
-            except Exception as e:
-                bot.send_message(idr, e)
+            except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
