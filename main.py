@@ -32,7 +32,9 @@ niki_ludishek=[idg, idd, idl, idr, 1039315228, 1230762892, 981661206]
 imena_nashih_ludishek=["Ника", "Рося", "Женя", "Поля", "Лиза", "Даша", "Егор"]
 game_shp_locations=['Футбольное поле', 'Школа', 'Рынок', 'Магазин', 'Площадка', 'Квартира', 'Ферма', 'Лес', 'Парк', 'Озеро', 'Сад', 'Пляж', 'Заброшка', 'Стройка', 'Поляна', 'Аквапарк', 'Лагерь', 'Зоопарк', 'Цум', 'Отель']
 ludi=['Даша', 'Лиза', 'Женя', 'Рося']
-random_kefiki=["0", "0", "0", "0", "0", "0", "0", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5",  "1", "1", "1", "1", "1", "1", "1", "1.25", "1.25", "1.25", "1.25", "1.25", "1.5", "1.5", "1.5", "1.5", "1.5", "2", "2", "2", "2", "5", "5", "5", "10", "10", "100"]
+random_kefiki=["0", "0", "0", "0", "0", "0", "0", "0", "0","0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.25", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "0.5", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1.25", "1.25", "1.25", "1.25", "1.25", "1.25", "1.25", "1.5", "1.5", "1.5", "1.5", "1.5", "1.5", "1.5", "2", "2", "2", "2", "2", "5", "10", "50", "100"]
+nachalo_kefikov=["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "3", "3", "3", "3", "3", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "100"]
+okonchaniya_kefikov=["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99"]
 chel_shpion=0
 location_shp=0
 my_zastavka="""
@@ -507,6 +509,32 @@ def handle_text(message):
                 bot.send_message(id_chat, f"Айди|{id_togo_chela}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
+        elif new_sms_l[0:4]=="краш":
+            try:
+                kolichestvo_k=new_sms_l[1:].count("к")
+                if kolichestvo_k>0:
+                    index_kolichestva_k=(new_sms_l[1:].find("к"))+1
+                    igr_krashik_summa = int(new_sms[3:index_kolichestva_k])*(1000**(kolichestvo_k))
+                else:
+                    igr_krashik_summa = int(new_sms[3:])
+                gde_tochka=new_sms_l.find(".")
+                prognoz_igrayushego=str(new_sms_l[4:gde_tochka]+new_sms_l[gde_tochka+1:gde_tochka+3])
+                kefik_krasha=str(random.choice(nachalo_kefikov)+random.choice(okonchanie_kefikov))
+                balans_igr_vkrashik = kakoy_balans(id_chel, 0)
+                minus_balans(id_chel, igr_krashik_summa)
+                if balans_igr_vkrashik>=igr_krashik_summa:
+                    if int(prognoz_igrayushego)<=kefik_krasha:
+                        new_igr_krashik_summa=igr_krashik_summa*(float(random_kef))
+                        plus_balans(id_chel, new_igr_krashik_summa)
+                        bot.send_message(id_chat, f"Краш: {emoji[6]} {random_kef} {emoji[6]}\nВаш прогноз: {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
+                    else:
+                        bot.send_message(id_chat, f"Казино: {emoji[6]} {random_kef} {emoji[6]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
+                else:
+                    bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
+            except:
+                bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+            command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+            cur.execute(command123456)
         elif new_sms_l=="курс":
             try:
                 cur.execute("select balance from kvg_db")
@@ -517,15 +545,15 @@ def handle_text(message):
                     count_balans+=1
                     summ_balans+=int(el[0])
                 kursik=summ_balans//(count_balans**3)
-                kursik20=kursik*20
+                kursik20=kursik*15
                 kursik='{0:,}'.format(kursik).replace(',', ' ')
                 kursik20='{0:,}'.format(kursik20).replace(',', ' ')
-                bot.send_message(id_chat, f"Курс:\nПродажа: 1 рубль = {kursik}{emoji[2]}\nПродавать другим игрокам ниже курса запрещается!\nНаграда за находку бага: {kursik20}{emoji[2]}")
+                bot.send_message(id_chat, f"Курс:\nПродажа: 1 рубль = {kursik}{emoji[2]}\nПродавать другим игрокам ниже курса запрещается!\nСумма ордена: {kursik20}{emoji[2]}")
             except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
-        elif new_sms_l=="квожка выдай за баг":
+        elif new_sms_l=="квожка выдай орден":
             try:
                 cur.execute("select balance from kvg_db")
                 namebalance = cur.fetchall()
