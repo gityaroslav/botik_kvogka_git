@@ -108,7 +108,7 @@ commands_rosya="""
 БАНК[ДЕЙСТВИЕ] - выполнить любое действие с балансом (ответом на сообщение)
 ВЕСЬ БАНК[ДЕЙСТВИЕ] - выполнить любое действие со всеми балансами
 """
-emoji='✋😴💰😔😲🎲🎰'# {emoji[2]}
+emoji='✋😴💰😔😲🎲🎰📈🔒'# {emoji[7]}
 ########################################### все функции для хендлеров
 def kakoy_balans(id_chelika, type_vivod):
     command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
@@ -527,10 +527,9 @@ def handle_text(message):
                         if int(prognoz_igrayushego)<=int(kefik_krasha):
                             new_igr_krashik_summa=igr_krashik_summa*(float(f"{new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}"))
                             plus_balans(id_chel, new_igr_krashik_summa)
-                        bot.send_message(id_chat, f"Краш: {emoji[6]} {kefik_krasha} {emoji[6]}\nВаш прогноз: {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
+                        bot.send_message(id_chat, f"Краш: {emoji[7]} {kefik_krasha} {emoji[7]}\nВаш прогноз: {emoji[8]} {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]} {emoji[8]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                     else:
                         bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-                        bot.send_message(idr, str(igr_krashik_summa)+"/"+str(balans_igr_vkrashik))
                 else:
                     bot.send_message(id_chat, "Сделайте ставку в краше побольше :)")
             except Exception as e:
