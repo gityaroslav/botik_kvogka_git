@@ -523,8 +523,8 @@ def handle_text(message):
                 balans_igr_vkrashik = kakoy_balans(id_chel, 0)
                 minus_balans(id_chel, igr_krashik_summa)
                 if balans_igr_vkrashik>=igr_krashik_summa:
-                    if int(prognoz_igrayushego)<=kefik_krasha:
-                        new_igr_krashik_summa=igr_krashik_summa*(float(random_kef))
+                    if int(prognoz_igrayushego)<=int(kefik_krasha):
+                        new_igr_krashik_summa=igr_krashik_summa*(float(f"{new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}"))
                         plus_balans(id_chel, new_igr_krashik_summa)
                         bot.send_message(id_chat, f"Краш: {emoji[6]} {kefik_krasha} {emoji[6]}\nВаш прогноз: {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                     else:
