@@ -514,11 +514,12 @@ def handle_text(message):
                 kolichestvo_k=new_sms_l[1:].count("к")
                 gde_tochka=new_sms_l.find(".")
                 if kolichestvo_k>0:
-                    index_kolichestva_k=(new_sms_l[1:].find("к"))
+                    index_kolichestva_k=new_sms_l[1:].find("к")
                     igr_krashik_summa = int(new_sms[gde_tochka+3:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
                     igr_krashik_summa = int(new_sms[gde_tochka+3:])
-                prognoz_igrayushego=str(new_sms_l[4:gde_tochka]+new_sms_l[gde_tochka+1:gde_tochka+3])
+                prognoz_igrayushego=str(new_sms_l[4]+new_sms_l[gde_tochka+1:gde_tochka+3])
+                bot.send_message(idr, str(index_kolichestva_k)+"/"+str(igr_krashik_summa)+"/"+str(prognoz_igrayushego))
                 nach_kefika_krasha=random.choice(nachalo_kefikov)
                 okon_kefika_krasha=random.choice(okonchaniya_kefikov)
                 kefik_krasha=str(nach_kefika_krasha+okon_kefika_krasha)
