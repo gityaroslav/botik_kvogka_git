@@ -530,7 +530,7 @@ def handle_text(message):
                         bot.send_message(id_chat, f"Краш: {emoji[6]} {kefik_krasha} {emoji[6]}\nВаш прогноз: {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                     else:
                         bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-                        bot.send_message(idr, igr_krashik_summa+"/"+balans_igr_vkrashik)
+                        bot.send_message(idr, str(igr_krashik_summa)+"/"+str(balans_igr_vkrashik))
                 else:
                     bot.send_message(id_chat, "Сделайте ставку в краше побольше :)")
             except Exception as e:
