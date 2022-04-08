@@ -521,9 +521,9 @@ def handle_text(message):
                 prognoz_igrayushego=str(new_sms_l[4:gde_tochka]+new_sms_l[gde_tochka+1:gde_tochka+3])
                 kefik_krasha=str(random.choice(nachalo_kefikov)+random.choice(okonchaniya_kefikov))
                 balans_igr_vkrashik = kakoy_balans(id_chel, 0)
-                minus_balans(id_chel, igr_krashik_summa)
                 if int(prognoz_igrayushego)>100:
                     if balans_igr_vkrashik>=igr_krashik_summa:
+                        minus_balans(id_chel, igr_krashik_summa)
                         if int(prognoz_igrayushego)<=int(kefik_krasha):
                             new_igr_krashik_summa=igr_krashik_summa*(float(f"{new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}"))
                             plus_balans(id_chel, new_igr_krashik_summa)
