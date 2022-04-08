@@ -514,7 +514,7 @@ def handle_text(message):
                 kolichestvo_k=new_sms_l[1:].count("к")
                 gde_tochka=new_sms_l.find(".")
                 if kolichestvo_k>0:
-                    index_kolichestva_k=new_sms_l[1:].find("к")
+                    index_kolichestva_k=(new_sms_l[1:].find("к"))+1
                     igr_krashik_summa = int(new_sms[gde_tochka+3:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
                     igr_krashik_summa = int(new_sms[gde_tochka+3:])
