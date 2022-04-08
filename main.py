@@ -512,14 +512,14 @@ def handle_text(message):
         elif new_sms_l[0:4]=="краш":
             try:
                 kolichestvo_k=new_sms_l[1:].count("к")
+                gde_tochka=new_sms_l.find(".")
                 if kolichestvo_k>0:
                     index_kolichestva_k=(new_sms_l[1:].find("к"))+1
                     igr_krashik_summa = int(new_sms[gde_tochka+3:index_kolichestva_k])*(1000**(kolichestvo_k))
                 else:
                     igr_krashik_summa = int(new_sms[gde_tochka+3:])
-                gde_tochka=new_sms_l.find(".")
                 prognoz_igrayushego=str(new_sms_l[4:gde_tochka]+new_sms_l[gde_tochka+1:gde_tochka+3])
-                kefik_krasha=str(random.choice(nachalo_kefikov)+random.choice(okonchanie_kefikov))
+                kefik_krasha=str(random.choice(nachalo_kefikov)+random.choice(okonchaniya_kefikov))
                 balans_igr_vkrashik = kakoy_balans(id_chel, 0)
                 minus_balans(id_chel, igr_krashik_summa)
                 if balans_igr_vkrashik>=igr_krashik_summa:
@@ -531,9 +531,8 @@ def handle_text(message):
                         bot.send_message(id_chat, f"Казино: {emoji[6]} {random_kef} {emoji[6]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                 else:
                     bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-            except Exception as e:
+            except:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
-                bot.send_message(idr, e)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
         elif new_sms_l=="курс":
