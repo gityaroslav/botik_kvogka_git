@@ -531,8 +531,9 @@ def handle_text(message):
                         bot.send_message(id_chat, f"Казино: {emoji[6]} {random_kef} {emoji[6]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                 else:
                     bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-            except:
+            except Exception as e:
                 bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
+                bot.send_message(idr, e)
             command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
             cur.execute(command123456)
         elif new_sms_l=="курс":
