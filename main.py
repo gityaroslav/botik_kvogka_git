@@ -526,7 +526,7 @@ def handle_text(message):
                     if int(prognoz_igrayushego)<=kefik_krasha:
                         new_igr_krashik_summa=igr_krashik_summa*(float(random_kef))
                         plus_balans(id_chel, new_igr_krashik_summa)
-                        bot.send_message(id_chat, f"Краш: {emoji[6]} {random_kef} {emoji[6]}\nВаш прогноз: {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
+                        bot.send_message(id_chat, f"Краш: {emoji[6]} {kefik_krasha} {emoji[6]}\nВаш прогноз: {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                     else:
                         bot.send_message(id_chat, f"Казино: {emoji[6]} {random_kef} {emoji[6]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                 else:
