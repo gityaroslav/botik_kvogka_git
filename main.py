@@ -408,7 +408,8 @@ try:
                         bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kakoy_balans(id_poluch, 1)}{emoji[2]}\nВаш баланс: {kakoy_balans(id_otprav, 1)}{emoji[2]}")
                     else:
                         bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-                except:
+                except Exception as e:
+                    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
@@ -429,7 +430,8 @@ try:
                         bot.send_message(id_chat, f"Перевод выполнен успешно!\nБаланс получателя: {kakoy_balans(id_poluch, 1)}{emoji[2]}\nВаш баланс: {kakoy_balans(id_otprav, 1)}{emoji[2]}")
                     else:
                         bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-                except:
+                except Exception as e:
+                    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
@@ -447,7 +449,8 @@ try:
                     cur.execute(command)
                     conn.commit()
                     bot.send_message(id_chat, f"Операция выполнена успешно!\nБаланс клиента: {kakoy_balans(id_poluch, 1)}")
-                except:
+                except Exception as e:
+                    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
@@ -468,7 +471,8 @@ try:
                         bot.send_message(id_chat, f"Казино: {emoji[6]} {random_kef} {emoji[6]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                     else:
                         bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-                except:
+                except Exception as e:
+                    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
@@ -486,7 +490,8 @@ try:
                         bot.send_message(id_chat, f"Кубик: {emoji[5]} {random_cifra} {emoji[5]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                     else:
                         bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
-                except:
+                except Exception as e:
+                    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
@@ -507,7 +512,8 @@ try:
                 id_togo_chela=message.reply_to_message.from_user.id
                 try:
                     bot.send_message(id_chat, f"Айди|{id_togo_chela}\nБаланс|{kakoy_balans(id_togo_chela, 1)}")
-                except:
+                except Exception as e:
+                    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
                     bot.send_message(id_chat, f"Айди|{id_togo_chela}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
@@ -555,7 +561,8 @@ try:
                     kursik='{0:,}'.format(kursik).replace(',', ' ')
                     kursik20='{0:,}'.format(kursik20).replace(',', ' ')
                     bot.send_message(id_chat, f"Курс:\nПродажа: 1 рубль = {kursik}{emoji[2]}\nПродавать другим игрокам ниже курса запрещается!\nСумма ордена: {kursik20}{emoji[2]}")
-                except:
+                except Exception as e:
+                    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
@@ -571,7 +578,8 @@ try:
                     kursik15=(summ_balans//(count_balans**3))*15
                     plus_balans(message.reply_to_message.from_user.id, kursik15)
                     bot.send_message(id_chat, "Успешно выдал награду за находку бага!")
-                except:
+                except Exception as e:
+                    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
@@ -585,7 +593,8 @@ try:
                         cur.execute(command)
                     conn.commit()
                     bot.send_message(id_chat, f"Операция {summa_vseh} для всех выполнена успешно!")
-                except:
+                except Exception as e:
+                    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
@@ -606,7 +615,7 @@ try:
             kolvo_sms_count=cur.fetchone()
             bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
 except Exception as e:
-    bot.send_message(-606727227, f"Ошибка в коде: {e}")
+    bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
     
 if __name__ == '__main__':
     bot.skip_pending = True
