@@ -588,7 +588,7 @@ try:
             kolvo_sms_count=cur.fetchone()
             bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
         if new_sms_l=="qwerfd":
-            bot.send_message(message.chat.id, f"tg://user?id={message.from_user.id}", parse_mode='MarkdownV2')
+            bot.send_message(message.chat.id, f"[{message.from_user.first_name}](@{message.from_user.username})", parse_mode='MarkdownV2')
 except Exception as e:
     bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
     
