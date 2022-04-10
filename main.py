@@ -262,34 +262,7 @@ try:
                     else:
                         cur.execute(sql_zaprosik)
                         conn.commit()
-                    index_command_sql_zaprosik=sql_zaprosik.find(" ")
-                    command_sql_zaprosik=sql_zaprosik[:index_command_sql_zaprosik]
-                    sql_zaprosik=sql_zaprosik[index_command_sql_zaprosik+1:]
-                    table_sql_zaprosik=''
-                    zapros_sql_zaprosik=""
-                    if command_sql_zaprosik=="update":
-                        index_table_sql_zaprosik=sql_zaprosik.find(" ")
-                        table_sql_zaprosik=sql_zaprosik[:index_table_sql_zaprosik]
-                        zapros_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+1:]
-                    elif command_sql_zaprosik=="select":
-                        index_table_sql_zaprosik=sql_zaprosik.find("from")
-                        zapros_sql_zaprosik+=sql_zaprosik[:index_table_sql_zaprosik-1]
-                        dlya_dop1_index_table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
-                        dop1_index_table_sql_zaprosik=dlya_dop1_index_table_sql_zaprosik.find(" ")
-                        if dop1_index_table_sql_zaprosik==-1:
-                            table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
-                        else:
-                            sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
-                            table_sql_zaprosik=sql_zaprosik[:dop1_index_table_sql_zaprosik]
-                            zapros_sql_zaprosik+="|||"
-                            zapros_sql_zaprosik+=sql_zaprosik[dop1_index_table_sql_zaprosik+1:]
-                    elif command_sql_zaprosik=="insert":
-                        index_table_sql_zaprosik=sql_zaprosik.find("into")
-                        table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
-                    elif command_sql_zaprosik=="delete":
-                        index_table_sql_zaprosik=sql_zaprosik.find("from")
-                        table_sql_zaprosik=sql_zaprosik[index_table_sql_zaprosik+5:]
-                    itog_sql_zaprosika=f"SQL запрос:\n―――――\nТип запроса: {command_sql_zaprosik}\nТаблица: {table_sql_zaprosik}\nЗапрос: {zapros_sql_zaprosik}\n―――――\nУспешно!"
+                    itog_sql_zaprosika=f"SQL запрос:\n―――――\nУспешно!"
                     bot.send_message(id_chat, itog_sql_zaprosika)
                 except Exception as e:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
@@ -391,7 +364,7 @@ try:
                 bot.send_message(id_chat, f"Ваш баланс: {kakoy_balans(id_chel, 1)}{emoji[2]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l[0:7]=='перевод':
+            elif new_sms_l[0:7]=='перевод': #перевод
                 id_poluch=message.reply_to_message.from_user.id 
                 id_otprav=message.from_user.id
                 try:
@@ -413,7 +386,7 @@ try:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l[0:4]=='своп':
+            elif new_sms_l[0:4]=='своп': #своп
                 id_poluch=message.reply_to_message.from_user.id 
                 id_otprav=message.from_user.id
                 try:
@@ -435,7 +408,7 @@ try:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l[0:4]=="банк" and id_chel==idr:
+            elif new_sms_l[0:4]=="банк" and id_chel==idr:#банк
                 id_poluch=message.reply_to_message.from_user.id 
                 try:
                     znak_banka=new_sms[4]
@@ -454,7 +427,7 @@ try:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l[0:3]=="каз":
+            elif new_sms_l[0:3]=="каз": #каз
                 random_kef=random.choice(random_kefiki)
                 try:
                     kolichestvo_k=new_sms_l[1:].count("к")
@@ -495,7 +468,7 @@ try:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l=="всебалы" and id_chel in niki_ludishek:
+            elif new_sms_l=="всебалы" and id_chel in niki_ludishek: #всебалы
                 cur.execute("select name, balance from kvg_db")
                 namebalance = cur.fetchall()
                 itogoviy_vivod="Балансы наших:\n"
@@ -517,7 +490,7 @@ try:
                     bot.send_message(id_chat, f"Айди|{id_togo_chela}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l[0:4]=="краш":
+            elif new_sms_l[0:4]=="краш":#краш
                 try:
                     kolichestvo_k=new_sms_l[1:].count("к")
                     gde_tochka=new_sms_l.find(".")
@@ -547,7 +520,7 @@ try:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l=="курс":
+            elif new_sms_l=="курс":#курс
                 try:
                     cur.execute("select balance from kvg_db")
                     namebalance = cur.fetchall()
@@ -566,7 +539,7 @@ try:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l=="квожка выдай орден":
+            elif new_sms_l=="квожка выдай орден":#квожка выдай орден
                 try:
                     cur.execute("select balance from kvg_db")
                     namebalance = cur.fetchall()
@@ -583,7 +556,7 @@ try:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l[0:8]=='весьбанк' and id_chel==idr:
+            elif new_sms_l[0:8]=='весьбанк' and id_chel==idr:#весьбанк
                 try:
                     cur.execute("select id from kvg_db")
                     idshki = cur.fetchall()
@@ -615,7 +588,7 @@ try:
             kolvo_sms_count=cur.fetchone()
             bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
         if new_sms_l=="qwerfd":
-            bot.send_message(message.chat.id, f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})", parse_mode='MarkdownV2')
+            bot.send_message(message.chat.id, f"tg://user?id={message.from_user.id}", parse_mode='MarkdownV2')
 except Exception as e:
     bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
     
