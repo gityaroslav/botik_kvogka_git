@@ -576,7 +576,7 @@ try:
                 index2=new_sms_l.find(")")
                 index3=new_sms_l.find("[")
                 index4=new_sms_l.find("]")
-                bot.send_message(int(new_sms_l[index3+1:index4]), str(new_sms_l[index1+1:index2])
+                bot.send_message(int(new_sms_l[index3+1:index4]), str(new_sms_l[index1+1:index2]))
             conn.commit()
         if new_sms_l=="квожка режим вкл" and id_chel==idr:
             cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
