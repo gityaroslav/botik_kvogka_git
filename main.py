@@ -571,12 +571,14 @@ try:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
-            elif new_sms_l[:18]=="квожка отправь смс":
+            elif new_sms_l[:18]=="квожка отправь смс" and id_chel==idr:
                 index1=new_sms_l.find("(")
                 index2=new_sms_l.find(")")
                 index3=new_sms_l.find("[")
                 index4=new_sms_l.find("]")
                 bot.send_message(int(new_sms_l[index3+1:index4]), str(new_sms_l[index1+1:index2]))
+            elif new_sms_l[:21]=="квожка скажи все айди" and id_chel==idr:
+                bot.send_message(id_chat, f"Айди Роси: {idr}\nАйди Даши: {idd}\nАйди Жени: {idg}\nАйди Лизы: {idl}\nАйди Егора: 981661206\nАйди Вари: 1450023923\nАйди Ники: 1039315228\nАйди Полины: 1230762892\nАйди основного чата: {ourchatid}\nАйди Валютки: ...\nАйди чата с ошибками: {id_error_chat}")
             conn.commit()
         if new_sms_l=="квожка режим вкл" and id_chel==idr:
             cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
