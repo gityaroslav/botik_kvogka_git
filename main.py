@@ -582,9 +582,9 @@ try:
             elif new_sms_l[:15]=="квожка рассылка" and id_chel==idr:
                 text_rassilka=new_sms_l[16:]
                 cur.execute("select id from kvg_db")
-                namebalance = cur.fetchall()
+                idshki = cur.fetchall()
                 all_id=[]
-                for el in namebalance:
+                for el in idshki:
                     all_id.append(int(el[0]))
                 bot.send_message(idr, all_id)
                 for ids in all_id:
