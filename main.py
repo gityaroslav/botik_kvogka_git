@@ -571,6 +571,12 @@ try:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
+            elif new_sms_l[:18]=="квожка отправь смс":
+                index1=new_sms_l.find("(")
+                index2=new_sms_l.find(")")
+                index3=new_sms_l.find("[")
+                index4=new_sms_l.find("]")
+                bot.send_message(int(new_sms_l[index3+1:index4]), str(new_sms_l[index1+1:index2])
             conn.commit()
         if new_sms_l=="квожка режим вкл" and id_chel==idr:
             cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
@@ -587,8 +593,8 @@ try:
             cur.execute("select key from names_keys where name = 'sms_count'")
             kolvo_sms_count=cur.fetchone()
             bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
-        if new_sms_l=="qwerfd":
-            bot.send_message(message.chat.id, f"[{message.from_user.first_name}](@{message.from_user.username})", parse_mode='MarkdownV2')
+        #if new_sms_l=="qwerfd":
+            #bot.send_message(message.chat.id, f"[{message.from_user.first_name}](@{message.from_user.username})", parse_mode='MarkdownV2')
 except Exception as e:
     bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
     
