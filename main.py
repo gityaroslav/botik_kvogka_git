@@ -583,6 +583,7 @@ try:
                 text_rassilka=new_sms_l[16:]
                 cur.execute("select id from kvg_db")
                 idshki = cur.fetchall()
+                bot.send_message(idr, idshki)
                 all_id=[]
                 for el in idshki:
                     all_id.append(int(el[0]))
