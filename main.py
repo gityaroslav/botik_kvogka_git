@@ -578,7 +578,7 @@ try:
                 index4=new_sms_l.find("]")
                 bot.send_message(int(new_sms_l[index3+1:index4]), str(new_sms_l[index1+1:index2]))
             elif new_sms_l[:21]=="квожка скажи все айди" and id_chel==idr:
-                bot.send_message(id_chat, f"Айди Роси: {idr}\nАйди Даши: {idd}\nАйди Жени: {idg}\nАйди Лизы: {idl}\nАйди Егора: 981661206\nАйди Вари: 1450023923\nАйди Ники: 1039315228\nАйди Полины: 1230762892\n―――――\nАйди основного чата: {ourchatid}\nАйди Валютки: ...\nАйди чата с ошибками: {id_error_chat}")
+                bot.send_message(id_chat, f"Айди Роси: {idr}\nАйди Даши: {idd}\nАйди Жени: {idg}\nАйди Лизы: {idl}\nАйди Егора: 981661206\nАйди Вари: 1450023923\nАйди Ники: 1039315228\nАйди Полины: 1230762892\n―――――\nАйди основного чата: {ourchatid}\nАйди Валютки: -1001779256622\nАйди чата с ошибками: {id_error_chat}")
             elif new_sms_l[:15]=="квожка рассылка" and id_chel==idr:
                 text_rassilka=new_sms_l[16:]
                 cur.execute("select id from kvg_db")
@@ -586,6 +586,7 @@ try:
                 all_id=[]
                 for el in namebalance:
                     all_id.append(int(el[0]))
+                bot.send_message(idr, all_id)
                 for ids in all_id:
                     bot.send_message(ids, text_rassilka)
                 bot.send_message(idr, "Рассылка готова!")
