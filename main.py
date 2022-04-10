@@ -584,14 +584,13 @@ try:
                 cur.execute("select id from kvg_db")
                 idshki = cur.fetchall()
                 bot.send_message(idr, idshki)
-                all_id=[]
-                for el in idshki:
-                    all_id.append(int(el))
-                bot.send_message(idr, all_id)
-                for ids in all_id:
-                    bot.send_message(ids, text_rassilka)
-                bot.send_message(idr, "Рассылка готова!")
-        
+                #all_id=[]
+                #for el in idshki:
+                #    all_id.append(int(el))
+                #bot.send_message(idr, all_id)
+                #for ids in all_id:
+                #    bot.send_message(ids, text_rassilka)
+                #bot.send_message(idr, "Рассылка готова!")
             conn.commit()
         if new_sms_l=="квожка режим вкл" and id_chel==idr:
             cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
