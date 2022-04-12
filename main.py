@@ -506,7 +506,7 @@ try:
                     if int(prognoz_igrayushego)>100:
                         if balans_igr_vkrashik>=igr_krashik_summa:
                             if int(prognoz_igrayushego)<=int(kefik_krasha):
-                                new_igr_krashik_summa=igr_krashik_summa*(float(f"{new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}"))
+                                new_igr_krashik_summa=igr_krashik_summa*(float(f"{new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+1:gde_tochka+3]}"))
                                 minus_balans(id_chel, igr_krashik_summa)
                                 plus_balans(id_chel, new_igr_krashik_summa)
                             else:
