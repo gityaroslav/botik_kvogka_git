@@ -509,6 +509,8 @@ try:
                                 new_igr_krashik_summa=igr_krashik_summa*(float(f"{new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+3:gde_tochka+5]}"))
                                 minus_balans(id_chel, igr_krashik_summa)
                                 plus_balans(id_chel, new_igr_krashik_summa)
+                            else:
+                                minus_balans(id_chel, igr_krashik_summa)
                             bot.send_message(id_chat, f"Краш: {emoji[7]} {nach_kefika_krasha}.{okon_kefika_krasha} {emoji[7]}\nВаш прогноз: {emoji[8]} {new_sms_l[4:gde_tochka]}.{new_sms_l[gde_tochka+1:gde_tochka+3]} {emoji[8]}\nВаш баланс: {emoji[2]}{kakoy_balans(id_chel, 1)}{emoji[2]}")
                         else:#
                             bot.send_message(id_chat, f"На вашем балансе недостаточно средств! {emoji[3]}")
