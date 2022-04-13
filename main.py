@@ -180,8 +180,8 @@ try:
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
                 elif new_sms_l[2] == 'р':
-                    bot.delete_message(id_chat, message.message_id)
-                    bot.send_message(id_chat, f"{nikr} Отметил(а): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
+                    bot.delete_message(message.chat.id, message.message_id)
+                    bot.send_message(id_chat, f"{nikr} Отметил(а):"+"[{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
                 elif new_sms_l[2] == 'е':
@@ -190,7 +190,7 @@ try:
                     cur.execute(command123456)
                 elif new_sms_l[2:5] == 'все':
                     bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg} {nike}')
-            elif new_sms_l[0]=='!+':
+            elif new_sms_l[0]=='!.':
                 bot.delete_message(message.chat.id, message.message_id)
                 bot.send_message(id_chat, new_sms[2:])
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
@@ -622,8 +622,8 @@ try:
             cur.execute("select key from names_keys where name = 'sms_count'")
             kolvo_sms_count=cur.fetchone()
             bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
-        #if new_sms_l=="qwerfd":
-            #bot.send_message(message.chat.id, f"[{message.from_user.first_name}](@{message.from_user.username})", parse_mode='MarkdownV2')
+        if new_sms_l=="qwerfd":
+            bot.send_message(message.chat.id, f"[{message.from_user.first_name}](@{message.from_user.username})", parse_mode='MarkdownV2')
 except Exception as e:
     bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
     
