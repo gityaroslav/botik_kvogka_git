@@ -181,7 +181,8 @@ try:
                     cur.execute(command123456)
                 elif new_sms_l[2] == 'р':
                     #bot.delete_message(message.chat.id, message.message_id)
-                    bot.send_message(id_chat, f"{nikr} Отметил(а): [{message.from_user.first_name}](tg://user?id={id_chel})")
+                    perem=f"{nikr} Отметил(а): "
+                    bot.send_message(id_chat, f"{perem} [{message.from_user.first_name}](tg://user?id={id_chel})")
                     bot.send_message(message.chat.id, f"{nikr} Отметил(а): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
