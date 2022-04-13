@@ -184,7 +184,7 @@ try:
                     bot.send_message(id_chat, f"{nikr} Отметил(а): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
-                elif new_sms_l[2] == 'р':
+                elif new_sms_l[2] == 'е':
                     bot.send_message(id_chat, nikr)
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
