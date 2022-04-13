@@ -15,6 +15,7 @@ nikg = '@freak_sqd03'
 nikd = '@artmv_d'
 nikl = '@lizk1a1'
 nikr = '@gikhok'
+nike = "@vlm27"
 id_error_chat=-606727227
 niki_ludishek=[idg, idd, idl, idr, 1039315228, 1230762892, 981661206]
 imena_nashih_ludishek=["Ника", "Рося", "Женя", "Поля", "Лиза", "Даша", "Егор"]
@@ -110,6 +111,9 @@ try:
     except Exception as e:
         bot.send_message(idr, f'Ошибка в подключении:\n{e}')
     emoji='✋😴💰😔😲🎲🎰📈🔒'# {emoji[7]}
+    cur.execute("select key from names_keys where name = 'sms_count'")
+    sms_count=cur.fetchone()
+    sms_count=int(sms_count[0])+1
     ########################################### все функции для хендлеров
     def kakoy_balans(id_chelika, type_vivod):
         command_kakoy_balans = f"select balance from kvg_db where id = {id_chelika}"
@@ -132,12 +136,14 @@ try:
     @bot.message_handler(commands=["start"])
     def start(m, res=False):
         bot.send_message(m.chat.id, f'Привет! {emoji[0]} Я Квожка, вы наверно уже заскучали? {emoji[1]}')
+        global sms_count
         command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
         cur.execute(command123456)
         conn.commit()
     
     @bot.message_handler(commands=["commands"])
     def commands(m, res=False):
+        global sms_count
         if m.chat.id == idr:
             bot.send_message(m.chat.id, commands_rosya)
         elif m.from_user.id in niki_ludishek:
@@ -150,6 +156,7 @@ try:
     
     @bot.message_handler(content_types=["text"])
     def handle_text(message):
+        global sms_count
         new_sms=message.text
         new_sms_l=message.text.lower()
         id_chel=message.from_user.id
@@ -158,9 +165,6 @@ try:
         global is_kvogka_rabotaet
         cur.execute("select key from names_keys where name = 'is_kvogka_rabotaet'")
         is_kvogka_rabotaet = cur.fetchone()
-        cur.execute("select key from names_keys where name = 'sms_count'")
-        sms_count=cur.fetchone()
-        sms_count=int(sms_count[0])+1
         if is_kvogka_rabotaet[0]=="YES":
             if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
                 if new_sms_l[2] == 'л':
@@ -176,14 +180,19 @@ try:
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
                 elif new_sms_l[2] == 'р':
+                    bot.delete_message(id_chat, message.message_id)
+                    bot.send_message(id_chat, f"{nikr} Отметил(а): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
+                    command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                    cur.execute(command123456)
+                elif new_sms_l[2] == 'р':
                     bot.send_message(id_chat, nikr)
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
                 elif new_sms_l[2:5] == 'все':
-                    bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}')
-            elif new_sms_l[0]=='!':
+                    bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg} {nike}')
+            elif new_sms_l[0]=='!+':
                 bot.delete_message(message.chat.id, message.message_id)
-                bot.send_message(id_chat, new_sms[1:])
+                bot.send_message(id_chat, new_sms[2:])
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
             elif new_sms_l == 'полюбить':
