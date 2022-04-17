@@ -176,31 +176,38 @@ try:
         if is_kvogka_rabotaet[0]=="YES":
             if new_sms_l[0:2] == 'оп' and id_chel in niki_ludishek:
                 if new_sms_l[2] == 'л':
-                    bot.delete_message(id_chat, message.message_id)
+                    if len(new_sms_l)==3:
+                        bot.delete_message(id_chat, message.message_id)
                     bot.send_message(id_chat, text=f"{nikl} Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
                 elif new_sms_l[2] == 'д':
-                    bot.delete_message(id_chat, message.message_id)
+                    if len(new_sms_l)==3:
+                        bot.delete_message(id_chat, message.message_id)
                     bot.send_message(id_chat, text=f"{nikd} Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
                 elif new_sms_l[2] == 'ж':
-                    bot.delete_message(id_chat, message.message_id)
+                    if len(new_sms_l)==3:
+                        bot.delete_message(id_chat, message.message_id)
                     bot.send_message(id_chat, text=f"{nikg} Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
                 elif new_sms_l[2] == 'р':
-                    bot.delete_message(id_chat, message.message_id)
+                    if len(new_sms_l)==3:
+                        bot.delete_message(id_chat, message.message_id)
                     bot.send_message(id_chat, text=f"{nikr} Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
                 elif new_sms_l[2] == 'е':
-                    bot.delete_message(id_chat, message.message_id)
+                    if len(new_sms_l)==3:
+                        bot.delete_message(id_chat, message.message_id)
                     bot.send_message(id_chat, text=f"{nike} Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
                 elif new_sms_l[2:5] == 'все':
+                    if len(new_sms_l)==5:
+                        bot.delete_message(id_chat, message.message_id)
                     bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg} {nike} Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})', parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
