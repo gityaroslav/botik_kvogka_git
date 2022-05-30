@@ -15,10 +15,9 @@ nikg = '@freak_sqd03'
 nikd = '@artmv_d'
 nikl = '@lizk1a1'
 nikr = '@gikhok'
-nike = "@vlm27"
 id_error_chat=-606727227
-niki_ludishek=[idg, idd, idl, idr, 1039315228, 1230762892, 981661206]
-imena_nashih_ludishek=["Ника", "Рося", "Женя", "Поля", "Лиза", "Даша", "Егор"]
+niki_ludishek=[idg, idd, idl, idr, 1039315228, 1230762892]
+imena_nashih_ludishek=["Ника", "Рося", "Женя", "Поля", "Лиза", "Даша"]
 game_shp_locations=['Футбольное поле', 'Школа', 'Рынок', 'Магазин', 'Площадка', 'Квартира', 'Ферма', 'Лес', 'Парк', 'Озеро', 'Сад', 'Пляж', 'Заброшка', 'Стройка', 'Поляна', 'Аквапарк', 'Лагерь', 'Зоопарк', 'Цум', 'Отель']
 ludi=['Даша', 'Лиза', 'Женя', 'Рося']
 random_kefiki=["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.25","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.5","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","0.75","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1.25","1.25","1.25","1.25","1.25","1.25","1.25","1.25","1.25","1.25","1.25","1.25","1.25","1.25","1.25","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.75","1.75","1.75","1.75","1.75","1.75","1.75","1.75","1.75","1.75","1.75","1.75","1.75","1.75","1.75","2","2","2","2","2","2","2","2","2","2","5","5","10","50","100"]
@@ -49,7 +48,6 @@ commands_ludishki="""
 Ж - женя
 Д - даша
 Л - лиза
-Е - егор
 ВСЕ - все вместе
 ——————————————
 ОП - отметить пользователя
@@ -73,7 +71,6 @@ commands_rosya="""
 Ж - женя
 Д - даша
 Л - лиза
-Е - егор
 ВСЕ - все вместе
 ——————————————
 ОП - отметить пользователя
@@ -199,16 +196,10 @@ try:
                     bot.send_message(id_chat, text=f"{nikr} Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
-                elif new_sms_l[2] == 'е':
-                    if len(new_sms_l)==3:
-                        bot.delete_message(id_chat, message.message_id)
-                    bot.send_message(id_chat, text=f"{nike} Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})", parse_mode='MarkdownV2')
-                    command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
-                    cur.execute(command123456)
                 elif new_sms_l[2:5] == 'все':
                     if len(new_sms_l)==5:
                         bot.delete_message(id_chat, message.message_id)
-                    bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg} {nike} Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})', parse_mode='MarkdownV2')
+                    bot.send_message(id_chat, f'{nikr} {nikd} {nikl} {nikg}Отметил\(а\): [{message.from_user.first_name}](tg://user?id={id_chel})', parse_mode='MarkdownV2')
                     command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                     cur.execute(command123456)
             elif new_sms_l[0:2]=='!.':
@@ -614,7 +605,7 @@ try:
                 index4=new_sms_l.find("]")
                 bot.send_message(int(new_sms_l[index3+1:index4]), str(new_sms_l[index1+1:index2]))
             elif new_sms_l[:21]=="квожка скажи все айди" and id_chel==idr:
-                bot.send_message(id_chat, f"Айди Роси: {idr}\nАйди Даши: {idd}\nАйди Жени: {idg}\nАйди Лизы: {idl}\nАйди Егора: 981661206\nАйди Вари: 1450023923\nАйди Ники: 1039315228\nАйди Полины: 1230762892\n―――――\nАйди основного чата: {ourchatid}\nАйди Валютки: -1001779256622\nАйди чата с ошибками: {id_error_chat}")
+                bot.send_message(id_chat, f"Айди Роси: {idr}\nАйди Даши: {idd}\nАйди Жени: {idg}\nАйди Лизы: {idl}\nАйди Вари: 1450023923\nАйди Ники: 1039315228\nАйди Полины: 1230762892\n―――――\nАйди основного чата: {ourchatid}\nАйди Валютки: -1001779256622\nАйди чата с ошибками: {id_error_chat}")
             elif new_sms_l[:15]=="квожка рассылка" and id_chel==idr:
                 text_rassilka=new_sms[16:]
                 cur.execute("select id from kvg_db")
