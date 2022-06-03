@@ -289,12 +289,12 @@ try:
                 cur.execute(command123456)
             elif new_sms_l[0:11]=='ночь квожка' and id_chel==idr:
                 bot.delete_message(id_chat, message.message_id)
-                bot.send_message(id_chat, f'@lizk1a1 @artmv\_d @freak\_sqd03\nВсем спокойной ночи!')
+                bot.send_message(id_chat, f'@lizk1a1 @artmv_d @freak_sqd03\nВсем спокойной ночи!')
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
             elif new_sms_l[0:11]=='утро квожка' and id_chel==idr:
                 bot.delete_message(id_chat, message.message_id)
-                bot.send_message(id_chat, f'@lizk1a1 @artmv\_d @freak\_sqd03\nВсем доброе утро!')
+                bot.send_message(id_chat, f'@lizk1a1 @artmv_d @freak_sqd03\nВсем доброе утро!')
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
             elif new_sms_l[0:4]=="спам" and id_chel==idr:
