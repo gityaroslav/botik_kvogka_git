@@ -264,6 +264,32 @@ try:
                 elif new_sms_l[3:]=="семь":
                     time.sleep(0.5)
                     bot.send_message(id_chat, "А она это, того самое, закончилась, песенка то :(")
+            elif new_sms_l=="квожка сколько уже" and (id_chel==idr or id_chel==idd):
+                skok_uzhe_s=(datetime.now() - datetime(2022, 6, 2, 17, 0, 0, 0)).total_seconds()
+                skok_uzhe_let=int(skok_uzhe_s//31536000)
+                skok_uzhe_dney=int((skok_uzhe_s%31536000)//86400)
+                skok_uzhe_chasov=int(((skok_uzhe_s%31536000)%86400)//3600)
+                if skok_uzhe_let%10==1:
+                    skok_uzhe_let_opis="год"
+                elif 2<=skok_uzhe_let%10<=4:
+                    skok_uzhe_let_opis="года"
+                else:
+                    skok_uzhe_let_opis="лет"
+                if skok_uzhe_chasov%10==1:
+                    skok_uzhe_chasov_opis="час"
+                elif 2<=skok_uzhe_chasov%10<=4:
+                    skok_uzhe_chasov_opis="часа"
+                else:
+                    skok_uzhe_chasov_opis="часов"
+                if 5<=skok_uzhe_dney%100<=20:
+                    skok_uzhe_dney_opis="дней"
+                elif skok_uzhe_dney%10==1:
+                    skok_uzhe_dney_opis="день"
+                elif 2<=skok_uzhe_dney%10<=4:
+                    skok_uzhe_dney_opis="дня"
+                else:
+                    skok_uzhe_dney_opis="дней"
+                bot.send_message(id_chat, f"Упсаой длится уже: {skok_uzhe_let}{skok_uzhe_let_opis}\n{skok_uzhe_dney}{skok_uzhe_dney_opis}(тут еще будет)\n{skok_uzhe_chasov}{skok_uzhe_chasov_opis}")
         ### скрытые команды хендлера
             elif new_sms_l[0:28]=="квожка работа с базой данных" and id_chel==idr:
                 try:
