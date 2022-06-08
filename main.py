@@ -289,7 +289,7 @@ try:
                     skok_uzhe_dney_opis="дня"
                 else:
                     skok_uzhe_dney_opis="дней"
-                bot.send_message(id_chat, f"Упсаой длится уже:\n{skok_uzhe_let}{skok_uzhe_let_opis}\n{skok_uzhe_dney}{skok_uzhe_dney_opis}(тут еще будет)\n{skok_uzhe_chasov}{skok_uzhe_chasov_opis}")
+                bot.send_message(id_chat, f"Упсаой длится уже:\n{skok_uzhe_let} {skok_uzhe_let_opis}\n{skok_uzhe_dney} {skok_uzhe_dney_opis}(тут еще будет)\n{skok_uzhe_chasov} {skok_uzhe_chasov_opis}")
         ### скрытые команды хендлера
             elif new_sms_l[0:28]=="квожка работа с базой данных" and id_chel==idr:
                 try:
