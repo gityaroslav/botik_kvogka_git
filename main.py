@@ -148,6 +148,15 @@ try:
         stroka_dlya_parsa=stroka_dlya_parsa.replace(")", "\)")
         stroka_dlya_parsa=stroka_dlya_parsa.replace("`", "\`")
         return stroka_dlya_parsa
+    def skloneniya(ch_sklon, first, second, fifth):
+        if ch_sklon%10==1:
+            return first
+        elif 2<=ch_sklon<=4:
+            return second
+        elif 5<=ch_sklon%100<=20:
+            return fifth
+        else:
+            return fifth
     ############################################# все хендлеры
     @bot.message_handler(commands=["start"])
     def start(m, res=False):
@@ -280,7 +289,10 @@ try:
                 skok_uzhe_let=int(skok_uzhe_s//31536000)
                 skok_uzhe_dney=int((skok_uzhe_s%31536000)//86400)
                 skok_uzhe_chasov=int(((skok_uzhe_s%31536000)%86400)//3600)
-                if skok_uzhe_let%10==1:
+                skok_uzhe_let_opis=skloneniya(skok_uzhe_let, "год", "года", "лет")
+                skok_uzhe_chasov_opis=skloneniya(skok_uzhe_chasov, "час", "часа", "часов")
+                skok_uzhe_dney_opis=skloneniya(skok_uzhe_dney, "день", "дня", "дней")
+                '''if skok_uzhe_let%10==1:
                     skok_uzhe_let_opis="год"
                 elif 2<=skok_uzhe_let%10<=4:
                     skok_uzhe_let_opis="года"
@@ -297,10 +309,10 @@ try:
                 elif skok_uzhe_dney%10==1:
                     skok_uzhe_dney_opis="день"
                 elif 2<=skok_uzhe_dney%10<=4:
-                    skok_uzhe_dney_opis="дня"
+                    skok_uzhe_chasov_opis="дня"
                 else:
-                    skok_uzhe_dney_opis="дней"
-                bot.send_message(id_chat, f"Упсаой длится уже:\n{skok_uzhe_let} {skok_uzhe_let_opis}\n{skok_uzhe_dney} {skok_uzhe_dney_opis}(тут еще будет)\n{skok_uzhe_chasov} {skok_uzhe_chasov_opis}")
+                    skok_uzhe_dney_opis="дней"'''
+                bot.send_message(id_chat, f"Упсаой длится уже:\n{skok_uzhe_let} {skok_uzhe_let_opis}\n{skok_uzhe_dney} {skok_uzhe_dney_opis}\n{skok_uzhe_chasov} {skok_uzhe_chasov_opis}")
         ### скрытые команды хендлера
             elif new_sms_l[0:28]=="квожка работа с базой данных" and id_chel==idr:
                 try:
