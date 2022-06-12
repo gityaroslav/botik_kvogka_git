@@ -552,7 +552,8 @@ try:
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
             elif new_sms_l=="дд" and id_chel==idr:
-                bot.delete_message(id_chat, [message.reply_to_message.message_id, message.message_id])
+                bot.delete_message(id_chat, message.reply_to_message.message_id)
+                bot.delete_message(id_chat, message.message_id)
             elif new_sms_l[0:4]=="краш":#краш
                 try:
                     kolichestvo_k=new_sms_l[1:].count("к")
