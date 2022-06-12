@@ -285,6 +285,8 @@ try:
                 elif new_sms_l[3:]=="семь":
                     time.sleep(0.5)
                     bot.send_message(id_chat, "А она это, того самое, закончилась, песенка то :(")
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
             elif new_sms_l=="квожка сколько уже" and (id_chel==idr or id_chel==idd):
                 skok_uzhe_s=(datetime.now() - datetime(2022, 6, 2, 17, 0, 0, 0)).total_seconds()
                 skok_uzhe_let=int(skok_uzhe_s//31536000)
@@ -294,6 +296,8 @@ try:
                 skok_uzhe_chasov_opis=skloneniya(skok_uzhe_chasov, "час", "часа", "часов")
                 skok_uzhe_dney_opis=skloneniya(skok_uzhe_dney, "день", "дня", "дней")
                 bot.send_message(id_chat, f"Упсаой длится уже:\n{skok_uzhe_let} {skok_uzhe_let_opis}\n{skok_uzhe_dney} {skok_uzhe_dney_opis}\n{skok_uzhe_chasov} {skok_uzhe_chasov_opis}")
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
         ### скрытые команды хендлера
             elif new_sms_l[0:28]=="квожка работа с базой данных" and id_chel==idr:
                 try:
@@ -313,18 +317,20 @@ try:
                 except Exception as e:
                     bot.send_message(id_chat, f"Что-то пошло не так. Попробуйте заново! {emoji[4]}")
                     bot.send_message(idr, e)
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
             elif new_sms == "*+" and id_chel==idr:
                 bot.send_message(id_chat, 'Квожка работает!')
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
             elif new_sms_l[0:11]=='ночь квожка' and id_chel==idr:
                 bot.delete_message(id_chat, message.message_id)
-                bot.send_message(id_chat, f'@lizk1a1 @artmv_d @freak_sqd03\nВсем спокойной ночи!')
+                bot.send_message(id_chat, f'{nikl} {nikd} {nikg}\nВсем спокойной ночи!')
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
             elif new_sms_l[0:11]=='утро квожка' and id_chel==idr:
                 bot.delete_message(id_chat, message.message_id)
-                bot.send_message(id_chat, f'@lizk1a1 @artmv_d @freak_sqd03\nВсем доброе утро!')
+                bot.send_message(id_chat, f'{nikl} {nikd} {nikg}\nВсем доброе утро!')
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
             elif new_sms_l[0:4]=="спам" and id_chel==idr:
@@ -634,8 +640,12 @@ try:
                 index3=new_sms_l.find("[")
                 index4=new_sms_l.find("]")
                 bot.send_message(int(new_sms_l[index3+1:index4]), str(new_sms_l[index1+1:index2]))
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
             elif new_sms_l[:21]=="квожка скажи все айди" and id_chel==idr:
                 bot.send_message(id_chat, f"Айди Роси: {idr}\nАйди Даши: {idd}\nАйди Жени: {idg}\nАйди Лизы: {idl}\nАйди Вари: 1450023923\nАйди Ники: 1039315228\nАйди Полины: 1230762892\n―――――\nАйди основного чата: {ourchatid}\nАйди Валютки: -1001779256622\nАйди чата с ошибками: {id_error_chat}")
+                command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+                cur.execute(command123456)
             elif new_sms_l[:15]=="квожка рассылка" and id_chel==idr:
                 text_rassilka=new_sms[16:]
                 cur.execute("select id from kvg_db")
@@ -653,6 +663,8 @@ try:
                     except:
                         pass
                 bot.send_message(idr, "Рассылка готова!")
+                command123456 = f"update names_keys set key = {sms_count+len(all_id)} where name = 'sms_count'"
+                cur.execute(command123456)
             conn.commit()
         if new_sms_l=="квожка режим вкл" and id_chel==idr:
             cur.execute("update names_keys set key = 'YES' where name = 'is_kvogka_rabotaet'")
@@ -671,6 +683,8 @@ try:
             bot.send_message(id_chat, f'КВОЖКА\n―――――\nСтатус работы: {kolvo_is_kvogka_rabotaet[0]}\nКоличество сообщений: {kolvo_sms_count[0]}')
 except Exception as e:
     bot.send_message(id_error_chat, f"Ошибка в коде: {e}")
+    command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
+    cur.execute(command123456)
     
 if __name__ == '__main__':
     bot.skip_pending = True
