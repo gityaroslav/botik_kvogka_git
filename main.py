@@ -253,10 +253,10 @@ try:
                 cur.execute(command123456)
             elif new_sms_l == 'пинг':
                 start_time = datetime.now()
-                bot.send_message(id_chat, "Беру ракетку!")
+                message_beru_raketku=bot.send_message(id_chat, "Беру ракетку!")
                 end_time = datetime.now()
                 finish_time = end_time - start_time
-                bot.send_message(id_chat, f'Понг (за {finish_time.total_seconds()} секунд)')
+                bot.edit_message_text(id_chat, message_beru_raketku, f'Понг (за {finish_time.total_seconds()} секунд)')
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
             elif "dashina_pesnya"=="dashina_pesnya" and (id_chel==idd or id_chel==idr) and new_sms_l[0:3]=="кв ":
@@ -292,26 +292,6 @@ try:
                 skok_uzhe_let_opis=skloneniya(skok_uzhe_let, "год", "года", "лет")
                 skok_uzhe_chasov_opis=skloneniya(skok_uzhe_chasov, "час", "часа", "часов")
                 skok_uzhe_dney_opis=skloneniya(skok_uzhe_dney, "день", "дня", "дней")
-                '''if skok_uzhe_let%10==1:
-                    skok_uzhe_let_opis="год"
-                elif 2<=skok_uzhe_let%10<=4:
-                    skok_uzhe_let_opis="года"
-                else:
-                    skok_uzhe_let_opis="лет"
-                if skok_uzhe_chasov%10==1:
-                    skok_uzhe_chasov_opis="час"
-                elif 2<=skok_uzhe_chasov%10<=4:
-                    skok_uzhe_chasov_opis="часа"
-                else:
-                    skok_uzhe_chasov_opis="часов"
-                if 5<=skok_uzhe_dney%100<=20:
-                    skok_uzhe_dney_opis="дней"
-                elif skok_uzhe_dney%10==1:
-                    skok_uzhe_dney_opis="день"
-                elif 2<=skok_uzhe_dney%10<=4:
-                    skok_uzhe_chasov_opis="дня"
-                else:
-                    skok_uzhe_dney_opis="дней"'''
                 bot.send_message(id_chat, f"Упсаой длится уже:\n{skok_uzhe_let} {skok_uzhe_let_opis}\n{skok_uzhe_dney} {skok_uzhe_dney_opis}\n{skok_uzhe_chasov} {skok_uzhe_chasov_opis}")
         ### скрытые команды хендлера
             elif new_sms_l[0:28]=="квожка работа с базой данных" and id_chel==idr:
