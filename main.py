@@ -256,7 +256,7 @@ try:
                 message_beru_raketku=bot.send_message(id_chat, "Беру ракетку!")
                 end_time = datetime.now()
                 finish_time = end_time - start_time
-                bot.edit_message_text(text=f'Понг (за {finish_time.total_seconds()} секунд)', chat_id=id_chat, message_id=message_beru_raketku.message_id - 1)
+                bot.edit_message_text(text=f'Понг (за {finish_time.total_seconds()} секунд)', chat_id=id_chat, message_id=message_beru_raketku.message_id)
                 bot.edit_message_text(id_chat, message_beru_raketku, f'Понг (за {finish_time.total_seconds()} секунд)')
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
