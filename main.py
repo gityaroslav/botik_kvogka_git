@@ -299,7 +299,8 @@ try:
                 skok_uzhe_chasov_opis=skloneniya(skok_uzhe_chasov, "час", "часа", "часов")
                 skok_uzhe_dney_opis=skloneniya(skok_uzhe_dney, "день", "дня", "дней")
                 cur.execute("select key from names_keys where name='skok_uzhe'")
-                bot.send_message(id_chat, f"Упсаой длится уже:\n{skok_uzhe_let} {skok_uzhe_let_opis}\n{skok_uzhe_dney} {skok_uzhe_dney_opis}\n{skok_uzhe_chasov} {skok_uzhe_chasov_opis}\nКоличество: {cur.fetchone}")
+                kolvo_skok_uzhe=cur.fetchone()
+                bot.send_message(id_chat, f"Упсаой длится уже:\n{skok_uzhe_let} {skok_uzhe_let_opis}\n{skok_uzhe_dney} {skok_uzhe_dney_opis}\n{skok_uzhe_chasov} {skok_uzhe_chasov_opis}\nКоличество: {kolvo_skok_uzhe}")
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
         ### скрытые команды хендлера
