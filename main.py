@@ -179,11 +179,14 @@ try:
         cur.execute(command123456)
         conn.commit()
     
-    @bot.message_handler(content_types=["text"])
+    @bot.message_handler(content_types=["text", "photo", "video"])
     def handle_text(message):
         global sms_count
-        new_sms=message.text
-        new_sms_l=message.text.lower()
+        if message.text!=None:
+            new_sms=message.text
+            new_sms_l=message.text.lower()
+        else:
+            new_sms_l=message.caption
         id_chel=message.from_user.id
         id_chat=message.chat.id
     ### основная часть хендлера
