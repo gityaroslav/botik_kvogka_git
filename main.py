@@ -304,7 +304,9 @@ try:
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
             elif new_sms_l=="квожка добавь день к количеству" and (id_chel==idr or id_chel==idd):
-                cur.execute('update names_keys set key=key+1 where name="skok_uzhe"')
+                cur.execute("select key from names_keys where name='skok_uzhe'")
+                kv_dobav_den_kolvo=int(repr(cur.fetchone())[2:-3])+1
+                cur.execute(f"update names_keys set key = {kv_dobav_den_kolvo} where name = 'skok_uzhe'")
                 bot.send_message(id_chat, "Успешно добавил день! :)")
         ### скрытые команды хендлера
             elif new_sms_l[0:28]=="квожка работа с базой данных" and id_chel==idr:
