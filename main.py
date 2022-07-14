@@ -408,10 +408,10 @@ try:
                 all_id=list(map(int, all_id.split()))
                 if message.from_user.id not in all_id:
                     cur.execute(f"insert into kvg_db values ('**{message.from_user.first_name}**', '1000', '{message.from_user.id}')")
-            elif '''new_sms_l[:2]=="ид" and '''id_chel==idr:
+            elif id_chel==idr:
                 bot.send_message(id_chat, "228")
                 try:
-                    bot.send_message(id_chat, text=f"Ссылка на человека: [человек](tg://user?id={int(new_sms_l[3:])})", parse_mode='MarkdownV2')
+                    bot.send_message(id_chat, text=f"Ссылка на человека: [человек](tg://user?id={int(new_sms_l)})", parse_mode='MarkdownV2')
                     #bot.send_message(id_chat, text=f"Ссылка на человека: [человечек](tg://user?id={int(new_sms_l[10:])})", parse_mode='MarkdownV2')
                 except Exception as e:
                     bot.send_message(id_error_chat, e)
