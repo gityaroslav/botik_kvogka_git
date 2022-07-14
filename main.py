@@ -411,7 +411,6 @@ try:
             elif new_sms_l[:2]=="id":
                 bot.send_message(id_chat, "228")
                 try:
-                    
                     bot.send_message(id_chat, text=f"Ссылка на человека: [человек](tg://user?id={int(new_sms_l)})", parse_mode='MarkdownV2')
                     #bot.send_message(id_chat, text=f"Ссылка на человека: [человечек](tg://user?id={int(new_sms_l[10:])})", parse_mode='MarkdownV2')
                 except Exception as e:
