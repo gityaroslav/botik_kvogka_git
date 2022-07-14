@@ -390,10 +390,9 @@ try:
                     time.sleep(1)
                     command123456 = f"update names_keys set key = {sms_count+2} where name = 'sms_count'"
                     cur.execute(command123456)
-            elif new_sms_l[:2]=="ид":
-                bot.send_message(id_chat, "228")
+            elif new_sms_l[:15]=="кв ссылка по ид":
                 try:
-                    bot.send_message(id_chat, text=f"Ссылка на человека: [человек](tg://user?id={int(new_sms_l[3:])})", parse_mode='MarkdownV2')
+                    bot.send_message(id_chat, text=f"Ссылка на человека: [человек](tg://user?id={int(new_sms_l[16:])})", parse_mode='MarkdownV2')
                     #bot.send_message(id_chat, text=f"Ссылка на человека: [человечек](tg://user?id={int(new_sms_l[10:])})", parse_mode='MarkdownV2')
                 except Exception as e:
                     bot.send_message(id_error_chat, e)
