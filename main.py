@@ -151,7 +151,7 @@ try:
     def skloneniya(ch_sklon, first, second, fifth):
         if ch_sklon%10==1:
             return first
-        elif 2<=ch_sklon<=4:
+        elif 2<=ch_sklon%10<=4:
             return second
         elif 5<=ch_sklon%100<=20:
             return fifth
@@ -396,6 +396,20 @@ try:
                 command123456 = f"update names_keys set key = {sms_count} where name = 'sms_count'"
                 cur.execute(command123456)
         ### все для игры в шпиона
+            elif "proverka_id"=="proverka_id":
+                cur.execute("select id from kvg_db")
+                idshki = cur.fetchall()
+                all_id=repr(idshki)
+                all_id=all_id.replace("(", "")
+                all_id=all_id.replace(")", "")
+                all_id=all_id.replace(",", "")
+                all_id=all_id.replace("'", "")
+                all_id=all_id[1:-1]
+                all_id=list(map(int, all_id.split()))
+                if message.from_user.id not in all_id:
+                    cur.execute(f"insert into kvg_db values ('{message.from_user.first_name}', '1000', '{message.from_user.id}')")
+            elif new_sms_l.startswith()=="квожка дай ссылку по айди" and id_chel==idr:
+                bot.send_message(id_chat, text=f"Ссылка на человека: [{new_sms_l[26:]}](tg://user?id={new_sms_l[26:]})", parse_mode='MarkdownV2')
             elif new_sms_l == "шпион старт" and id_chel in niki_ludishek:
                 game_shp_chel=random.choice(ludi)
                 game_shp_locat=random.choice(game_shp_locations)
