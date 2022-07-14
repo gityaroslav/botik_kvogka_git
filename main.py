@@ -409,7 +409,10 @@ try:
                 if message.from_user.id not in all_id:
                     cur.execute(f"insert into kvg_db values ('**{message.from_user.first_name}**', '1000', '{message.from_user.id}')")
             elif new_sms_l.startswith()=="квожка дай ссылку по айди" and id_chel==idr:
-                bot.send_message(id_chat, text=f"Ссылка на человека: [{new_sms_l[26:]}](tg://user?id={new_sms_l[26:]})", parse_mode='MarkdownV2')
+                try:
+                    bot.send_message(id_chat, text=f"Ссылка на человека: [{new_sms_l[26:]}](tg://user?id={new_sms_l[26:]})", parse_mode='MarkdownV2')
+                except Exception as e:
+                    bot.send_message(id_error_chat, e)
             elif new_sms_l == "шпион старт" and id_chel in niki_ludishek:
                 game_shp_chel=random.choice(ludi)
                 game_shp_locat=random.choice(game_shp_locations)
