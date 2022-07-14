@@ -390,6 +390,13 @@ try:
                     time.sleep(1)
                     command123456 = f"update names_keys set key = {sms_count+2} where name = 'sms_count'"
                     cur.execute(command123456)
+            elif new_sms_l[:2]=="ид":
+                bot.send_message(id_chat, "228")
+                try:
+                    bot.send_message(id_chat, text=f"Ссылка на человека: [человек](tg://user?id={int(new_sms_l)})", parse_mode='MarkdownV2')
+                    #bot.send_message(id_chat, text=f"Ссылка на человека: [человечек](tg://user?id={int(new_sms_l[10:])})", parse_mode='MarkdownV2')
+                except Exception as e:
+                    bot.send_message(id_error_chat, e)
             elif new_sms_l=="квожка режим выкл" and id_chel==idr:
                 cur.execute("update names_keys set key = 'NO' where name = 'is_kvogka_rabotaet'")
                 bot.send_message(idr, "Режим квожки изменён на 'NO'")
@@ -408,13 +415,6 @@ try:
                 all_id=list(map(int, all_id.split()))
                 if message.from_user.id not in all_id:
                     cur.execute(f"insert into kvg_db values ('**{message.from_user.first_name}**', '1000', '{message.from_user.id}')")
-            elif new_sms_l[:2]=="id":
-                bot.send_message(id_chat, "228")
-                try:
-                    bot.send_message(id_chat, text=f"Ссылка на человека: [человек](tg://user?id={int(new_sms_l)})", parse_mode='MarkdownV2')
-                    #bot.send_message(id_chat, text=f"Ссылка на человека: [человечек](tg://user?id={int(new_sms_l[10:])})", parse_mode='MarkdownV2')
-                except Exception as e:
-                    bot.send_message(id_error_chat, e)
             elif new_sms_l == "шпион старт" and id_chel in niki_ludishek:
                 game_shp_chel=random.choice(ludi)
                 game_shp_locat=random.choice(game_shp_locations)
