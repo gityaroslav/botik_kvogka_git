@@ -408,7 +408,7 @@ try:
                 all_id=list(map(int, all_id.split()))
                 if message.from_user.id not in all_id:
                     cur.execute(f"insert into kvg_db values ('**{message.from_user.first_name}**', '1000', '{message.from_user.id}')")
-            elif new_sms_l.startswith()=="квожка дай ссылку по айди" and id_chel==idr:
+            elif new_sms_l.startswith("квожка дай ссылку по айди") and id_chel==idr:
                 try:
                     bot.send_message(id_chat, text=f"Ссылка на человека: [{new_sms_l[26:]}](tg://user?id={new_sms_l[26:]})", parse_mode='MarkdownV2')
                 except Exception as e:
